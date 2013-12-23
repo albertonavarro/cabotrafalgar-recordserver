@@ -1,0 +1,42 @@
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:amq="http://activemq.apache.org/schema/core"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jms="http://www.springframework.org/schema/jms"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+ 
+
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        
+        <property name="brokerURL">
+            <!-- value>tcp://localhost:61616</value -->
+            <value>vm://localhost</value>
+        </property>
+    </bean>
+ 
+    <bean id="pooledJmsConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+          destroy-method="stop">
+        <property name="connectionFactory" ref="jmsConnectionFactory" />
+    </bean>
+ 
+    <bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="jmsExample" />
+    </bean>
+ 
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="pooledJmsConnectionFactory" />
+        <property name="defaultDestination" ref="destination"/>
+    </bean>
+    
+	 
+    <!-- The Spring message listener container configuration -->
+    <jms:listener-container
+        container-type="default"
+        connection-factory="pooledJmsConnectionFactory"
+        acknowledge="auto">
+        <jms:listener destination="jmsExample" ref="emailNotifier" method="onMessage" />
+    </jms:listener-container>
+
+</beans>
