@@ -148,6 +148,8 @@
         <module>persistence-api</module>
         <module>persistence-hibernate</module>
         <module>warEndpoint</module>
+    <module>record-server-wsdl</module>
+    <module>lazylogin-client</module>
   </modules>
 
 </project>

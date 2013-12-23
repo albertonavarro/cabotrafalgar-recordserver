@@ -8,8 +8,8 @@
     
     <packaging>jar</packaging>
     
-    <name>record-server-Persistence-Hibernate</name>
-    
+    <name>persistence-hibernate</name>
+     
     <parent>
         <groupId>com.navid.record-server</groupId>
         <artifactId>parent</artifactId>

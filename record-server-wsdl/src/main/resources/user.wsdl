@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://v1_0.recordserver.cabotrafalgar.navid.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="UserCommandsImplService" targetNamespace="http://v1_0.recordserver.cabotrafalgar.navid.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://v1_0.recordserver.cabotrafalgar.navid.com/" elementFormDefault="unqualified" targetNamespace="http://v1_0.recordserver.cabotrafalgar.navid.com/" version="1.0">
+
+            <xs:element name="saveRecordRequest" type="tns:saveRecordRequest"/>
+            <xs:element name="saveRecordResponse" type="tns:saveRecordResponse"/>
+            
+            <xs:complexType name="sessionid">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="sessionid" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            
+            <xs:complexType name="saveRecordRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="response" type="tns:sessionid"/>
+                </xs:sequence>             
+            </xs:complexType>
+            
+            <xs:complexType name="saveRecordResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="responseCode" type="xs:string" /> 
+                </xs:sequence>
+            </xs:complexType>
+            
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="saveRecordRequest">
+        <wsdl:part element="tns:saveRecordRequest" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="saveRecordResponse">
+        <wsdl:part element="tns:saveRecordResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    
+    
+    <wsdl:portType name="RecordsFunctions">
+        <wsdl:operation name="saveRecord">
+            <wsdl:input message="tns:saveRecordRequest" name="saveRecordRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:saveRecordRequest" name="saveRecordResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="RecordsFunctionsImplServiceSoapBinding" type="tns:RecordsFunctions">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    </wsdl:binding>
+    
+    <wsdl:service name="RecordsFunctionsImplService">
+        <wsdl:port binding="tns:RecordsFunctionsImplServiceSoapBinding" name="RecordsFunctionsImplPort">
+            <soap:address location="http://localhost:8080/recordsFunctions"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

@@ -8,7 +8,7 @@
     
     <packaging>jar</packaging>
     
-     <name>Record Server-Logic</name>
+    <name>logic</name>
     
     <parent>
         <groupId>com.navid.record-server</groupId>

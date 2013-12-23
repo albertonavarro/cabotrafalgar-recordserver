@@ -8,7 +8,7 @@
     
     <packaging>war</packaging>
     
-    <name>record-server-WarEndpoint</name>
+    <name>war-endpoint</name>
     
     <parent>
         <groupId>com.navid.record-server</groupId>
@@ -117,6 +117,36 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>${cfx.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${basedir}/target/generated-sources</sourceRoot>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/user.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-server</extraarg>
+                                        <extraarg>-verbose</extraarg>
+                                        <extraarg>-impl</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                            <server/> 
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
