@@ -16,7 +16,5 @@
     <context:property-placeholder location="classpath:conf/overrides.properties" ignore-resource-not-found="true" ignore-unresolvable="false"/>
     
     <import resource="classpath:conf/config-web-services.xml" />
-    <import resource="classpath:conf/config-persistence-test.xml" />
-    <import resource="classpath:conf/config-amq.xml" />
 
 </beans>

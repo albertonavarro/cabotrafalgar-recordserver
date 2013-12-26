@@ -12,23 +12,17 @@
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     
-    <bean id="record-server.endpoint.converter" class="org.jdto.spring.SpringDTOBinder"> 
-        <property name="xmlConfig" value="classpath:conf/jdto-mapping-endpoint.xml" /> 
+    <bean id="lazylogin-interceptor" class="com.navid.trafalgar.recordserverendpoints.LazyLoginInterceptor">
+        
     </bean>
+
    
-    <jaxws:endpoint 
-        id="userCommands" 
-        implementor="com.navid.trafalgar.recordserverendpoints.UserCommandsImpl" 
-        address="/user" />
-        
-   <jaxws:endpoint 
-        id="systemCommands" 
-        implementor="com.navid.trafalgar.recordserverendpoints.SystemCommandsImpl" 
-        address="/admin" /> 
-        
-   <jaxrs:server id="services" address="/">
+    <jaxrs:server id="services" address="/rest">
+        <jaxrs:inInterceptors>
+            <ref bean="lazylogin-interceptor"/>
+        </jaxrs:inInterceptors>
         <jaxrs:serviceBeans>
-            <bean class="com.navid.trafalgar.recordserverendpoints.RestValidatorImpl"/>
+            <bean class="com.navid.trafalgar.recordserverendpoints.RankingServicesImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
