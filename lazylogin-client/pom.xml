@@ -6,17 +6,15 @@
         <groupId>com.navid.record-server</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.navid.record-server</groupId>
+    
     <artifactId>lazylogin-client</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <name>lazylogin-client</name>
+    <name>RecordServer-lazylogin-client</name>
   
     <dependencies>
         <dependency>
             <groupId>com.navid.lazylogin</groupId>
             <artifactId>wsdl</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
     </dependencies>
     
