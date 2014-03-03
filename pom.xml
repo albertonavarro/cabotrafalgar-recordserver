@@ -11,6 +11,7 @@
     
     <description>Keep your system simple, password less, and stop bothering your users.</description>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>1.8.6</jackson.version>
         <cfx.version>3.0.0-milestone1</cfx.version>
         <junit.version>4.11</junit.version>
@@ -46,7 +47,7 @@
             </dependency>
             <dependency>
                 <groupId>com.navid.record-server</groupId>
-                <artifactId>record-server-wsdl</artifactId>
+                <artifactId>contract</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -193,6 +194,7 @@
         <module>warEndpoint</module>
         <module>record-server-wsdl</module>
         <module>lazylogin-client</module>
+        <module>selfclient</module>
     </modules>
 
 </project>

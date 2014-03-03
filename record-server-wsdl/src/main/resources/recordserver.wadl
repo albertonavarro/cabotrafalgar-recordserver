@@ -1,0 +1,17 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="http://superbooks">
+ <grammars>
+  <include href="recordserver-types.xsd"/>
+ </grammars>
+ <resources base="http://localhost:8080/">
+   <resource path="/ranking">
+      <resource path="/{id}">
+        <param name="id" style="template"/>
+        <method name="GET">
+          <response>
+           <representation mediaType="application/xml" element="ns:millestoneRecord"/>
+          </response>
+        </method>
+      </resource>
+   </resource>
+ </resources>  
+</application>
