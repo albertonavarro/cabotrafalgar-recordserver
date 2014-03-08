@@ -1,4 +1,4 @@
-<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="http://superbooks">
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="http://recordserver.navid.com">
  <grammars>
   <include href="recordserver-types.xsd"/>
  </grammars>
@@ -11,7 +11,16 @@
            <representation mediaType="application/xml" element="ns:millestoneRecord"/>
           </response>
         </method>
+        
       </resource>
+      <method name="POST">
+        <request>
+            <representation mediaType="application/xml" element="ns:millestoneRecordAddRequest"/>
+       </request>
+        <response>
+            <representation mediaType="application/xml" element="ns:millestoneRecordAddResponse"/>
+        </response>
+      </method>
    </resource>
  </resources>  
 </application>

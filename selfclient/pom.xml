@@ -39,13 +39,10 @@
                             <wadlOptions>
                                 <wadlOption>
                                     <wadl>classpath:recordserver.wadl</wadl>
-                                    <impl>true</impl>
-                                     
                                     <packagename>org.apache.cxf.systest.jaxrs.codegen.service</packagename>
                                     <schemaPackagenames>
-                                        <schemaPackagename>http://superbooks=org.apache.cxf.systest.jaxrs.codegen.schema</schemaPackagename>
+                                        <schemaPackagename>http://com.navid.recordserver=com.navid.recordserver.v1</schemaPackagename>
                                     </schemaPackagenames>
-                                     
                                 </wadlOption>
                             </wadlOptions>
                         </configuration>

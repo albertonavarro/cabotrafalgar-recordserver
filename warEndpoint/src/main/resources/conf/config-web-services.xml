@@ -18,11 +18,8 @@
 
    
     <jaxrs:server id="services" address="/rest">
-        <jaxrs:inInterceptors>
-            <ref bean="lazylogin-interceptor"/>
-        </jaxrs:inInterceptors>
         <jaxrs:serviceBeans>
-            <bean class="com.navid.trafalgar.recordserverendpoints.RankingServicesImpl"/>
+            <bean class="com.navid.trafalgar.recordserverendpoints.RankingImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
