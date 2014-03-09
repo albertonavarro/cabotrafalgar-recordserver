@@ -1,26 +1,33 @@
-<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="http://recordserver.navid.com">
- <grammars>
-  <include href="recordserver-types.xsd"/>
- </grammars>
- <resources base="http://localhost:8080/">
-   <resource path="/ranking">
-      <resource path="/{id}">
-        <param name="id" style="template"/>
-        <method name="GET">
-          <response>
-           <representation mediaType="application/xml" element="ns:millestoneRecord"/>
-          </response>
-        </method>
-        
-      </resource>
-      <method name="POST">
-        <request>
-            <representation mediaType="application/xml" element="ns:millestoneRecordAddRequest"/>
-       </request>
-        <response>
-            <representation mediaType="application/xml" element="ns:millestoneRecordAddResponse"/>
-        </response>
-      </method>
-   </resource>
- </resources>  
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="v1.recordserver.navid.com">
+    <grammars>
+        <include href="recordserver-types.xsd"/>
+    </grammars>
+    <resources base="http://localhost:8080/">
+        <resource path="/ranking">
+            <resource path="/{maps}"> 
+                <param name="map" style="template"/>
+                <resource path="/{id}">
+                    <param name="id" style="template"/>
+                    <method name="GET">
+                        <response>
+                            <representation mediaType="application/xml" element="ns:getRecordResponse"/>
+                        </response>
+                    </method>
+                </resource>
+                <method name="GET">
+                    <response>
+                        <representation mediaType="application/xml" element="ns:getMapRecordsResponse"/>
+                    </response>
+                </method>
+            </resource>
+            <method name="POST">
+                <request>
+                    <representation mediaType="application/xml" element="ns:addRecordRequest"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml" element="ns:addRecordResponse"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
 </application>

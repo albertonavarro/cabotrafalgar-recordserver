@@ -4,25 +4,35 @@
  */
 package com.navid.trafalgar.recordserverendpoints;
 
-import com.navid.recordserver.MillestoneRecord;
-import com.navid.recordserver.MillestoneRecordAddRequest;
-import com.navid.recordserver.MillestoneRecordAddResponse;
+import com.navid.recordserver.v1.AddRecordRequest;
+import com.navid.recordserver.v1.AddRecordResponse;
+import com.navid.recordserver.v1.GetMapRecordsResponse;
+import com.navid.recordserver.v1.GetRecordResponse;
 import com.navid.recordserver.v1.RankingResource;
+import javax.annotation.Resource;
 
 /**
  *
  * @author anf
  */
 public class RankingImpl implements RankingResource {
+    
 
     @Override
-    public MillestoneRecordAddResponse post(MillestoneRecordAddRequest millestonerecordaddrequest) {
+    public AddRecordResponse post(AddRecordRequest addrecordrequest) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public MillestoneRecord getId(String id) {
+    public GetMapRecordsResponse getMaps(String map) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public GetRecordResponse getMapsid(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }

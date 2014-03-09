@@ -1,20 +1,33 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:tns="http://recordserver.navid.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" 
-        targetNamespace="http://recordserver.navid.com">
-    <xs:element name="millestoneRecord" type="tns:millestoneRecord"/>
-    <xs:complexType name="millestoneRecord">
+           xmlns:tns="recordserver.navid.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" 
+           targetNamespace="v1.recordserver.navid.com">
+    <xs:complexType name="getRecordResponse">
+        <xs:sequence>
+            <xs:element name="position" type="xs:int"/>
+            <xs:element name="time" type="xs:float"/>
+            <xs:element name="movements" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getMapRecordsResponse">
+        <xs:sequence>
+            <xs:element name="rankingEntry" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="position" type="xs:int"/>
+                        <xs:element name="time" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addRecordRequest">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="millestoneRecordAddRequest">
+    <xs:complexType name="addRecordResponse">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="millestoneRecordAddResponse">
-        <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
-        </xs:sequence>
-    </xs:complexType>
-  </xs:schema>
+</xs:schema>
