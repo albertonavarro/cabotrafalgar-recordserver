@@ -1,6 +1,6 @@
-package com.navid.trafalgar.recordserverpersistence.hibernate;
+package com.navid.trafalgar.recordserver.persistence.hibernate;
 
-import com.navid.trafalgar.recordserverpersistence.Persistence;
+import com.navid.trafalgar.recordserver.persistence.Persistence;
 import javax.annotation.Resource;
 import org.jdto.DTOBinder;
 import org.springframework.stereotype.Repository;

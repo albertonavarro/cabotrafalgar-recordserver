@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> <dto-mapping xmlns="http://jdto.org/jdto/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jdto.org/jdto/1.0 http://jdto.org/jdto-1.0.xsd"> 
     
-    <dto type="com.navid.trafalgar.recordserverdomain.Token"> 
-        <immutableConstructor> 
-            <arg order="0" type="com.navid.trafalgar.recordserverdomain.User" cascade="true"> 
-                <source name="user"/> 
-            </arg>
-            <arg order="1" type="java.lang.Long" cascade="true"> 
-                <source name="value"/> 
-            </arg>
-        </immutableConstructor> 
-    </dto>
-    <dto type="com.navid.trafalgar.recordserverToken"> 
-        <field name="token"> 
-            <source name="value" /> 
-        </field> 
-    </dto>
-    <dto type="com.navid.trafalgar.recordserverdomain.SsoId"> 
-        <immutableConstructor> 
-            <arg order="0" type="com.navid.trafalgar.recordserverdomain.Token" cascade="true"> 
-                <source name="token"/> 
-            </arg>
-            <arg order="1" type="java.lang.String" cascade="true"> 
-                <source name="value"/> 
-            </arg>
-        </immutableConstructor> 
-    </dto>
-    <dto type="com.navid.trafalgar.recordserverSessionid"> 
-        <field name="sessionid"> 
-            <source name="value"/> 
-        </field> 
-    </dto>
+    
     
 </dto-mapping>

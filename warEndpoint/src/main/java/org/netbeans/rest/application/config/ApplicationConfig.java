@@ -30,7 +30,20 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(com.navid.trafalgar.recordserverendpoints.RankingServicesImpl.class);
+        resources.add(org.apache.cxf.jaxrs.impl.PathSegmentImpl.class);
+        resources.add(org.apache.cxf.jaxrs.provider.AbstractCachingMessageProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.CachingMessageBodyReader.class);
+        resources.add(org.apache.cxf.jaxrs.provider.CachingMessageBodyWriter.class);
+        resources.add(org.apache.cxf.jaxrs.provider.DataBindingProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.DataSourceProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.FormEncodingProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.JAXBElementProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.MultipartProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.RequestDispatcherProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.SourceProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.XPathProvider.class);
+        resources.add(org.apache.cxf.jaxrs.provider.XSLTJaxbProvider.class);
+        resources.add(org.apache.cxf.jaxrs.validation.ValidationExceptionMapper.class);
     }
     
 }

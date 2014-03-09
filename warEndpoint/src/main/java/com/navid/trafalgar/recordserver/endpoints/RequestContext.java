@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.navid.trafalgar.recordserverendpoints;
+package com.navid.trafalgar.recordserver.endpoints;
 
 /**
  *

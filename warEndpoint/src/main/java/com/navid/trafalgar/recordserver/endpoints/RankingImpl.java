@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.navid.trafalgar.recordserverendpoints;
+package com.navid.trafalgar.recordserver.endpoints;
 
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;

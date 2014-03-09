@@ -1,4 +1,4 @@
-package com.navid.trafalgar.recordserverpersistence;
+package com.navid.trafalgar.recordserver.persistence;
 
 
 /**

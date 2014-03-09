@@ -1,4 +1,4 @@
-package com.navid.trafalgar.recordserverpersistence.hibernate;
+package com.navid.trafalgar.recordserver.persistence.hibernate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

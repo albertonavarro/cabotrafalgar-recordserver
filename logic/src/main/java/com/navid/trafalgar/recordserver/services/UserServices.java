@@ -1,6 +1,6 @@
-package com.navid.trafalgar.recordserverservices;
+package com.navid.trafalgar.recordserver.services;
 
-import com.navid.trafalgar.recordserverpersistence.Persistence;
+import com.navid.trafalgar.recordserver.persistence.Persistence;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServices {
 
-    @Resource
-    private Persistence persistence;
+    //@Resource
+    //private Persistence persistence;
 
     
 
