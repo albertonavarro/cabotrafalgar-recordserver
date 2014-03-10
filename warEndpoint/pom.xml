@@ -34,6 +34,10 @@
         </dependency>
         <dependency>
             <groupId>com.navid.record-server</groupId>
+            <artifactId>persistence-couchbase</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.navid.record-server</groupId>
             <artifactId>lazylogin-client</artifactId>
         </dependency>
         <dependency>

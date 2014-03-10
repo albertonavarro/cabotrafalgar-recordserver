@@ -8,7 +8,7 @@
     </parent>
     
     <artifactId>persistence-couchbase</artifactId>
-    <name>RecordSercer-persistence-couchbase</name>
+    <name>RecordServer-persistence-couchbase</name>
     
     <dependencies>
         <dependency>
