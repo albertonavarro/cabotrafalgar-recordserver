@@ -16,6 +16,12 @@
             <groupId>com.navid.record-server</groupId>
             <artifactId>domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.navid.trafalgar</groupId>
+            <artifactId>persistence</artifactId>
+            <version>0.7-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
 </project>

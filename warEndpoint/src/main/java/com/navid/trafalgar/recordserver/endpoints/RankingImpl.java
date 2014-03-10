@@ -9,6 +9,7 @@ import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
 import com.navid.recordserver.v1.GetRecordResponse;
 import com.navid.recordserver.v1.RankingResource;
+import com.navid.trafalgar.recordserver.services.Deserialization;
 import javax.annotation.Resource;
 
 /**
@@ -17,6 +18,8 @@ import javax.annotation.Resource;
  */
 public class RankingImpl implements RankingResource {
     
+    @Resource
+    private Deserialization service;
 
     @Override
     public AddRecordResponse post(AddRecordRequest addrecordrequest) {

@@ -196,6 +196,14 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
     
     <build>
@@ -217,11 +225,11 @@
         <module>logic</module>
         <module>domain</module>
         <module>persistence-api</module>
-        <module>persistence-hibernate</module>
         <module>warEndpoint</module>
         <module>record-server-wsdl</module>
         <module>lazylogin-client</module>
         <module>selfclient</module>
+        <module>persistence-couchbase</module>
     </modules>
 
 </project>
