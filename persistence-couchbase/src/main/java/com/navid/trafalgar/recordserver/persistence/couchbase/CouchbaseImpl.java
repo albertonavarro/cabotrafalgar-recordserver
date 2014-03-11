@@ -1,4 +1,4 @@
-package com.navid.recordserver.persistence.couchbase;
+package com.navid.trafalgar.recordserver.persistence.couchbase;
 
 import com.navid.trafalgar.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
