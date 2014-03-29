@@ -236,7 +236,6 @@
         <module>lazylogin-client</module>
         <module>selfclient</module>
         <module>persistence-couchbase</module>
-        <module>vagrant</module>
     </modules>
 
 </project>
