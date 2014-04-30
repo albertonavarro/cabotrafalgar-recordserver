@@ -40,6 +40,7 @@
                                 <wadlOption>
                                     <wadl>classpath:recordserver.wadl</wadl>
                                     <packagename>com.navid.recordserver.v1</packagename>
+                                    <client>true</client>
                                 </wadlOption>
                             </wadlOptions>
                         </configuration>
