@@ -139,7 +139,7 @@
                             <sourceRoot>${basedir}/target/generated-sources/src/</sourceRoot>
                             <wadlOptions>
                                 <wadlOption>
-                                    <wadl>classpath:recordserver.wadl</wadl>
+                                    <wadl>classpath:wadl/recordsure/recordserver.wadl</wadl>
                                     <packagename>com.navid.recordserver.v1</packagename>
                                 </wadlOption>
                             </wadlOptions>

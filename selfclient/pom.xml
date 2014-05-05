@@ -7,8 +7,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     
-    <artifactId>selfclient</artifactId>
-    <name>RecordServer-selfclient</name>
+    <artifactId>client</artifactId>
+    <name>RecordServer-client</name>
     
     <dependencies>
         <dependency>
@@ -27,6 +27,33 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.jvnet.ws.wadl</groupId>
+                <artifactId>wadl-client-plugin</artifactId>
+                <version>1.1.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    
+                    <sourceDirectory>wadl/recordsure</sourceDirectory>
+                    <packageName>bbc.schedule</packageName>
+                    <autopackaging>false</autopackaging>
+                    <!--<customizations>
+                        <customization>../share/binding.xjb</customization>
+                    </customizations>
+                    <customClassNames>
+                        <property>
+                            <name>http://www.bbc.co.uk</name>
+                            <value>BBCSchedule</value>
+                        </property>
+                    </customClassNames>-->
+                </configuration>
+            </plugin>
+            <!--<plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-wadl2java-plugin</artifactId>
                 <version>3.0.0-milestone2</version>
@@ -40,7 +67,6 @@
                                 <wadlOption>
                                     <wadl>classpath:recordserver.wadl</wadl>
                                     <packagename>com.navid.recordserver.v1</packagename>
-                                    <client>true</client>
                                 </wadlOption>
                             </wadlOptions>
                         </configuration>
@@ -49,7 +75,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     
