@@ -2,6 +2,7 @@ package com.navid.trafalgar.recordserver.persistence.couchbase;
 
 import com.navid.trafalgar.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,10 +11,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CouchbaseImpl implements Persistence {
+    
+    @Resource
+    private CDBCandidateRecordRepository repository;
 
     @Override
     public void addCandidate(CandidateRecord candidateRecord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CDBCandidateRecord cdb = new CDBCandidateRecord();
+        repository.add(cdb);
     }
     
 }

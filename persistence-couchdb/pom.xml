@@ -7,6 +7,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     
+    <artifactId>persistence-couchdb</artifactId>
+    <name>RecordServer-persistence-couchdb</name>
+    
     <repositories>
         <repository>
             <id>sonatype-nexus-snapshots</id>
@@ -20,8 +23,7 @@
         </repository>
     </repositories>
     
-    <artifactId>persistence-couchbase</artifactId>
-    <name>RecordServer-persistence-couchbase</name>
+    
     
     <dependencies>
         <dependency>

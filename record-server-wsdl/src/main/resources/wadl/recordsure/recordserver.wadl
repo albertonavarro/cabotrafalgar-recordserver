@@ -10,22 +10,22 @@
                     <param name="id" style="template"/>
                     <method name="GET">
                         <response>
-                            <representation mediaType="application/xml" element="ns:getRecordResponse"/>
+                            <representation mediaType="application/json" element="ns:getRecordResponse"/>
                         </response>
                     </method>
                 </resource>
                 <method name="GET">
                     <response>
-                        <representation mediaType="application/xml" element="ns:getMapRecordsResponse"/>
+                        <representation mediaType="application/json" element="ns:getMapRecordsResponse"/>
                     </response>
                 </method>
             </resource>
             <method name="POST">
                 <request>
-                    <representation mediaType="application/xml" element="ns:addRecordRequest"/>
+                    <representation mediaType="application/json" element="ns:addRecordRequest"/>
                 </request>
                 <response>
-                    <representation mediaType="application/xml" element="ns:addRecordResponse"/>
+                    <representation mediaType="application/json" element="ns:addRecordResponse"/>
                 </response>
             </method>
         </resource>

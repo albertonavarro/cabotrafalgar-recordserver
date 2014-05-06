@@ -17,5 +17,6 @@
     
     <import resource="classpath:conf/config-web-services.xml" />
     <import resource="classpath:conf/config-lazylogin-client.xml" />
+    <import resource="classpath:conf/config-couchdb-persistence.xml" />
 
 </beans>
