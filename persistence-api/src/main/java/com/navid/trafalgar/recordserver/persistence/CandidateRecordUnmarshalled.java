@@ -1,13 +1,13 @@
-package com.navid.trafalgar.recordserver.persistence.couchbase;
+/*
+ */
+
+package com.navid.trafalgar.recordserver.persistence;
 
 import java.util.Date;
-import org.ektorp.support.CouchDbDocument;
-import org.ektorp.support.TypeDiscriminator;
 
 
-public class CDBCandidateRecord extends CouchDbDocument {
+public class CandidateRecordUnmarshalled {
     
-    @TypeDiscriminator
     private Date timestamp;
         
     private String userId;

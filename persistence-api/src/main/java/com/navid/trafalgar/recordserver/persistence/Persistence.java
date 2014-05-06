@@ -1,6 +1,6 @@
 package com.navid.trafalgar.recordserver.persistence;
 
-import com.navid.trafalgar.persistence.CandidateRecord;
+import java.util.List;
 
 /**
  *
@@ -8,6 +8,8 @@ import com.navid.trafalgar.persistence.CandidateRecord;
  */
 public interface Persistence {
 
-    void addCandidate(CandidateRecord candidateRecord);
+    void addCandidate(CandidateRecordUnmarshalled candidateRecord);
+
+    List<CandidateRecordUnmarshalled>  getByMap(String map);
 
 }

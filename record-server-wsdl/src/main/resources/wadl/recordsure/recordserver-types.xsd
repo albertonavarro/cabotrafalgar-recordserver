@@ -23,11 +23,15 @@
     <xs:complexType name="addRecordRequest">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
+            <xs:element name="payload" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="addRecordResponse">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
+            <xs:element name="position" type="xs:int"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="verified" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
