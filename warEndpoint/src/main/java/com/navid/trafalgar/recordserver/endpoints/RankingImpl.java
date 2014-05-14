@@ -13,6 +13,7 @@ import com.navid.trafalgar.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
+import com.navid.trafalgar.recordserver.services.RequestContext;
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -27,9 +28,12 @@ public class RankingImpl implements RankingResource {
 
     @Resource
     private Persistence persistence;
+    
+    private ThreadLocal<RequestContext> request = new ThreadLocal<RequestContext>();
 
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
+        
         final CandidateInfo candidateInfo = service.addCandidate(addrecordrequest.getPayload());
         return new AddRecordResponse() {
             {

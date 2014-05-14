@@ -15,17 +15,22 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     
-    <bean id="lazylogin-interceptor" class="com.navid.trafalgar.recordserver.endpoints.LazyLoginInterceptor">
-        
-    </bean>
-    
     <jaxrs:server id="services" address="/rest">
         <jaxrs:serviceBeans>
             <bean class="com.navid.trafalgar.recordserver.endpoints.RankingImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+            <bean class="com.navid.trafalgar.recordserver.endpoints.AuthorisationFilter"/>
         </jaxrs:providers>
+        <jaxrs:inInterceptors>
+            <bean class="com.navid.trafalgar.recordserver.endpoints.RequestContextCreatorInterceptor"/>
+        </jaxrs:inInterceptors>
+        <jaxrs:outInterceptors>
+            <bean class="com.navid.trafalgar.recordserver.endpoints.RequestContextRemoverInterceptor"/>
+       </jaxrs:outInterceptors>
+        
     </jaxrs:server> 
+    
 	  
 </beans>

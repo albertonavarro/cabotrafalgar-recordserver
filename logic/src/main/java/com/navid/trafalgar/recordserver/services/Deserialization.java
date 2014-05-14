@@ -24,8 +24,14 @@ public class Deserialization {
     
     @Resource
     private Persistence persistence;
+    
+    @Resource
+    private RequestContextContainer requestContextContainer;
+    
 
     public CandidateInfo addCandidate(String candidateRecord) {
+        
+        RequestContext requestContext = requestContextContainer.get();
         
         AShipModelTwo.ShipCandidateRecord record = gson.fromJson(candidateRecord, AShipModelTwo.ShipCandidateRecord.class);
         
