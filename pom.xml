@@ -23,6 +23,7 @@
         <spring-data-jpa.version>1.2.0.RELEASE</spring-data-jpa.version>
         <commons-lang.version>2.4</commons-lang.version>
         <amq.version>5.1.0</amq.version>
+        <testng.version>6.8.8</testng.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -60,7 +61,12 @@
                 <groupId>com.navid.record-server</groupId>
                 <artifactId>lazylogin-client</artifactId>
                 <version>${project.version}</version>
-            </dependency>  
+            </dependency> 
+            <dependency>
+                <groupId>com.navid.record-server</groupId>
+                <artifactId>war-endpoint</artifactId>
+                <version>${project.version}</version>
+            </dependency>   
             <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
@@ -105,6 +111,12 @@
                 <groupId>org.apache.xbean</groupId>
                 <artifactId>xbean-spring</artifactId>
                 <version>3.16</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -265,13 +277,13 @@
 
     <modules>
         <module>logic</module>
-        <module>domain</module>
         <module>persistence-api</module>
         <module>warEndpoint</module>
         <module>record-server-wsdl</module>
         <module>lazylogin-client</module>
         <module>selfclient</module>
         <module>persistence-couchdb</module>
+        <module>integration-test</module>
     </modules>
 
 </project>
