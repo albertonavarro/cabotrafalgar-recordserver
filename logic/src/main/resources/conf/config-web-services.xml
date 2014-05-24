@@ -15,9 +15,11 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     
+    <bean id="recordsure.rankingendpoint" class="com.navid.trafalgar.recordserver.endpoints.RankingImpl"/>
+    
     <jaxrs:server id="services" address="/rest">
         <jaxrs:serviceBeans>
-            <bean class="com.navid.trafalgar.recordserver.endpoints.RankingImpl"/>
+            <ref bean="recordsure.rankingendpoint"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>

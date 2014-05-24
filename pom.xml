@@ -284,6 +284,7 @@
         <module>selfclient</module>
         <module>persistence-couchdb</module>
         <module>integration-test</module>
+        <module>component-test</module>
     </modules>
 
 </project>

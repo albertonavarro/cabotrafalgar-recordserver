@@ -6,8 +6,8 @@
         <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>component-test</artifactId>
-    <name>RecordServer-component-test</name>
+    <artifactId>integration-test</artifactId>
+    <name>RecordServer-integration-test</name>
     
     <dependencies>
         <dependency>
