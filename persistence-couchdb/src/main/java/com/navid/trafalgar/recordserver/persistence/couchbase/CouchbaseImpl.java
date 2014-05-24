@@ -32,4 +32,8 @@ public class CouchbaseImpl implements Persistence {
         return dtos;
     }
 
+    public void setRepository(CDBCandidateRecordRepository dbRepresentation) {
+        this.repository = dbRepresentation;
+    }
+
 }
