@@ -283,8 +283,20 @@
         <module>lazylogin-client</module>
         <module>selfclient</module>
         <module>persistence-couchdb</module>
-        <!--<module>integration-test</module>-->
-        <module>component-test</module>
     </modules>
-
+        
+    <profiles>
+        <profile>
+            <id>component-test</id>
+            <modules>
+                <module>component-test</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>integration-test</id>
+            <modules>
+                <module>integration-test</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
