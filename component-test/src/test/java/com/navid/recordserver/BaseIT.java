@@ -35,7 +35,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
            
     private final String newDatabaseName = "recordsure-" + System.nanoTime();
 
-    
     @BeforeClass
     public void init() {
         CDBCandidateRecordRepository dbRepresentation = new CDBCandidateRecordRepository(new StdCouchDbConnector(newDatabaseName, instance));     
