@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
  * @author vero
  */
 @Test
-@ContextConfiguration(locations = {"classpath:conf/config-main.xml"})
+@ContextConfiguration(locations = {"classpath:conf/config-main.xml", "classpath:conf/config-test.xml"})
 public class BaseIT extends AbstractTestNGSpringContextTests {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseIT.class);
     
