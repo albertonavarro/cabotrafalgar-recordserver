@@ -283,7 +283,8 @@
         <module>lazylogin-client</module>
         <module>selfclient</module>
         <module>persistence-couchdb</module>
-    </modules>
+    <module>RecordServer-jetty-endpoint</module>
+  </modules>
         
     <profiles>
         <profile>
