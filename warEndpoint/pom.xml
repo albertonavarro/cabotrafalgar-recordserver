@@ -22,7 +22,9 @@
         </dependency>
         
     </dependencies>
-
+    <build>
+        <finalName>${project.artifactId}-${BUILD_NUMBER}</finalName>
+    </build>
     
 
 </project>
