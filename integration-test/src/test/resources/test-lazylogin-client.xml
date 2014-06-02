@@ -15,6 +15,8 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd
     
     <bean id="test.clientRecordServer" class="com.navid.recordserver.v1.RankingResource" factory-bean="test.clientFactoryRecordServer" factory-method="create" />
     
+    <bean id="test.requestContextContainer" class="com.navid.trafalgar.recordserver.services.RequestContextContainer" />
+    
     <bean id="test.clientFactoryRecordServer" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
         <property name="address" value="http://localhost:8080/rest"/>
         <property name="serviceClass" value="com.navid.recordserver.v1.RankingResource"/>
@@ -22,6 +24,11 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd
             <list>
                 <bean id="jacksonMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
                 <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </list>
+        </property>
+        <property name="outInterceptors">
+            <list>
+                <bean class="com.navid.trafalgar.recordserver.endpoints.RequestIdInterceptor"/>
             </list>
         </property>
     </bean>

@@ -16,6 +16,7 @@ public class AddRecordIT extends BaseIT {
         addRecordRequest.setId(1);
         addRecordRequest.setPayload(token);
         
+        
         AddRecordResponse response = recordServerClient.post(addRecordRequest);
   
     }
