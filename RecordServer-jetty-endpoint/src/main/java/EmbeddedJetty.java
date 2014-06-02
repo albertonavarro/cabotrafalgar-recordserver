@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -40,7 +41,9 @@ public class EmbeddedJetty {
         ServletContextHandler contextHandler = new ServletContextHandler();
         contextHandler.setErrorHandler(null);
         contextHandler.setContextPath(CONTEXT_PATH);
-        contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), MAPPING_URL);
+        contextHandler.addServlet(new ServletHolder( new CXFServlet()), MAPPING_URL);
+      
+        
         contextHandler.addEventListener(new ContextLoaderListener(context));
         //contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
         return contextHandler;
