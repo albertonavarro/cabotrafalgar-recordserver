@@ -22,7 +22,7 @@ public class AuthorisationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(final ContainerRequestContext requestContext) throws IOException {
-        final com.navid.login.UserInfo userInfo = systemCommands.getUserInfo(requestContext.getHeaderString("UUID"));
+        final com.navid.login.UserInfo userInfo = systemCommands.getUserInfo(requestContextContainer.get().getRequestId());
         requestContextContainer.get().setUserId(userInfo.getUsername());
     }
     
