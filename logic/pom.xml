@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.navid.record-server</groupId>
         <artifactId>parent</artifactId>
-        <version>1.1-${versioning}</version>
+        <version>1.1.0</version>
     </parent>
     
     <artifactId>logic</artifactId>
@@ -13,14 +13,6 @@
     
     <dependencies>
         <!-- internal -->
-        <dependency>
-            <groupId>com.navid.record-server</groupId>
-            <artifactId>domain</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.navid.record-server</groupId>
-            <artifactId>persistence-api</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.navid.record-server</groupId>
             <artifactId>persistence-api</artifactId>
@@ -64,15 +56,7 @@
             <groupId>org.apache.xbean</groupId>
             <artifactId>xbean-spring</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-        </dependency>
         <!--other-->
-        <dependency>
-            <groupId>org.apache.xbean</groupId>
-            <artifactId>xbean-spring</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.jdto</groupId>
             <artifactId>jdto</artifactId>
@@ -144,6 +128,10 @@
             <version>3.0.0</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.apache.cxf</groupId>
@@ -151,10 +139,7 @@
         </dependency>
         
         
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-        </dependency>
+        
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-service-description</artifactId>

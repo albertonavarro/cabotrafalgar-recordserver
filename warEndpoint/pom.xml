@@ -2,19 +2,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.navid.record-server</groupId>
-    <artifactId>war-endpoint</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    
-    <packaging>war</packaging>
-    
-    <name>RecordServer-war-endpoint</name>
-    
     <parent>
         <groupId>com.navid.record-server</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1.0</version>
     </parent>
+    
+    <groupId>com.navid.record-server</groupId>
+    <artifactId>war-server</artifactId>
+    
+    <packaging>war</packaging>
+    
+    <name>RecordServer-war-server</name>
+    
     <dependencies>
         <dependency>
             <groupId>com.navid.record-server</groupId>
@@ -23,7 +23,7 @@
         
     </dependencies>
     <build>
-        <finalName>${project.artifactId}-${BUILD_NUMBER}</finalName>
+        <finalName>${project.artifactId}-${versioning}-deployable</finalName>
     </build>
     
 
