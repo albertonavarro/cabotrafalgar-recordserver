@@ -4,7 +4,7 @@
     
     <groupId>com.navid.record-server</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-${versioning}</version>
     
     <packaging>pom</packaging>
     <name>RecordServer-Parent</name>
@@ -296,7 +296,7 @@
         <profile>
             <id>jenkins</id>
             <properties>
-                <build-number>${BUILD_NUMBER}</build-number>
+                <versioning>${BUILD_NUMBER}</versioning>
             </properties>
         </profile>
         <profile>
@@ -310,6 +310,15 @@
             <modules>
                 <module>integration-test</module>
             </modules>
+        </profile>
+        <profile>
+            <id>version-local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <versioning>LOCAL</versioning>
+            </properties>
         </profile>
     </profiles>
 </project>
