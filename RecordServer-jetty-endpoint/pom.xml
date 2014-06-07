@@ -11,6 +11,7 @@
     
     <artifactId>jetty-endpoint</artifactId>
     <name>RecordServer-jetty-endpoint</name>
+   <version>1.1.0</version>
    
     <dependencies>
         <dependency>
@@ -29,7 +30,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>${project.artifactId}-${versioning}-deployable</finalName>
+        <finalName>${project.artifactId}-${project.version}-${versioning}-deployable</finalName>
         <resources>
             <resource>
                 <targetPath>/webapp</targetPath>
