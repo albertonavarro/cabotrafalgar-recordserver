@@ -60,8 +60,15 @@ simple_iptables_rule "ajp" do
   jump "ACCEPT"
 end
 
-remote_file "/root/jetty-deployable" do
+remote_file "/root/jetty-deployable.jar" do
    source "http://repo.cabotrafalgar.mooo.com/libs-release-local/com/navid/record-server/jetty-endpoint/${project.version}/jetty-endpoint-${project.version}.jar"
+end
+
+directory "/root/navidconfig" do
+  owner "root"
+  group "root"
+  mode 00644
+  action :create
 end
 
 template "/root/navidconfig/recordserver.overrides" do
