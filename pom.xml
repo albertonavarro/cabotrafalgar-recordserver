@@ -285,7 +285,6 @@
         <module>selfclient</module>
         <module>persistence-couchdb</module>
         <module>RecordServer-jetty-endpoint</module>
-        <module>chefrecipe</module>
     </modules>
         
     <profiles>
