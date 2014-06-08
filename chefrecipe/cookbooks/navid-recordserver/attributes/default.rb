@@ -1,1 +1,1 @@
-default['recordserver']['couchdb']['host'] = 'TO BE SET'
+default[:recordserver][:couchdb][:host] = "TO BE SET"
