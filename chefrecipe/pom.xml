@@ -14,7 +14,7 @@
 
         <resources>
             <resource>
-                <directory>cokbooks/</directory>
+                <directory>cookbooks/</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
