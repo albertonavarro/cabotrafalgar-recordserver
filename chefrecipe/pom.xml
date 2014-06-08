@@ -14,7 +14,7 @@
 
         <resources>
             <resource>
-                <directory>navid-recordserver/</directory>
+                <directory>cokbooks/</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
