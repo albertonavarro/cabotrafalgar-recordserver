@@ -78,9 +78,6 @@ template "/root/navidconfig/recordserver.overrides" do
   group "root"
 end
 
-# the package that lets you easily define new services
-package "daemon"
-
 # script file used by service to launch your java program
 file "/root/run_recordserver.cmd" do
     content "java -jar /root/jetty-deployable.jar\n"
