@@ -76,3 +76,21 @@ template "/root/navidconfig/recordserver.overrides" do
   owner "root"
   group "root"
 end
+
+# the package that lets you easily define new services
+package "daemon"
+
+# script file used by service to launch your java program
+file "/root/run_recordserver.cmd" do
+    content "java -jar /root/jetty-deployable.jar\n"
+end
+
+# setup the service (based on the script above),
+# start it, and make it start at boot
+cookbook_file '/etc/init.d/recordserver' do
+    source 'RecordServerService'
+end
+service "myservice" do
+    supports :restart => true, :start => true, :stop => true, :reload => true
+    action [:enable]
+end
