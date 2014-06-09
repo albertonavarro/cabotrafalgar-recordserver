@@ -6,6 +6,6 @@ description      'Installs/Configures navid-recordserver'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '${project.version}'
 
-%w{ java simple_iptables zabbix }.each do |cb|
+%w{ java simple_iptables zabbix daemontools }.each do |cb|
   depends cb
 end
