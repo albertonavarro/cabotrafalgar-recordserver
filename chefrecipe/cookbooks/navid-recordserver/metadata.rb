@@ -4,7 +4,7 @@ maintainer_email 'YOUR_EMAIL'
 license          'All rights reserved'
 description      'Installs/Configures navid-recordserver'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.1.1'
+version          '${project.version}'
 
 %w{ java simple_iptables zabbix daemontools }.each do |cb|
   depends cb
