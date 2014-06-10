@@ -1,33 +1,32 @@
-#!/bin/bash
-#
-#       /etc/rc.d/init.d/<servicename>
-#
-#       <description of the *service*>
-#       <any general comments about this init script>
-#
-# <tags -- see below for tag definitions.  *Every line* from the top
-#  of the file to the end of the tags section must begin with a #
-#  character.  After the tags section, there should be a blank line.
-#  This keeps normal comments in the rest of the file from being
-#  mistaken for tags, should they happen to fit the pattern.>
-
+#!/bin/sh
+# chkconfig: 2345 95 20
+# description: Some description
+# What your script does (not sure if this is necessary though)
+# processname: myscript
 # Source function library.
 . /etc/init.d/functions
 
-<define any local shell functions used by the code that follows>
+RETVAL=0
+prog="recordserver"
+LOCKFILE=/var/lock/subsys/$prog
 
 start() {
-        echo -n "Starting <servicename>: "
-        <start daemons, perhaps with the daemon function>
-        touch /var/lock/subsys/<servicename>
-        return <return code of starting daemon>
+        echo -n "Starting recordserver: "
+        daemon --user root java -jar /root/jetty-deployable.jar
+        touch /var/lock/subsys/recordserver
+        RETVAL=$?
+        [ $RETVAL -eq 0 ] && touch $LOCKFILE
+        echo
+        return $RETVAL
 }
 
 stop() {
-        echo -n "Shutting down <servicename>: "
-        <stop daemons, perhaps with the killproc function>
-        rm -f /var/lock/subsys/<servicename>
-        return <return code of stopping daemon>
+        echo -n "Shutting down $prog: "
+        $ASADMIN stop-domain domain1 && success || failure
+        RETVAL=$?
+        [ $RETVAL -eq 0 ] && rm -f $LOCKFILE
+        echo
+        return $RETVAL
 }
 
 case "$1" in
@@ -38,31 +37,15 @@ case "$1" in
         stop
         ;;
     status)
-        <report the status of the daemons in free-form format,
-        perhaps with the status function>
+        status
         ;;
     restart)
         stop
         start
         ;;
-    reload)
-        <cause the service configuration to be reread, either with
-        kill -HUP or by restarting the daemons, in a manner similar
-        to restart above>
-        ;;
-    condrestart)
-        <Restarts the servce if it is already running. For example:>
-        [ -f /var/lock/subsys/<service> ] && restart || :
-    probe)
-        <optional.  If it exists, then it should determine whether
-        or not the service needs to be restarted or reloaded (or
-        whatever) in order to activate any changes in the configuration
-        scripts.  It should print out a list of commands to give to
-        $0; see the description under the probe tag below.>
-        ;;
     *)
-        echo "Usage: <servicename> {start|stop|status|reload|restart[|probe]"
+        echo "Usage: $prog {start|stop|status|restart}"
         exit 1
         ;;
 esac
-exit $?
+exit $RETVAL
