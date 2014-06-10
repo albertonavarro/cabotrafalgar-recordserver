@@ -10,6 +10,8 @@ pname="recordserver"
 exe="/root/run_recordserver.cmd"
 pidfile="/var/run/${pname}.pid"
 lockfile="/var/lock/subsys/${pname}"
+logfile="/var/log/recordsure.log"
+errfile="/var/log/recordsure.err"
 
 RETVAL=0
 
@@ -23,7 +25,7 @@ start() {
        echo -n "Already running !" && warning
        echo
     else
-       nohup ${exe} >/dev/null 2>&1 &
+       nohup ${exe} >>${logfile} 2>>${errfile} &
        RETVAL=$?
        PID=$!
        [ $RETVAL -eq 0 ] && touch ${lockfile} && success || failure
