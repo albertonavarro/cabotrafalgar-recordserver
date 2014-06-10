@@ -80,6 +80,9 @@ end
 # script file used by service to launch your java program
 file "/root/run_recordserver.cmd" do
     content "java -jar /root/jetty-deployable.jar\n"
+    mode 0755
+    owner "root"
+    group "root"
 end
 
 # setup the service (based on the script above),
@@ -93,5 +96,5 @@ end
 
 service "recordserver" do
     supports :restart => true, :start => true, :stop => true, :reload => true
-    action [:enable]
+    action [:enable, :start]
 end
