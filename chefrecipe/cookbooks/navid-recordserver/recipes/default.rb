@@ -88,6 +88,7 @@ end
 cookbook_file '/etc/init.d/recordserver' do
     source 'RecordServerService'
 end
+
 service "myservice" do
     supports :restart => true, :start => true, :stop => true, :reload => true
     action [:enable]
