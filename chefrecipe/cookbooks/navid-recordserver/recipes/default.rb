@@ -10,7 +10,6 @@
 include_recipe "java"
 include_recipe "simple_iptables"
 include_recipe "zabbix"
-include_recipe "daemontools"
 
 # Reject packets other than those explicitly allowed
 simple_iptables_policy "INPUT" do
