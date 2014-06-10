@@ -6,46 +6,65 @@
 # Source function library.
 . /etc/init.d/functions
 
+pname="recordserver"
+exe="java -jar /root/jetty-deployable.jar &"
+pidfile="/var/run/${pname}.pid"
+lockfile="/var/lock/subsys/${pname}"
+
+[ -x $exe ] || exit 0
+
 RETVAL=0
-prog="recordserver"
-LOCKFILE=/var/lock/subsys/$prog
 
 start() {
-        echo -n "Starting recordserver: "
-        daemon --user root java -jar /root/jetty-deployable.jar
-        touch /var/lock/subsys/recordserver
-        RETVAL=$?
-        [ $RETVAL -eq 0 ] && touch $LOCKFILE
-        echo
-        return $RETVAL
+    echo -n "Starting $pname : "
+    #daemon ${exe} # Not working ...
+    if [ -s ${pidfile} ]; then
+       RETVAL=1
+       echo -n "Already running !" && warning
+       echo
+    else
+       nohup ${exe} >/dev/null 2>&1 &
+       RETVAL=$?
+       PID=$!
+       [ $RETVAL -eq 0 ] && touch ${lockfile} && success || failure
+       echo
+       echo $PID > ${pidfile}
+    fi
 }
 
 stop() {
-        echo -n "Shutting down $prog: "
-        $ASADMIN stop-domain domain1 && success || failure
-        RETVAL=$?
-        [ $RETVAL -eq 0 ] && rm -f $LOCKFILE
-        echo
-        return $RETVAL
+    echo -n "Shutting down $pname : "
+    killproc ${exe}
+    RETVAL=$?
+    echo
+    if [ $RETVAL -eq 0 ]; then
+        rm -f ${lockfile}
+        rm -f ${pidfile}
+    fi
+}
+
+restart() {
+    echo -n "Restarting $pname : "
+    stop
+    sleep 2
+    start
 }
 
 case "$1" in
     start)
         start
-        ;;
+    ;;
     stop)
         stop
-        ;;
+    ;;
     status)
-        status
-        ;;
+        status ${pname}
+    ;;
     restart)
-        stop
-        start
-        ;;
+        restart
+    ;;
     *)
-        echo "Usage: $prog {start|stop|status|restart}"
-        exit 1
-        ;;
-esac
-exit $RETVAL
+        echo "Usage: $0 {start|stop|status|restart}"
+    ;; esac
+
+exit 0
