@@ -11,8 +11,6 @@ exe="java -jar /root/jetty-deployable.jar &"
 pidfile="/var/run/${pname}.pid"
 lockfile="/var/lock/subsys/${pname}"
 
-[ -x $exe ] || exit 0
-
 RETVAL=0
 
 start() {
@@ -33,8 +31,8 @@ start() {
 }
 
 stop() {
-    echo -n "Shutting down $pname : "
-    killproc ${exe}
+    echo -n "Shutting down $pname with PID `cat ${pidfile}`: "
+    killproc -p ${pidfile}
     RETVAL=$?
     echo
     if [ $RETVAL -eq 0 ]; then
