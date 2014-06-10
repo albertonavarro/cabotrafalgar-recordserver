@@ -87,6 +87,9 @@ end
 # start it, and make it start at boot
 cookbook_file '/etc/init.d/recordserver' do
     source 'RecordServerService'
+    mode 0755
+    owner "root"
+    group "root"
 end
 
 service "recordserver" do
