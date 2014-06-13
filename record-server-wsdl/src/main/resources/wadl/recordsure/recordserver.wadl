@@ -5,19 +5,27 @@
     <resources base="http://localhost:8080/">
         <resource path="/ranking">
             <resource path="/maps/{map}/{pos}"> 
-                <param name="map" style="template"  type="xs:string" />
-                <param name="pos" style="template"  type="xs:int" />
+                <param name="map" style="template" type="xs:string" />
+                <param name="pos" style="template" type="xs:int" />
                 <method name="GET">
                     <response>
                         <representation mediaType="application/json" element="ns:getRecordResponse"/>
                     </response>
                 </method>
-                </resource>
+            </resource>
             <resource path="/maps/{map}"> 
-                <param name="map" style="template"  type="xs:string" />
+                <param name="map" style="template" type="xs:string" />
                 <method name="GET">
                     <response>
                         <representation mediaType="application/json" element="ns:getMapRecordsResponse"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/id/{id}"> 
+                <param name="id" style="template" type="xs:string" />
+                <method name="GET">
+                    <response>
+                        <representation mediaType="application/json" element="ns:getRecordResponse"/>
                     </response>
                 </method>
             </resource>

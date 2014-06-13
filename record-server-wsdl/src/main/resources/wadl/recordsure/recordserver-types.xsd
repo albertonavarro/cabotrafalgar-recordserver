@@ -3,9 +3,8 @@
            targetNamespace="v1.recordserver.navid.com">
     <xs:complexType name="getRecordResponse">
         <xs:sequence>
-            <xs:element name="position" type="xs:int"/>
-            <xs:element name="time" type="xs:float"/>
-            <xs:element name="movements" type="xs:string"/>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="payload" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="getMapRecordsResponse">
@@ -13,6 +12,7 @@
             <xs:element name="rankingEntry" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
+                        <xs:element name="id" type="xs:string"/>
                         <xs:element name="position" type="xs:int"/>
                         <xs:element name="time" type="xs:float"/>
                     </xs:sequence>
@@ -22,13 +22,12 @@
     </xs:complexType>
     <xs:complexType name="addRecordRequest">
         <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
             <xs:element name="payload" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="addRecordResponse">
         <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
+            <xs:element name="id" type="xs:string"/>
             <xs:element name="position" type="xs:int"/>
             <xs:element name="status" type="xs:string"/>
             <xs:element name="verified" type="xs:boolean"/>

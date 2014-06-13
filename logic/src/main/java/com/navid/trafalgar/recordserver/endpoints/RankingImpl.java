@@ -36,11 +36,11 @@ public class RankingImpl implements RankingResource {
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
 
-        final CandidateInfo candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        final CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
         return new AddRecordResponse() {
             {
-                setId(addrecordrequest.getId());
-                setPosition(candidateInfo.getPosition());
+                setId(candidateInfo.getId());
+                setPosition(1);
                 setStatus("OK");
                 setVerified(true);
             }
@@ -64,6 +64,12 @@ public class RankingImpl implements RankingResource {
 
         return response;
     }
+    
+    @Override
+    public GetRecordResponse getIdid(String id) {
+        service.getGhost(id);
+        return null;
+    }
 
     private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {
 
@@ -75,5 +81,7 @@ public class RankingImpl implements RankingResource {
             }};
         }
     };
+
+    
 
 }

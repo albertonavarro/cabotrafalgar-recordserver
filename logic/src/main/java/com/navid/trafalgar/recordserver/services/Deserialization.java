@@ -29,7 +29,7 @@ public class Deserialization {
     private RequestContextContainer requestContextContainer;
     
 
-    public CandidateInfo addCandidate(String candidateRecord) {
+    public CandidateRecordUnmarshalled addCandidate(String candidateRecord) {
         
         RequestContext requestContext = requestContextContainer.get();
         
@@ -47,11 +47,7 @@ public class Deserialization {
         
         persistence.addCandidate(cdu);
         
-        CandidateInfo candidateInfo = new CandidateInfo();
-        candidateInfo.setAccepted(true);
-        candidateInfo.setPosition(1);
-        
-        return candidateInfo;
+        return cdu;
     }
 
     public List<CompetitorInfo> getTopCompetitors(int number, String map) {
@@ -59,6 +55,10 @@ public class Deserialization {
     }
 
     public CandidateRecord getGhost(int number, String map) {
+        return null;
+    }
+
+    public CandidateRecord getGhost(String id) {
         return null;
     }
 

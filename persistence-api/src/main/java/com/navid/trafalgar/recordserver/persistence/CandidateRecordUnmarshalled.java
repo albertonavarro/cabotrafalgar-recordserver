@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class CandidateRecordUnmarshalled {
     
+    private String id;
+    
     private Date timestamp;
         
     private String userId;
@@ -23,6 +25,20 @@ public class CandidateRecordUnmarshalled {
     private Boolean gameVerified;
     
     private String userToken;
+    
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return the timestamp
@@ -137,5 +153,7 @@ public class CandidateRecordUnmarshalled {
     public void setGameVerified(Boolean gameVerified) {
         this.gameVerified = gameVerified;
     }
+
+    
     
 }
