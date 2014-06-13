@@ -4,6 +4,8 @@
  */
 package com.navid.trafalgar.recordserver.endpoints;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
@@ -28,12 +30,12 @@ public class RankingImpl implements RankingResource {
 
     @Resource
     private Persistence persistence;
-    
+
     private ThreadLocal<RequestContext> request = new ThreadLocal<RequestContext>();
 
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
-        
+
         final CandidateInfo candidateInfo = service.addCandidate(addrecordrequest.getPayload());
         return new AddRecordResponse() {
             {
@@ -54,7 +56,24 @@ public class RankingImpl implements RankingResource {
     @Override
     public GetMapRecordsResponse getMapsmap(String map) {
         List<CandidateRecordUnmarshalled> result = persistence.getByMap(map);
-        return null;
+        GetMapRecordsResponse response = new GetMapRecordsResponse();
+
+        for (CandidateRecordUnmarshalled toTransform : result) {
+            response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
+        }
+
+        return response;
     }
+
+    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {
+
+        @Override
+        public GetMapRecordsResponse.RankingEntry apply(final CandidateRecordUnmarshalled f) {
+            return new GetMapRecordsResponse.RankingEntry(){{
+                setPosition(1);
+                setTime(f.getTime());
+            }};
+        }
+    };
 
 }
