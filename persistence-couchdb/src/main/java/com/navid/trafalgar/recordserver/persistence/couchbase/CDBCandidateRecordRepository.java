@@ -33,7 +33,18 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         ComplexKey end = ComplexKey.of(map, ComplexKey.emptyObject());
         
         ViewQuery q = createQuery("find_better_for_map").startKey(start).endKey(end).limit(5).includeDocs(true);
-        return db.queryView(q , CDBCandidateRecord.class);
+        List<CDBCandidateRecord> results = db.queryView(q , CDBCandidateRecord.class);
+        
+        addPositions(results);
+        
+        return results;
+    }
+
+    private void addPositions(List<CDBCandidateRecord> results) {
+        int index = 1;
+        for(CDBCandidateRecord currentRecord : results) {
+            currentRecord.setPosition(index++);
+        }
     }
 
 }

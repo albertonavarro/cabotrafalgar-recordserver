@@ -76,7 +76,7 @@ public class RankingImpl implements RankingResource {
         @Override
         public GetMapRecordsResponse.RankingEntry apply(final CandidateRecordUnmarshalled f) {
             return new GetMapRecordsResponse.RankingEntry(){{
-                setPosition(1);
+                setPosition(f.getPosition());
                 setTime(f.getTime());
             }};
         }

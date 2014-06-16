@@ -26,6 +26,8 @@ public class CandidateRecordUnmarshalled {
     
     private String userToken;
     
+    private Integer position;
+    
     /**
      * @return the id
      */
@@ -154,6 +156,21 @@ public class CandidateRecordUnmarshalled {
         this.gameVerified = gameVerified;
     }
 
+    /**
+     * @return the position
+     */
+    public Integer getPosition() {
+        return position;
+    }
+
+    /**
+     * @param position the position to set
+     */
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
+    
     
     
 }
