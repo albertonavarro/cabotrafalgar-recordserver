@@ -5,13 +5,11 @@
 package com.navid.trafalgar.recordserver.endpoints;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
 import com.navid.recordserver.v1.GetRecordResponse;
 import com.navid.recordserver.v1.RankingResource;
-import com.navid.trafalgar.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
@@ -31,12 +29,15 @@ public class RankingImpl implements RankingResource {
     @Resource
     private Persistence persistence;
 
-    private ThreadLocal<RequestContext> request = new ThreadLocal<RequestContext>();
+    private ThreadLocal<RequestContext> request = new ThreadLocal<>();
 
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
 
         final CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        
+        persistence.addCandidate(candidateInfo);
+        
         return new AddRecordResponse() {
             {
                 setId(candidateInfo.getId());
@@ -47,11 +48,6 @@ public class RankingImpl implements RankingResource {
         };
     }
 
-    @Override
-    public GetRecordResponse getMapsmappos(String map, int pos) {
-        List<CandidateRecordUnmarshalled> result = persistence.getByMap(map);
-        return null;
-    }
 
     @Override
     public GetMapRecordsResponse getMapsmap(String map) {
@@ -67,12 +63,18 @@ public class RankingImpl implements RankingResource {
     
     @Override
     public GetRecordResponse getIdid(String id) {
-        service.getGhost(id);
+        persistence.getById(id);
         return null;
     }
 
-    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {
-
+    @Override
+    public GetMapRecordsResponse getUseruser(String user) {
+        persistence.getByUser(user);
+        return null;
+    }
+    
+    
+    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {     
         @Override
         public GetMapRecordsResponse.RankingEntry apply(final CandidateRecordUnmarshalled f) {
             return new GetMapRecordsResponse.RankingEntry(){{
@@ -81,7 +83,5 @@ public class RankingImpl implements RankingResource {
             }};
         }
     };
-
-    
 
 }
