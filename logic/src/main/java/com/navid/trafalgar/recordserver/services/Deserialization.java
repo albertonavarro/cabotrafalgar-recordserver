@@ -23,9 +23,6 @@ public class Deserialization {
     private final Gson gson = new Gson();
     
     @Resource
-    private Persistence persistence;
-    
-    @Resource
     private RequestContextContainer requestContextContainer;
     
 
@@ -45,21 +42,7 @@ public class Deserialization {
         cdu.setTime(record.getTime());
         cdu.setUserToken("token");
         
-        persistence.addCandidate(cdu);
-        
         return cdu;
-    }
-
-    public List<CompetitorInfo> getTopCompetitors(int number, String map) {
-        return null;
-    }
-
-    public CandidateRecord getGhost(int number, String map) {
-        return null;
-    }
-
-    public CandidateRecord getGhost(String id) {
-        return null;
     }
 
 }
