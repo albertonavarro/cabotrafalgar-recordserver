@@ -4,12 +4,11 @@
     </grammars>
     <resources base="http://localhost:8080/">
         <resource path="/ranking">
-            <resource path="/maps/{map}/{pos}"> 
-                <param name="map" style="template" type="xs:string" />
-                <param name="pos" style="template" type="xs:int" />
+            <resource path="/user/{user}"> 
+                <param name="user" style="template" type="xs:string" />
                 <method name="GET">
                     <response>
-                        <representation mediaType="application/json" element="ns:getRecordResponse"/>
+                        <representation mediaType="application/json" element="ns:getMapRecordsResponse"/>
                     </response>
                 </method>
             </resource>
