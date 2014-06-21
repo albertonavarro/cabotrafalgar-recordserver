@@ -39,6 +39,17 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         
         return results;
     }
+    
+    @View(name = "find_by_user", map = "function(doc) { if(doc.userId && doc.mapName) {emit([doc.userId, doc.mapName], doc._id)} }")
+    public List<CDBCandidateRecord> findByUser(String userName) {
+        ComplexKey start = ComplexKey.of(userName);
+        ComplexKey end = ComplexKey.of(userName, ComplexKey.emptyObject());
+        
+        ViewQuery q = createQuery("find_by_user").startKey(start).endKey(end).limit(5).includeDocs(true);
+        List<CDBCandidateRecord> results = db.queryView(q , CDBCandidateRecord.class);
+                
+        return results;
+    }
 
     private void addPositions(List<CDBCandidateRecord> results) {
         int index = 1;

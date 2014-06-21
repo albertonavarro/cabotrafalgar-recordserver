@@ -35,9 +35,9 @@ public class RankingImpl implements RankingResource {
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
 
         final CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
-        
+
         persistence.addCandidate(candidateInfo);
-        
+
         return new AddRecordResponse() {
             {
                 setId(candidateInfo.getId());
@@ -47,7 +47,6 @@ public class RankingImpl implements RankingResource {
             }
         };
     }
-
 
     @Override
     public GetMapRecordsResponse getMapsmap(String map) {
@@ -60,7 +59,7 @@ public class RankingImpl implements RankingResource {
 
         return response;
     }
-    
+
     @Override
     public GetRecordResponse getIdid(String id) {
         persistence.getById(id);
@@ -69,18 +68,25 @@ public class RankingImpl implements RankingResource {
 
     @Override
     public GetMapRecordsResponse getUseruser(String user) {
-        persistence.getByUser(user);
-        return null;
+        List<CandidateRecordUnmarshalled> result = persistence.getByUser(user);
+        GetMapRecordsResponse response = new GetMapRecordsResponse();
+
+        for (CandidateRecordUnmarshalled toTransform : result) {
+            response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
+        }
+
+        return response;
     }
-    
-    
-    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {     
+
+    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {
         @Override
         public GetMapRecordsResponse.RankingEntry apply(final CandidateRecordUnmarshalled f) {
-            return new GetMapRecordsResponse.RankingEntry(){{
-                setPosition(f.getPosition());
-                setTime(f.getTime());
-            }};
+            return new GetMapRecordsResponse.RankingEntry() {
+                {
+                    setPosition(f.getPosition());
+                    setTime(f.getTime());
+                }
+            };
         }
     };
 
