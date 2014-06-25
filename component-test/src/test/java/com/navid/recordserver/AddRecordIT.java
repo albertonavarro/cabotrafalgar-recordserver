@@ -3,7 +3,6 @@ package com.navid.recordserver;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
-import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;

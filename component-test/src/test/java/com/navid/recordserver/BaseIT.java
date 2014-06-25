@@ -1,14 +1,12 @@
 package com.navid.recordserver;
 
+import com.navid.login.UserCommands;
 import com.navid.recordserver.jetty.EmbeddedJetty;
 import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CDBCandidateRecordRepository;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CouchbaseImpl;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
 import javax.annotation.Resource;
-import org.eclipse.jetty.server.Server;
-import org.ektorp.CouchDbConnector;
 import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.slf4j.Logger;
@@ -25,24 +23,26 @@ import org.testng.annotations.Test;
  * @author vero
  */
 @Test
-public class BaseIT {
+@ContextConfiguration(locations = {"classpath:conf/test-lazylogin-client.xml"})
+public class BaseIT extends AbstractTestNGSpringContextTests {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseIT.class);
 
     protected RankingResource rankingService;
-
     private CouchbaseImpl repository;
-
     private StdCouchDbInstance instance;
 
     private final String newDatabaseName = "recordsure-" + System.nanoTime();
-
-    private WebApplicationContext context;
+    
+    @Resource(name = "test.clientUserLazyLogin")
+    protected UserCommands userCommandsClient;
+    
+    @Resource(name = "test.clientRecordServer")
+    protected RankingResource recordServerClient;
 
     @BeforeClass
     public void init() throws InterruptedException, ExecutionException {
-
-        context = EmbeddedJetty.runServer().get();
+        WebApplicationContext context = EmbeddedJetty.runServer().get();
 
         repository = context.getBean(CouchbaseImpl.class);
         instance = context.getBean(StdCouchDbInstance.class);

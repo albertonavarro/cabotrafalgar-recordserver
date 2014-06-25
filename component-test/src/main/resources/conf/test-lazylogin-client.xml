@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:jaxws="http://cxf.apache.org/jaxws" 
+       xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://cxf.apache.org/jaxws                 http://cxf.apache.org/schema/jaxws.xsd 
+http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.xsd">
+    
+    <bean id="configuration" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:conf/recordserver-ct.defaults</value>
+            </list>
+        </property>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+    
+    <bean id="test.clientUserLazyLogin" class="com.navid.login.UserCommands" factory-bean="test.clientFactoryUserLazyLogin" factory-method="create"/>
+    
+    <bean id="test.clientFactoryUserLazyLogin" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.navid.login.UserCommands"/>
+        <property name="address" value="${lazylogin.url}/user"/>
+    </bean>
+    
+    <bean id="test.clientRecordServer" class="com.navid.recordserver.v1.RankingResource" factory-bean="test.clientFactoryRecordServer" factory-method="create" />
+    
+    <bean id="test.clientFactoryRecordServer" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
+        <property name="address" value="${recordserver.url}/rest"/>
+        <property name="serviceClass" value="com.navid.recordserver.v1.RankingResource"/>
+        <property name="providers">
+            <list>
+                <bean id="jacksonMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
+                <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+            </list>
+        </property>
+        <property name="outInterceptors">
+            <list>
+                <bean class="com.navid.trafalgar.recordserver.endpoints.RequestIdInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="test.requestContextContainer" class="com.navid.trafalgar.recordserver.services.RequestContextContainer" />
+
+
+</beans>
