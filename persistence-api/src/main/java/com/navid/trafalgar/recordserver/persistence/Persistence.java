@@ -12,4 +12,8 @@ public interface Persistence {
 
     List<CandidateRecordUnmarshalled>  getByMap(String map);
 
+    List<CandidateRecordUnmarshalled> getByUser(String user);
+
+    List<CandidateRecordUnmarshalled> getById(String id);
+
 }

@@ -36,4 +36,17 @@ public class CouchbaseImpl implements Persistence {
         this.repository = dbRepresentation;
     }
 
+    @Override
+    public List<CandidateRecordUnmarshalled> getByUser(String user) {
+        List<CDBCandidateRecord> result = repository.findByUser(user);
+        
+        List dtos = binder.bindFromBusinessObjectCollection(CandidateRecordUnmarshalled.class, result);
+        return dtos;    
+    }
+
+    @Override
+    public List<CandidateRecordUnmarshalled> getById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

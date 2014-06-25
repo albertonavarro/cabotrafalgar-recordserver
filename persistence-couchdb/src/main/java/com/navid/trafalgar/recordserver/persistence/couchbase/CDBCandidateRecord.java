@@ -23,6 +23,8 @@ public class CDBCandidateRecord extends CouchDbDocument {
     private Boolean gameVerified;
     
     private String userToken;
+    
+    private transient Integer position;
 
     /**
      * @return the timestamp
@@ -137,5 +139,20 @@ public class CDBCandidateRecord extends CouchDbDocument {
     public void setGameVerified(Boolean gameVerified) {
         this.gameVerified = gameVerified;
     }
+
+    /**
+     * @return the position
+     */
+    public Integer getPosition() {
+        return position;
+    }
+
+    /**
+     * @param position the position to set
+     */
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
     
 }

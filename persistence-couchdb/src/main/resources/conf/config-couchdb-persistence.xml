@@ -27,4 +27,7 @@
         </constructor-arg>
     </bean>
         
+    <bean id="lazylogin.persistence-couchdb.converter" class="org.jdto.spring.SpringDTOBinder"> 
+        <property name="xmlConfig" value="classpath:conf/jdto-mapping-persistence-couchdb.xml" /> 
+    </bean>
 </beans>
