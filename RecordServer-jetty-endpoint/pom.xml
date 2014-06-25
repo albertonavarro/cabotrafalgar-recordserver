@@ -11,7 +11,6 @@
     
     <artifactId>jetty-endpoint</artifactId>
     <name>RecordServer-jetty-endpoint</name>
-   <version>1.1.0</version>
    
     <dependencies>
         <dependency>

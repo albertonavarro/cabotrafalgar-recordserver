@@ -1,5 +1,11 @@
+package com.navid.recordserver.jetty;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -11,13 +17,29 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class EmbeddedJetty {
 
+    static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(1));
+
     private static final int DEFAULT_PORT = 8080;
     private static final String CONTEXT_PATH = "/";
     private static final String CONFIG_LOCATION = "classpath:conf/config-main.xml";
     private static final String MAPPING_URL = "/*";
+    private static Server server;
+    private static XmlWebApplicationContext context;
 
     public static void main(String[] args) throws Exception {
         new EmbeddedJetty().startJetty(getPortFromArgs(args));
+        server.join();
+    }
+
+    public static Future<WebApplicationContext> runServer() {
+        return service.submit(new Callable<WebApplicationContext>() {
+
+            @Override
+            public WebApplicationContext call() throws Exception {
+                new EmbeddedJetty().startJetty(8080);
+                return context;
+            }
+        });
     }
 
     private static int getPortFromArgs(String[] args) {
@@ -30,27 +52,32 @@ public class EmbeddedJetty {
         return DEFAULT_PORT;
     }
 
-    private void startJetty(int port) throws Exception {
-        Server server = new Server(port);
+    public void startJetty(int port) throws Exception {
+        server = new Server(port);
         server.setHandler(getServletContextHandler(getContext()));
         server.start();
-        server.join();
+    }
+
+    public static void stopServer() throws Exception {
+        if (server != null) {
+            server.stop();
+        }
+
     }
 
     private static ServletContextHandler getServletContextHandler(WebApplicationContext context) throws IOException {
         ServletContextHandler contextHandler = new ServletContextHandler();
         contextHandler.setErrorHandler(null);
         contextHandler.setContextPath(CONTEXT_PATH);
-        contextHandler.addServlet(new ServletHolder( new CXFServlet()), MAPPING_URL);
-      
-        
+        contextHandler.addServlet(new ServletHolder(new CXFServlet()), MAPPING_URL);
+
         contextHandler.addEventListener(new ContextLoaderListener(context));
         //contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
         return contextHandler;
     }
 
-    private static WebApplicationContext getContext() {
-        XmlWebApplicationContext context = new XmlWebApplicationContext();
+    private static XmlWebApplicationContext getContext() {
+        context = new XmlWebApplicationContext();
         context.setConfigLocation(CONFIG_LOCATION);
         return context;
     }
