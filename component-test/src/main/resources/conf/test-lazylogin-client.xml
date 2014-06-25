@@ -11,6 +11,7 @@ http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.
         <property name="locations">
             <list>
                 <value>classpath:conf/recordserver-ct.defaults</value>
+                <value>file:${user.home}/navidconfig/recordserver-ct.overrides</value>
             </list>
         </property>
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>

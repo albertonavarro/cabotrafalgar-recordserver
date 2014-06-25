@@ -28,7 +28,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseIT.class);
 
-    protected RankingResource rankingService;
     private CouchbaseImpl repository;
     private StdCouchDbInstance instance;
 
@@ -38,7 +37,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     protected UserCommands userCommandsClient;
     
     @Resource(name = "test.clientRecordServer")
-    protected RankingResource recordServerClient;
+    protected RankingResource rankingService;
 
     @BeforeClass
     public void init() throws InterruptedException, ExecutionException {
@@ -46,7 +45,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
         repository = context.getBean(CouchbaseImpl.class);
         instance = context.getBean(StdCouchDbInstance.class);
-        rankingService = context.getBean(RankingResource.class);
         
         CDBCandidateRecordRepository dbRepresentation = new CDBCandidateRecordRepository(new StdCouchDbConnector(newDatabaseName, instance));     
         repository.setRepository(dbRepresentation);
