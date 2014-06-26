@@ -5,6 +5,7 @@ import com.navid.recordserver.jetty.EmbeddedJetty;
 import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CDBCandidateRecordRepository;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CouchbaseImpl;
+import com.navid.trafalgar.recordserver.services.RequestContextContainer;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.Resource;
 import org.ektorp.impl.StdCouchDbConnector;
@@ -38,9 +39,17 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     
     @Resource(name = "test.clientRecordServer")
     protected RankingResource rankingService;
+    
+    @Resource
+    protected RequestContextContainer requestContextContainer;
+    
 
     @BeforeClass
     public void init() throws InterruptedException, ExecutionException {
+        requestContextContainer.create();
+        requestContextContainer.get().setRequestId("reqId");
+        
+        
         WebApplicationContext context = EmbeddedJetty.runServer().get();
 
         repository = context.getBean(CouchbaseImpl.class);
