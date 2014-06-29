@@ -20,14 +20,14 @@ public class RequestContextContainer {
     public RequestContext delete() {
         RequestContext temp = requestContext.get();
         requestContext.set(null);
-        LOGGER.debug("Request context deleted: %s", temp);
+        LOGGER.debug("Request context deleted: {}", temp);
         return temp;
     }
 
     public RequestContext create() {
         RequestContext temp = new RequestContext();
         requestContext.set(temp);
-        LOGGER.debug("Request context created: %s", temp);
+        LOGGER.debug("Request context created: {}", temp);
         return temp;
     }
 

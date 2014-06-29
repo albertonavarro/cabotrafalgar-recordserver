@@ -11,7 +11,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
     
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
         <property name="serviceClass" value="com.navid.login.SystemCommands"/>
-        <property name="address" value="http://lazylogin.ws:8080/system"/>
+        <property name="address" value="$conf{lazylogin.url}/system"/>
         <property name="handlers">
             <list>
                 <bean class="com.navid.trafalgar.recordserver.endpoints.RequestIdHandler"/>

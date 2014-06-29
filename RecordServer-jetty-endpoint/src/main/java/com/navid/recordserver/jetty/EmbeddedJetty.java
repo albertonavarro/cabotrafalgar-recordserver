@@ -3,6 +3,7 @@ package com.navid.recordserver.jetty;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -17,8 +18,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class EmbeddedJetty {
 
-    static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(1));
-
     private static final int DEFAULT_PORT = 8080;
     private static final String CONTEXT_PATH = "/";
     private static final String CONFIG_LOCATION = "classpath:conf/config-main.xml";
@@ -31,15 +30,11 @@ public class EmbeddedJetty {
         server.join();
     }
 
-    public static Future<WebApplicationContext> runServer() {
-        return service.submit(new Callable<WebApplicationContext>() {
-
-            @Override
-            public WebApplicationContext call() throws Exception {
-                new EmbeddedJetty().startJetty(8080);
-                return context;
-            }
-        });
+    public static WebApplicationContext runServer(final int port) throws Exception {
+        
+        
+        new EmbeddedJetty().startJetty(port);
+        return context;
     }
 
     private static int getPortFromArgs(String[] args) {

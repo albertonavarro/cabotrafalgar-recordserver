@@ -1,21 +1,19 @@
 /*
  */
-
 package com.navid.trafalgar.recordserver.services;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import com.google.common.base.Objects;
 
 public class RequestContext {
-    
+
     private String userId;
-    
+
     private String userName;
-    
+
     private String requestId;
-    
+
     RequestContext() {
-    
+
     }
 
     /**
@@ -60,7 +58,13 @@ public class RequestContext {
         this.userName = userName;
     }
     
-    
-    
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("userName", userName)
+                .add("userId", userId)
+                .add("requestId", requestId)
+                .toString();
+    }
 
 }

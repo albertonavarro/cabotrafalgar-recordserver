@@ -1,2 +1,2 @@
-lazylogin.url=TO_BE_DEFINED
-recordserver.url=TO_BE_DEFINED
+lazylogin.url=localhost:1080
+recordserver.url=localhost:6789
