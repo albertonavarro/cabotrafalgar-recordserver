@@ -68,7 +68,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         System.setProperty("env", "-ct");
         
         mockServer = startClientAndServer(1080);
-        proxy = startClientAndProxy(1090);
+        //proxy = startClientAndProxy(1090);
         
         new MockServerClient("localhost", 1080)
         .when(
