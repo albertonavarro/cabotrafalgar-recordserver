@@ -13,7 +13,7 @@
     <properties>
         <build-number>local</build-number>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson.version>1.9.3</jackson.version>
+        <jackson.version>1.9.13</jackson.version>
         <cfx.version>3.0.0-milestone1</cfx.version>
         <junit.version>4.11</junit.version>
         <spring.version>3.2.0.RELEASE</spring.version>
@@ -226,6 +226,11 @@
                 <artifactId>mail</artifactId>
                 <version>1.4</version>
                 <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.3.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
