@@ -60,7 +60,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     @Resource
     protected RequestContextContainer requestContextContainer;
 
-    private ClientAndProxy proxy;
+    //private ClientAndProxy proxy;
     private ClientAndServer mockServer;
 
     @BeforeClass
@@ -111,7 +111,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
         EmbeddedJetty.stopServer();
 
-        proxy.stop();
+        //proxy.stop();
         mockServer.stop();
     }
 

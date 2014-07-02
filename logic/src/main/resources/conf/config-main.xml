@@ -16,6 +16,7 @@
         <property name="locations">
             <list>
                 <value>classpath:/conf/recordserver.defaults</value>
+                <value>classpath:/conf/recordserver${env}.overrides</value>
                 <value>file:${user.home}/navidconfig/recordserver${env}.overrides</value>
             </list>
         </property>
