@@ -51,9 +51,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
     private final String newDatabaseName = "recordsure-" + System.nanoTime();
 
-    @Resource(name = "test.clientUserLazyLogin")
-    protected UserCommands userCommandsClient;
-
     @Resource(name = "test.clientRecordServer")
     protected RankingResource rankingService;
 
@@ -68,29 +65,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         System.setProperty("env", "-ct");
         
         mockServer = startClientAndServer(1080);
-        //proxy = startClientAndProxy(1090);
         
-        new MockServerClient("localhost", 1080)
-        .when(
-                request()
-                        .withMethod("POST")
-                        .withPath("/system"),
-                exactly(1)
-        )
-        .respond(
-                response()
-                        .withBody("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
-"   <soap:Body>\n" +
-"      <ns2:getUserInfoResponse xmlns:ns2=\"http://login.navid.com/\">\n" +
-"         <return>\n" +
-"            <userid>2</userid>\n" +
-"            <verified>false</verified>\n" +
-"         </return>\n" +
-"      </ns2:getUserInfoResponse>\n" +
-"   </soap:Body>\n" +
-"</soap:Envelope>")
-        );
-
         requestContextContainer.create();
         requestContextContainer.get().setRequestId("reqId");
 
