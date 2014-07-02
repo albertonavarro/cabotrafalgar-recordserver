@@ -1,3 +1,0 @@
-lazylogin.url=http://localhost:1080
-couchdb_testConnectionAtStartup=true
-couchdb_host=couchdb
