@@ -16,14 +16,14 @@ import static org.mockserver.model.HttpResponse.response;
  */
 public class MockLazyLogin {
 
-    public static void setUpSessionId(String uuid, String userId, Boolean verified) {
+    public static void setUpSessionId(String uuid, String userId, Boolean verified, int times) {
 
         new MockServerClient("localhost", 1080)
                 .when(
                         request()
                         .withMethod("POST")
                         .withPath("/system"),
-                        exactly(1)
+                        exactly(times)
                 )
                 .respond(
                         response()

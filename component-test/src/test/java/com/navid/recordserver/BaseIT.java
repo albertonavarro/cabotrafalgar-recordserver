@@ -1,32 +1,15 @@
 package com.navid.recordserver;
 
-import com.navid.login.UserCommands;
 import com.navid.recordserver.jetty.EmbeddedJetty;
 import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CDBCandidateRecordRepository;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CouchbaseImpl;
 import com.navid.trafalgar.recordserver.services.RequestContextContainer;
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import static java.util.concurrent.TimeUnit.SECONDS;
 import javax.annotation.Resource;
 import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
-import org.mockserver.client.server.MockServerClient;
-import org.mockserver.integration.ClientAndProxy;
-import static org.mockserver.integration.ClientAndProxy.startClientAndProxy;
 import org.mockserver.integration.ClientAndServer;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
-import static org.mockserver.matchers.Times.exactly;
-import org.mockserver.model.Cookie;
-import org.mockserver.model.Delay;
-import org.mockserver.model.Header;
-import static org.mockserver.model.HttpRequest.request;
-import static org.mockserver.model.HttpResponse.response;
-import org.mockserver.model.Parameter;
-import static org.mockserver.model.StringBody.exact;
-import static org.mockserver.model.StringBody.regex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -50,16 +33,15 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     private StdCouchDbInstance instance;
 
     private final String newDatabaseName = "recordsure-" + System.nanoTime();
+    
+    private ClientAndServer mockServer;
 
     @Resource(name = "test.clientRecordServer")
     protected RankingResource rankingService;
 
     @Resource
     protected RequestContextContainer requestContextContainer;
-
-    //private ClientAndProxy proxy;
-    private ClientAndServer mockServer;
-
+    
     @BeforeClass
     public void init() throws Exception {
         System.setProperty("env", "-ct");
@@ -76,8 +58,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
         CDBCandidateRecordRepository dbRepresentation = new CDBCandidateRecordRepository(new StdCouchDbConnector(newDatabaseName, instance));
         repository.setRepository(dbRepresentation);
-        
-        
     }
 
     @AfterClass
@@ -86,7 +66,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
         EmbeddedJetty.stopServer();
 
-        //proxy.stop();
         mockServer.stop();
     }
 

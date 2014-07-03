@@ -13,12 +13,10 @@ import org.testng.annotations.Test;
  */
 public class AddRecordIT extends BaseIT {
     
-    
-
     @Test
     public void addOneRecord() {
         //Given
-        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE);
+        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("one", "61.56301"));
@@ -33,7 +31,7 @@ public class AddRecordIT extends BaseIT {
     @Test
     public void getByMap() {
         //Given
-        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE);
+        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("addMoreRecords", "61.56301"));
