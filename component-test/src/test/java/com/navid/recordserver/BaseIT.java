@@ -12,11 +12,14 @@ import org.mockserver.integration.ClientAndServer;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -42,16 +45,30 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     @Resource
     protected RequestContextContainer requestContextContainer;
     
+    @Value("${recordserver.port}")
+    private int recordServerPort;
+    
+    @Value("${mockserver.port}")
+    private int mockServerPort;
+    
+    @BeforeMethod
+    public void beforeTest() {
+        requestContextContainer.create();
+    }
+    
+    @AfterMethod
+    public void afterTest() {
+        requestContextContainer.delete();
+    }
+    
     @BeforeClass
     public void init() throws Exception {
+        //helping recordserver to choose what config file should use.
         System.setProperty("env", "-ct");
         
-        mockServer = startClientAndServer(1080);
-        
-        requestContextContainer.create();
-        requestContextContainer.get().setRequestId("reqId");
-
-        WebApplicationContext context = EmbeddedJetty.runServer(6789);
+        mockServer = startClientAndServer(mockServerPort);
+       
+        WebApplicationContext context = EmbeddedJetty.runServer(recordServerPort);
 
         repository = context.getBean(CouchbaseImpl.class);
         instance = context.getBean(StdCouchDbInstance.class);

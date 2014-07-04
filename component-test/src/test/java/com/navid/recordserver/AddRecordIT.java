@@ -16,6 +16,7 @@ public class AddRecordIT extends BaseIT {
     @Test
     public void addOneRecord() {
         //Given
+        requestContextContainer.get().setRequestId("anyString");
         MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
@@ -31,6 +32,7 @@ public class AddRecordIT extends BaseIT {
     @Test
     public void getByMap() {
         //Given
+        requestContextContainer.get().setRequestId("anyString");
         MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
