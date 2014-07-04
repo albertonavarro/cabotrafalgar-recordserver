@@ -17,7 +17,7 @@ public class AddRecordIT extends BaseIT {
     public void addOneRecord() {
         //Given
         requestContextContainer.get().setRequestId("anyString");
-        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 1);
+        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("one", "61.56301"));
@@ -33,7 +33,7 @@ public class AddRecordIT extends BaseIT {
     public void getByMap() {
         //Given
         requestContextContainer.get().setRequestId("anyString");
-        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("addMoreRecords", "61.56301"));
@@ -56,7 +56,7 @@ public class AddRecordIT extends BaseIT {
     public void getByUser() {
         //Given
         requestContextContainer.get().setRequestId("anyString");
-        MockLazyLogin.setUpSessionId(null, "2", Boolean.FALSE, 2);
+        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 2);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("getByUser", "61.56301"));
@@ -66,7 +66,7 @@ public class AddRecordIT extends BaseIT {
         addRecordRequest2.setPayload(getPayload("getByUser", "61.56301"));
         rankingService.post(addRecordRequest2);
         
-        MockLazyLogin.setUpSessionId(null, "3", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(null, "otherusername", "3", Boolean.FALSE, 3);
 
         AddRecordRequest addRecordRequest3 = new AddRecordRequest();
         addRecordRequest3.setPayload(getPayload("getByUser", "61.56301"));
@@ -76,11 +76,11 @@ public class AddRecordIT extends BaseIT {
         addRecordRequest4.setPayload(getPayload("getByUser", "61.56301"));
         rankingService.post(addRecordRequest4);
     
-        GetMapRecordsResponse searchResult = rankingService.getUseruser("2");
+        GetMapRecordsResponse searchResult = rankingService.getUseruser("username");
         
-//        MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
-//        MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
-//        MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
+        MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
+        MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
+        MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
     }
     
     /*@Test

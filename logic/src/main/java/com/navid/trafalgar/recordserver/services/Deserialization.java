@@ -36,7 +36,7 @@ public class Deserialization {
         cdu.setMapName(record.getHeader().getMap());
         cdu.setPayload(candidateRecord);
         cdu.setTimestamp(new Date());
-        cdu.setUserId("user");
+        cdu.setUserId(requestContextContainer.get().getUserName());
         cdu.setGameVerified(FALSE);
         cdu.setLoginVerified(FALSE);
         cdu.setTime(record.getTime());

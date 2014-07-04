@@ -16,7 +16,7 @@ import static org.mockserver.model.HttpResponse.response;
  */
 public class MockLazyLogin {
 
-    public static void setUpSessionId(String uuid, String userId, Boolean verified, int times) {
+    public static void setUpSessionId(String uuid, String username, String userId, Boolean verified, int times) {
 
         new MockServerClient("localhost", 1080)
                 .when(
@@ -31,6 +31,7 @@ public class MockLazyLogin {
                                 + "   <soap:Body>\n"
                                 + "      <ns2:getUserInfoResponse xmlns:ns2=\"http://login.navid.com/\">\n"
                                 + "         <return>\n"
+                                + "            <username>"+username+"</username>\n"
                                 + "            <userid>"+userId+"</userid>\n"
                                 + "            <verified>"+verified+"</verified>\n"
                                 + "         </return>\n"
