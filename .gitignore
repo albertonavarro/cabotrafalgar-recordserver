@@ -1,2 +1,6 @@
 target/
 .idea/
+/component-test/keystore.jks
+/component-test/nbactions.xml
+/component-test/mockserver_request.log
+/component-test/mockserver.log
