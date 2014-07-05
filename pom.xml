@@ -30,6 +30,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.navid.record-server</groupId>
+                <artifactId>jetty-endpoint</artifactId>
+                <version>${project.version}</version>
+            </dependency>  
+            <dependency>
+                <groupId>com.navid.record-server</groupId>
                 <artifactId>logic</artifactId>
                 <version>${project.version}</version>
             </dependency>  

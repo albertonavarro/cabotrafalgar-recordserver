@@ -26,12 +26,7 @@
         <dependency>
             <groupId>com.navid.record-server</groupId>
             <artifactId>logic</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>httpclient</artifactId>
-                    <groupId>org.apache.httpcomponents</groupId>
-                </exclusion>
-            </exclusions>
+            
         </dependency>
     </dependencies>
     <build>
