@@ -10,8 +10,8 @@ pname="recordserver"
 exe="/root/run_recordserver.cmd"
 pidfile="/var/run/${pname}.pid"
 lockfile="/var/lock/subsys/${pname}"
-logfile="/var/log/recordsure.log"
-errfile="/var/log/recordsure.err"
+logfile="/var/log/recordserver.log"
+errfile="/var/log/recordserver.err"
 
 RETVAL=0
 
