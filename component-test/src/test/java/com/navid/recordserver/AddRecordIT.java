@@ -52,7 +52,7 @@ public class AddRecordIT extends BaseIT {
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
     }
     
-    @Test
+    /*@Test
     public void getByUser() {
         //Given
         requestContextContainer.get().setRequestId("anyString");
