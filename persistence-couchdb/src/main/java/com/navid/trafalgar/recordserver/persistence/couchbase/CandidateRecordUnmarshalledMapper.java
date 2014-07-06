@@ -27,6 +27,8 @@ public interface CandidateRecordUnmarshalledMapper {
             @Mapping(target = "revisions", ignore = true),
             @Mapping(target = "new", ignore = true)})
     CDBCandidateRecord toDto(CandidateRecordUnmarshalled business);
+    
+    @Mapping(source = "id", ignore = false)
     CandidateRecordUnmarshalled fromDto(CDBCandidateRecord dto);
     List<CandidateRecordUnmarshalled> fromDto(List<CDBCandidateRecord> dto);
 }
