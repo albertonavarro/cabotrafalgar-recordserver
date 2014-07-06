@@ -96,5 +96,5 @@ end
 
 service "recordserver" do
     supports :restart => true, :start => true, :stop => true, :reload => true
-    action [:enable, :start]
+    action [:enable, :restart]
 end
