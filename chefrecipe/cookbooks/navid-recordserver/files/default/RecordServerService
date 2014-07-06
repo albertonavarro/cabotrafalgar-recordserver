@@ -15,7 +15,7 @@ errfile="/var/log/recordserver.err"
 
 RETVAL=0
 
-[ -x $exe ] || exit 0
+#[ -x $exe ] || exit 0
 
 start() {
     echo -n "Starting $pname : "
