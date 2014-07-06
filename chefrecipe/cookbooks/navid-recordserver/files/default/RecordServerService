@@ -7,7 +7,7 @@
 . /etc/init.d/functions
 
 pname="recordserver"
-exe="/root/run_recordserver.cmd"
+exe="java -jar /root/jetty-deployable.jar"
 pidfile="/var/run/${pname}.pid"
 lockfile="/var/lock/subsys/${pname}"
 logfile="/var/log/recordserver.log"
