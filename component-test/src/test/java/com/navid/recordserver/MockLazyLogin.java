@@ -24,7 +24,7 @@ public class MockLazyLogin {
                         response()
                         .withBody("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
                                 + "   <soap:Body>\n"
-                                + "      <ns2:getUserInfoResponse xmlns:ns2=\"http://login.navid.com/\">\n"
+                                + "      <ns2:getUserInfoResponse xmlns:ns2=\"http://lazylogin.navid.com/\">\n"
                                 + "         <return>\n"
                                 + "            <username>"+username+"</username>\n"
                                 + "            <userid>"+userId+"</userid>\n"

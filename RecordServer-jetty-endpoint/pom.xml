@@ -30,7 +30,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>${project.artifactId}-${project.version}-${versioning}-deployable</finalName>
         <resources>
             <resource>
                 <targetPath>/webapp</targetPath>

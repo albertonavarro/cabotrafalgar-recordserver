@@ -303,12 +303,6 @@
         
     <profiles>
         <profile>
-            <id>jenkins</id>
-            <properties>
-                <versioning>${BUILD_NUMBER}</versioning>
-            </properties>
-        </profile>
-        <profile>
             <id>component-test</id>
             <modules>
                 <module>component-test</module>
@@ -320,15 +314,7 @@
                 <module>integration-test</module>
             </modules>
         </profile>
-        <profile>
-            <id>version-local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <versioning>LOCAL</versioning>
-            </properties>
-        </profile>
+        
     </profiles>
     
 </project>

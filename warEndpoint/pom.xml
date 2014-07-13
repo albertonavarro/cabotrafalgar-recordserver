@@ -22,9 +22,5 @@
         </dependency>
         
     </dependencies>
-    <build>
-        <finalName>${project.artifactId}-${versioning}-deployable</finalName>
-    </build>
-    
 
 </project>
