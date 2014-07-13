@@ -1,10 +1,10 @@
 package com.navid.recordserver;
 
+import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.recordserver.jetty.EmbeddedJetty;
 import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CDBCandidateRecordRepository;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CouchbaseImpl;
-import com.navid.trafalgar.recordserver.services.RequestContextContainer;
 import javax.annotation.Resource;
 import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;

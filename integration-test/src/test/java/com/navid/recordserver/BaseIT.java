@@ -1,9 +1,9 @@
 package com.navid.recordserver;
 
+import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.login.CreateTokenRequest;
 import com.navid.login.UserCommands;
 import com.navid.recordserver.v1.RankingResource;
-import com.navid.trafalgar.recordserver.services.RequestContextContainer;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

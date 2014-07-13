@@ -5,6 +5,7 @@
 package com.navid.trafalgar.recordserver.endpoints;
 
 import com.google.common.base.Function;
+import com.navid.lazylogin.context.RequestContext;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
@@ -13,7 +14,6 @@ import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
-import com.navid.trafalgar.recordserver.services.RequestContext;
 import java.util.List;
 import javax.annotation.Resource;
 

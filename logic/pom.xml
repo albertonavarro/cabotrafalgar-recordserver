@@ -22,8 +22,8 @@
             <artifactId>persistence-couchdb</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.navid.record-server</groupId>
-            <artifactId>lazylogin-client</artifactId>
+            <groupId>com.navid.lazylogin</groupId>
+            <artifactId>common-context</artifactId>
         </dependency>
         <dependency>
             <groupId>com.navid.record-server</groupId>

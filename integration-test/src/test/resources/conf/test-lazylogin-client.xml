@@ -45,7 +45,7 @@ http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.
         </property>
     </bean>
     
-    <bean id="test.requestContextContainer" class="com.navid.trafalgar.recordserver.services.RequestContextContainer" />
+    <bean id="test.requestContextContainer" class="com.navid.lazylogin.context.RequestContextContainer" />
 
 
 </beans>

@@ -20,13 +20,13 @@
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
-            <bean class="com.navid.trafalgar.recordserver.endpoints.AuthorisationFilter"/>
+            <bean class="com.navid.lazylogin.context.interceptors.AuthorisationFilter"/>
         </jaxrs:providers>
         <jaxrs:inInterceptors>
-            <bean class="com.navid.trafalgar.recordserver.endpoints.RequestContextCreatorInterceptor"/>
+            <bean class="com.navid.lazylogin.context.interceptors.RequestContextCreatorInterceptor"/>
         </jaxrs:inInterceptors>
         <jaxrs:outInterceptors>
-            <bean class="com.navid.trafalgar.recordserver.endpoints.RequestContextRemoverInterceptor"/>
+            <bean class="com.navid.lazylogin.context.interceptors.RequestContextRemoverInterceptor"/>
         </jaxrs:outInterceptors>
     </jaxrs:server> 
     
