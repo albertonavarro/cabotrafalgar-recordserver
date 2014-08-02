@@ -4,13 +4,14 @@
     
     <groupId>com.navid.record-server</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.${revision}</version>
     
     <packaging>pom</packaging>
     <name>RecordServer-Parent</name>
     
     <description>Keep your system simple, password less, and stop bothering your users.</description>
     <properties>
+        <PRODUCT_VERSION>${project.version}</PRODUCT_VERSION>
         <build-number>local</build-number>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>1.9.13</jackson.version>
@@ -25,6 +26,7 @@
         <commons-lang.version>2.4</commons-lang.version>
         <amq.version>5.1.0</amq.version>
         <testng.version>6.8.8</testng.version>        
+        <lazylogin.version>1.1.101</lazylogin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -61,12 +63,12 @@
             <dependency>
                 <groupId>com.navid.lazylogin</groupId>
                 <artifactId>client</artifactId>
-                <version>${project.version}</version>
+                <version>${lazylogin.version}</version>
             </dependency> 
             <dependency>
                 <groupId>com.navid.lazylogin</groupId>
                 <artifactId>common-context</artifactId>
-                <version>${project.version}</version>
+                <version>${lazylogin.version}</version>
             </dependency> 
             <dependency>
                 <groupId>com.navid.record-server</groupId>
@@ -291,27 +293,63 @@
         </pluginManagement>
     </build>
 
-    <modules>
-        <module>logic</module>
-        <module>persistence-api</module>
-        <module>warEndpoint</module>
-        <module>record-server-wsdl</module>
-        <module>selfclient</module>
-        <module>persistence-couchdb</module>
-        <module>RecordServer-jetty-endpoint</module>
-    </modules>
+    
         
     <profiles>
+        
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <revision>local</revision>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>build</id>
+            
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            
+            <modules>
+                <module>logic</module>
+                <module>persistence-api</module>
+                <module>warEndpoint</module>
+                <module>record-server-wsdl</module>
+                <module>selfclient</module>
+                <module>persistence-couchdb</module>
+                <module>RecordServer-jetty-endpoint</module>
+            </modules>
+        </profile>
+
         <profile>
             <id>component-test</id>
             <modules>
                 <module>component-test</module>
             </modules>
         </profile>
+        
         <profile>
             <id>integration-test</id>
             <modules>
                 <module>integration-test</module>
+            </modules>
+        </profile>
+        
+        <profile>
+            <id>ci</id>
+            <properties>
+                <revision>${providedRevision}</revision>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>chef-recipe</id>
+            <modules>
+                <module>chefrecipe</module>
             </modules>
         </profile>
         
