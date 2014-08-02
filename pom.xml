@@ -4,7 +4,7 @@
     
     <groupId>com.navid.record-server</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.${revision}</version>
+    <version>1.2</version>
     
     <packaging>pom</packaging>
     <name>RecordServer-Parent</name>
@@ -298,16 +298,6 @@
     <profiles>
         
         <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <revision>local</revision>
-            </properties>
-        </profile>
-        
-        <profile>
             <id>build</id>
             
             <activation>
@@ -337,13 +327,6 @@
             <modules>
                 <module>integration-test</module>
             </modules>
-        </profile>
-        
-        <profile>
-            <id>ci</id>
-            <properties>
-                <revision>${providedRevision}</revision>
-            </properties>
         </profile>
         
         <profile>
