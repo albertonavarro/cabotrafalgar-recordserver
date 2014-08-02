@@ -1,10 +1,15 @@
 package com.navid.recordserver.jetty;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import org.apache.cxf.transport.servlet.CXFServlet;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.resource.Resource;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
@@ -62,6 +67,14 @@ public class EmbeddedJetty {
         contextHandler.addEventListener(new ContextLoaderListener(context));
         //contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
         return contextHandler;
+    }
+    
+    private static Handler getServletStaticContextHandler() throws IOException, URISyntaxException {
+        ResourceHandler resHandler = new ResourceHandler();
+        resHandler.setResourceBase(Resource.newClassPathResource("/static").toString());
+        ContextHandler ctx = new ContextHandler("/static"); /* the server uri path */
+        ctx.setHandler(resHandler);
+        return ctx;
     }
 
     private static XmlWebApplicationContext getContext() {
