@@ -6,6 +6,7 @@ import org.apache.cxf.transport.servlet.CXFServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -47,7 +48,10 @@ public class EmbeddedJetty {
 
     public void startJetty(int port) throws Exception {
         server = new Server(port);
-        server.setHandler(getServletContextHandler(getContext()));
+
+        HandlerList handlers = new HandlerList();
+        handlers.setHandlers(new Handler[]{ getServletStaticContextHandler(), getServletContextHandler(getContext())});
+        
         server.start();
     }
 
