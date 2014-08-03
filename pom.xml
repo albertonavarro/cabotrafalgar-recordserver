@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
     <name>RecordServer-Parent</name>
     
-    <description>Keep your system simple, password less, and stop bothering your users.</description>
+    <description>Store your best games.</description>
+    
     <properties>
         <PRODUCT_VERSION>${project.version}</PRODUCT_VERSION>
         <build-number>local</build-number>
@@ -28,6 +29,7 @@
         <testng.version>6.8.8</testng.version>        
         <lazylogin.version>1.2</lazylogin.version>
     </properties>
+    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -299,15 +301,6 @@
                         <phase>compile</phase>
                         <goals>
                             <goal>analyze</goal>
-                        </goals>
-                        <configuration>
-                            <ignoreNonCompile>true</ignoreNonCompile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tree</id>
-                        <phase>compile</phase>
-                        <goals>
                             <goal>tree</goal>
                         </goals>
                         <configuration>
@@ -341,11 +334,9 @@
         
         <profile>
             <id>build</id>
-            
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            
             <modules>
                 <module>logic</module>
                 <module>persistence-api</module>
