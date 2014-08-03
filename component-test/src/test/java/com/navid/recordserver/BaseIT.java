@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
  * @author vero
  */
 @Test
-@ContextConfiguration(locations = {"classpath:conf/test-lazylogin-client.xml"})
+@ContextConfiguration(locations = {"classpath:conf/test-recordserver-client.xml"})
 public class BaseIT extends AbstractTestNGSpringContextTests {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseIT.class);

@@ -30,8 +30,7 @@ public class EmbeddedJetty {
     }
 
     public static WebApplicationContext runServer(final int port) throws Exception {
-        
-        
+
         new EmbeddedJetty().startJetty(port);
         return context;
     }
@@ -50,8 +49,9 @@ public class EmbeddedJetty {
         server = new Server(port);
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{ getServletStaticContextHandler(), getServletContextHandler(getContext())});
-        
+        handlers.setHandlers(new Handler[]{getServletStaticContextHandler(), getServletContextHandler(getContext())});
+        server.setHandler(handlers);
+
         server.start();
     }
 
@@ -72,11 +72,12 @@ public class EmbeddedJetty {
         //contextHandler.setResourceBase(new ClassPathResource("webapp").getURI().toString());
         return contextHandler;
     }
-    
+
     private static Handler getServletStaticContextHandler() throws IOException, URISyntaxException {
         ResourceHandler resHandler = new ResourceHandler();
         resHandler.setResourceBase(Resource.newClassPathResource("/static").toString());
         ContextHandler ctx = new ContextHandler("/static"); /* the server uri path */
+
         ctx.setHandler(resHandler);
         return ctx;
     }
