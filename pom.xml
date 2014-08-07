@@ -73,11 +73,6 @@
                 <version>${lazylogin.version}</version>
             </dependency> 
             <dependency>
-                <groupId>com.navid.lazylogin</groupId>
-                <artifactId>common-context</artifactId>
-                <version>${lazylogin.version}</version>
-            </dependency> 
-            <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
                 <version>1.5.7</version>

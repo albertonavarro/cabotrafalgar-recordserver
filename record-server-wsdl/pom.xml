@@ -35,7 +35,7 @@
                             <sourceRoot>${basedir}/target/generated-sources/src/</sourceRoot>
                             <wadlOptions>
                                 <wadlOption>
-                                    <wadl>classpath:wadl/recordsure/recordserver.wadl</wadl>
+                                    <wadl>src/main/resources/wadl/recordsure/recordserver.wadl</wadl>
                                     <packagename>com.navid.recordserver.v1</packagename>
                                 </wadlOption>
                             </wadlOptions>
