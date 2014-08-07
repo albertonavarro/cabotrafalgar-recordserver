@@ -62,12 +62,7 @@
                 <groupId>com.navid.record-server</groupId>
                 <artifactId>lazylogin-client</artifactId>
                 <version>${project.version}</version>
-            </dependency> 
-            <dependency>
-                <groupId>com.navid.record-server</groupId>
-                <artifactId>war-endpoint</artifactId>
-                <version>${project.version}</version>
-            </dependency>   
+            </dependency>  
             <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
@@ -289,10 +284,8 @@
     <modules>
         <module>logic</module>
         <module>persistence-api</module>
-        <module>warEndpoint</module>
         <module>record-server-wsdl</module>
         <module>lazylogin-client</module>
-        <module>selfclient</module>
         <module>persistence-couchdb</module>
         <module>RecordServer-jetty-endpoint</module>
     </modules>
