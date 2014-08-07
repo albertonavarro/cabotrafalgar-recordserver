@@ -32,12 +32,12 @@ http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.
         </property>
         <property name="outInterceptors">
             <list>
-                <bean class="com.navid.trafalgar.recordserver.endpoints.RequestIdInterceptor"/>
+                <bean class="com.navid.lazylogin.context.interceptors.RequestIdInterceptor"/>
             </list>
         </property>
     </bean>
     
-    <bean id="test.requestContextContainer" class="com.navid.trafalgar.recordserver.services.RequestContextContainer" />
+    <bean id="test.requestContextContainer" class="com.navid.lazylogin.context.RequestContextContainer" />
 
 
 </beans>

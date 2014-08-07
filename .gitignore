@@ -4,3 +4,14 @@ target/
 /component-test/nbactions.xml
 /component-test/mockserver_request.log
 /component-test/mockserver.log
+/pom.xml.versionsBackup
+/warEndpoint/pom.xml.versionsBackup
+/selfclient/pom.xml.versionsBackup
+/record-server-wsdl/pom.xml.versionsBackup
+/persistence-couchdb/pom.xml.versionsBackup
+/persistence-api/pom.xml.versionsBackup
+/logic/pom.xml.versionsBackup
+/integration-test/pom.xml.versionsBackup
+/component-test/pom.xml.versionsBackup
+/chefrecipe/pom.xml.versionsBackup
+/RecordServer-jetty-endpoint/pom.xml.versionsBackup

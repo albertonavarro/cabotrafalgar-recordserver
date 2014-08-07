@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.navid.recordserver;
 
 import org.mockserver.client.server.MockServerClient;
@@ -29,7 +24,7 @@ public class MockLazyLogin {
                         response()
                         .withBody("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
                                 + "   <soap:Body>\n"
-                                + "      <ns2:getUserInfoResponse xmlns:ns2=\"http://login.navid.com/\">\n"
+                                + "      <ns2:getUserInfoResponse xmlns:ns2=\"http://lazylogin.navid.com/\">\n"
                                 + "         <return>\n"
                                 + "            <username>"+username+"</username>\n"
                                 + "            <userid>"+userId+"</userid>\n"

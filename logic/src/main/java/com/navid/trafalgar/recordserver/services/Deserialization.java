@@ -1,15 +1,12 @@
 package com.navid.trafalgar.recordserver.services;
 
 import com.google.gson.Gson;
+import com.navid.lazylogin.context.RequestContext;
+import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.trafalgar.model.AShipModelTwo;
-import com.navid.trafalgar.persistence.CandidateInfo;
-import com.navid.trafalgar.persistence.CandidateRecord;
-import com.navid.trafalgar.persistence.CompetitorInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
-import com.navid.trafalgar.recordserver.persistence.Persistence;
 import static java.lang.Boolean.FALSE;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 

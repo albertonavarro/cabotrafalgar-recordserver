@@ -7,14 +7,14 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
     
     <import resource="classpath:META-INF/cxf/cxf.xml" />
      
-    <bean id="client" class="com.navid.login.SystemCommands" factory-bean="clientFactory" factory-method="create"/>
+    <bean id="client" class="com.navid.lazylogin.SystemCommands" factory-bean="clientFactory" factory-method="create"/>
     
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-        <property name="serviceClass" value="com.navid.login.SystemCommands"/>
+        <property name="serviceClass" value="com.navid.lazylogin.SystemCommands"/>
         <property name="address" value="$conf{lazylogin.url}/system"/>
         <property name="handlers">
             <list>
-                <bean class="com.navid.trafalgar.recordserver.endpoints.RequestIdHandler"/>
+                <bean class="com.navid.lazylogin.context.interceptors.RequestIdHandler"/>
             </list>
         </property>
     </bean>
