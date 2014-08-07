@@ -63,9 +63,13 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-
                 <groupId>com.navid.lazylogin</groupId>
                 <artifactId>client</artifactId>
+                <version>${lazylogin.version}</version>
+            </dependency> 
+            <dependency>
+                <groupId>com.navid.lazylogin</groupId>
+                <artifactId>common-context</artifactId>
                 <version>${lazylogin.version}</version>
             </dependency> 
             <dependency>
