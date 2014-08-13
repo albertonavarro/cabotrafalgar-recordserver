@@ -11,73 +11,8 @@
     <artifactId>client</artifactId>
     <name>RecordServer-client</name>
     
-    <dependencies>
-        <dependency>
-            <groupId>com.navid.record-server</groupId>
-            <artifactId>contract</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.jvnet.ws.wadl</groupId>
-            <artifactId>wadl-core</artifactId>
-            <version>1.1.6</version>
-        </dependency>
-        
-    </dependencies>
     
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jvnet.ws.wadl</groupId>
-                <artifactId>wadl-client-plugin</artifactId>
-                <version>1.1.6</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    
-                    <sourceDirectory>wadl/recordsure</sourceDirectory>
-                    <packageName>bbc.schedule</packageName>
-                    <autopackaging>false</autopackaging>
-                    <!--<customizations>
-                        <customization>../share/binding.xjb</customization>
-                    </customizations>
-                    <customClassNames>
-                        <property>
-                            <name>http://www.bbc.co.uk</name>
-                            <value>BBCSchedule</value>
-                        </property>
-                    </customClassNames>-->
-                </configuration>
-            </plugin>
-            <!--<plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-wadl2java-plugin</artifactId>
-                <version>3.0.0-milestone2</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sourceRoot>${basedir}/target/generated-sources/src/</sourceRoot>
-                            <wadlOptions>
-                                <wadlOption>
-                                    <wadl>classpath:recordserver.wadl</wadl>
-                                    <packagename>com.navid.recordserver.v1</packagename>
-                                </wadlOption>
-                            </wadlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wadl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
-        </plugins>
-    </build>
+    
+    
     
 </project>
