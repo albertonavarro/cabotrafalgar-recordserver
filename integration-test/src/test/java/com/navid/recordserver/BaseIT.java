@@ -34,9 +34,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     protected String token;
     
     @BeforeClass
-    public void initToken() {
-        requestContextContainer.create();
-        
+    public void initToken() {        
         CreateTokenRequest request = new CreateTokenRequest() {{
             setEmail("somemail@somedomain.com");
         }};
@@ -45,7 +43,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         
         LOGGER.info("Got user token: " + token);
         
-        requestContextContainer.get().setRequestId(token);
+        requestContextContainer.get().setSessionId(token);
         
     }
     
