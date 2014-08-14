@@ -53,7 +53,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     
     @BeforeMethod
     public void beforeTest() {
-        requestContextContainer.create();
+
     }
     
     @AfterMethod
