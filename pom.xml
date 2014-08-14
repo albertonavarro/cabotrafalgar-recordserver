@@ -27,7 +27,7 @@
         <commons-lang.version>2.4</commons-lang.version>
         <amq.version>5.1.0</amq.version>
         <testng.version>6.8.8</testng.version>        
-        <lazylogin.version>1.2.110</lazylogin.version>
+        <lazylogin.version>1.2.119</lazylogin.version>
     </properties>
     
     <dependencyManagement>
