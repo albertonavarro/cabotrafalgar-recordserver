@@ -85,6 +85,7 @@ public class RankingImpl implements RankingResource {
                 {
                     setPosition(f.getPosition());
                     setTime(f.getTime());
+                    setId(f.getId());
                 }
             };
         }
