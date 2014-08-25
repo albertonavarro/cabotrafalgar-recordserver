@@ -15,10 +15,12 @@ public class CouchbaseImpl implements Persistence {
     private CDBCandidateRecordRepository repository;
 
     @Override
-    public void addCandidate(CandidateRecordUnmarshalled candidateRecord) {
+    public CandidateRecordUnmarshalled addCandidate(CandidateRecordUnmarshalled candidateRecord) {
         CDBCandidateRecord cdb = mapper.toDto(candidateRecord);
         
         repository.add(cdb);
+        
+        return mapper.fromDto(cdb);
     }
 
     @Override
@@ -40,8 +42,10 @@ public class CouchbaseImpl implements Persistence {
     }
 
     @Override
-    public List<CandidateRecordUnmarshalled> getById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CandidateRecordUnmarshalled getById(String id) {
+        CDBCandidateRecord result = repository.get(id);
+        
+        return mapper.fromDto(result);
     }
-
 }
+

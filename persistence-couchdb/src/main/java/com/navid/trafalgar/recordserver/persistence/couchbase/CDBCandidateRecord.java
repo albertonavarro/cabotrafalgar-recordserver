@@ -14,6 +14,8 @@ public class CDBCandidateRecord extends CouchDbDocument {
     
     private String mapName;
     
+    private String shipModel;
+    
     private String payload;
     
     private Float time;
@@ -154,5 +156,20 @@ public class CDBCandidateRecord extends CouchDbDocument {
         this.position = position;
     }
 
+    /**
+     * @return the shipModel
+     */
+    public String getShipModel() {
+        return shipModel;
+    }
+
+    /**
+     * @param shipModel the shipModel to set
+     */
+    public void setShipModel(String shipModel) {
+        this.shipModel = shipModel;
+    }
+
+    
     
 }

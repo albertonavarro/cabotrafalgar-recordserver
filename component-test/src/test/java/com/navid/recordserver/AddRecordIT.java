@@ -1,8 +1,12 @@
 package com.navid.recordserver;
 
+import com.google.common.base.CharMatcher;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
+import com.navid.recordserver.v1.GetRecordResponse;
+import static io.netty.channel.group.ChannelMatchers.isNot;
+import javax.validation.constraints.NotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
@@ -82,11 +86,22 @@ public class AddRecordIT extends BaseIT {
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
     }
-    
-    /*@Test
+    */
+    @Test
     public void getById() {
-    
-    }*/
+        //Given
+        requestContextContainer.get().setSessionId("anyString");
+        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        
+        AddRecordRequest addRecordRequest = new AddRecordRequest();
+        addRecordRequest.setPayload(getPayload("getById", "61.56301"));
+
+        AddRecordResponse response = rankingService.post(addRecordRequest);
+        MatcherAssert.assertThat("response is null!", response != null );
+
+        GetRecordResponse result = rankingService.getIdid(response.getId());
+        MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301")));
+    }
     
     private String getPayload(String map, String finalTime) {
         return "{\"version\":1,\"header\":{\"map\":\"" + map + "\",\"shipModel\":\"ShipModelOneX\"},\"stepRecordList\":[{\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"timestamp\":0.13044842,\"eventList\":[]},{\"position\":{\"x\":-267.15237,\"y\":0.0,\"z\":-784.9582},\"rotation\":{\"x\":-0.08990571,\"y\":-0.89595354,\"z\":0.21214685,\"w\":-0.3796915},\"timestamp\":"+finalTime+",\"eventList\":[\"MILLESTONE_REACHED\"]}]}";

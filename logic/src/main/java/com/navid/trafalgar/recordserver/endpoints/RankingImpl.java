@@ -34,13 +34,13 @@ public class RankingImpl implements RankingResource {
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
 
-        final CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
 
-        persistence.addCandidate(candidateInfo);
+        final CandidateRecordUnmarshalled uploadedCandidate = persistence.addCandidate(candidateInfo);
 
         return new AddRecordResponse() {
             {
-                setId(candidateInfo.getId());
+                setId(uploadedCandidate.getId());
                 setPosition(1);
                 setStatus("OK");
                 setVerified(true);
@@ -62,8 +62,12 @@ public class RankingImpl implements RankingResource {
 
     @Override
     public GetRecordResponse getIdid(String id) {
-        persistence.getById(id);
-        return null;
+        final CandidateRecordUnmarshalled result = persistence.getById(id);
+        
+        return new GetRecordResponse(){{
+            setId(id);
+            setPayload(result.getPayload());
+        }};
     }
 
     @Override

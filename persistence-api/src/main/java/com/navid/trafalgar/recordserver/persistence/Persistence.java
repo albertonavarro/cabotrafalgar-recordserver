@@ -8,12 +8,12 @@ import java.util.List;
  */
 public interface Persistence {
 
-    void addCandidate(CandidateRecordUnmarshalled candidateRecord);
+    CandidateRecordUnmarshalled addCandidate(CandidateRecordUnmarshalled candidateRecord);
 
     List<CandidateRecordUnmarshalled>  getByMap(String map);
 
     List<CandidateRecordUnmarshalled> getByUser(String user);
 
-    List<CandidateRecordUnmarshalled> getById(String id);
+    CandidateRecordUnmarshalled getById(String id);
 
 }
