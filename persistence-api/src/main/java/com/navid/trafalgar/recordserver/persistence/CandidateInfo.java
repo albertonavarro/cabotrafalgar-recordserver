@@ -1,33 +1,36 @@
 /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-
 package com.navid.trafalgar.recordserver.persistence;
 
 import java.util.Date;
 
+/**
+ *
+ * @author casa
+ */
+public class CandidateInfo {
 
-public class CandidateRecordUnmarshalled {
-    
     private String id;
-    
+
     private Date timestamp;
-        
+
     private String userId;
-    
+
     private String mapName;
-    
-    private String payload;
-    
+
     private Float time;
-    
+
     private Boolean loginVerified;
-    
+
     private Boolean gameVerified;
-    
+
     private String userToken;
-    
+
     private Integer position;
-    
+
     /**
      * @return the id
      */
@@ -85,20 +88,6 @@ public class CandidateRecordUnmarshalled {
     }
 
     /**
-     * @return the payload
-     */
-    public String getPayload() {
-        return payload;
-    }
-
-    /**
-     * @param payload the payload to set
-     */
-    public void setPayload(String payload) {
-        this.payload = payload;
-    }
-
-    /**
      * @return the time
      */
     public Float getTime() {
@@ -111,8 +100,6 @@ public class CandidateRecordUnmarshalled {
     public void setTime(Float time) {
         this.time = time;
     }
-
-    
 
     /**
      * @return the userToken
@@ -170,7 +157,4 @@ public class CandidateRecordUnmarshalled {
         this.position = position;
     }
 
-    
-    
-    
 }

@@ -1,6 +1,9 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
+import java.beans.Transient;
 import java.util.Date;
+import java.util.HashMap;
+import org.ektorp.Attachment;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
 
@@ -16,8 +19,6 @@ public class CDBCandidateRecord extends CouchDbDocument {
     
     private String shipModel;
     
-    private String payload;
-    
     private Float time;
     
     private Boolean loginVerified;
@@ -27,6 +28,7 @@ public class CDBCandidateRecord extends CouchDbDocument {
     private String userToken;
     
     private transient Integer position;
+    
 
     /**
      * @return the timestamp
@@ -68,20 +70,6 @@ public class CDBCandidateRecord extends CouchDbDocument {
      */
     public void setMapName(String mapName) {
         this.mapName = mapName;
-    }
-
-    /**
-     * @return the payload
-     */
-    public String getPayload() {
-        return payload;
-    }
-
-    /**
-     * @param payload the payload to set
-     */
-    public void setPayload(String payload) {
-        this.payload = payload;
     }
 
     /**

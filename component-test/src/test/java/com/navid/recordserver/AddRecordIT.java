@@ -1,12 +1,9 @@
 package com.navid.recordserver;
 
-import com.google.common.base.CharMatcher;
 import com.navid.recordserver.v1.AddRecordRequest;
 import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
 import com.navid.recordserver.v1.GetRecordResponse;
-import static io.netty.channel.group.ChannelMatchers.isNot;
-import javax.validation.constraints.NotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;

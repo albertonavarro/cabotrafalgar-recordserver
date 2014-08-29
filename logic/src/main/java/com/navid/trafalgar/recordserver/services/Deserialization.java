@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.navid.lazylogin.context.RequestContext;
 import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.trafalgar.model.AShipModelTwo;
-import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
+import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import static java.lang.Boolean.FALSE;
 import java.util.Date;
 import javax.annotation.Resource;
@@ -23,13 +23,13 @@ public class Deserialization {
     private RequestContextContainer requestContextContainer;
     
 
-    public CandidateRecordUnmarshalled addCandidate(String candidateRecord) {
+    public CandidateRecord addCandidate(String candidateRecord) {
         
         RequestContext requestContext = requestContextContainer.get();
         
         AShipModelTwo.ShipCandidateRecord record = gson.fromJson(candidateRecord, AShipModelTwo.ShipCandidateRecord.class);
         
-        CandidateRecordUnmarshalled cdu = new CandidateRecordUnmarshalled();
+        CandidateRecord cdu = new CandidateRecord();
         cdu.setMapName(record.getHeader().getMap());
         cdu.setPayload(candidateRecord);
         cdu.setTimestamp(new Date());

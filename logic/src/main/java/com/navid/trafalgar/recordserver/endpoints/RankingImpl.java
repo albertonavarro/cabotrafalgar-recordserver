@@ -11,7 +11,8 @@ import com.navid.recordserver.v1.AddRecordResponse;
 import com.navid.recordserver.v1.GetMapRecordsResponse;
 import com.navid.recordserver.v1.GetRecordResponse;
 import com.navid.recordserver.v1.RankingResource;
-import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
+import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
+import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
 import java.util.List;
@@ -34,9 +35,9 @@ public class RankingImpl implements RankingResource {
     @Override
     public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
 
-        CandidateRecordUnmarshalled candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        CandidateRecord candidateInfo = service.addCandidate(addrecordrequest.getPayload());
 
-        final CandidateRecordUnmarshalled uploadedCandidate = persistence.addCandidate(candidateInfo);
+        final CandidateInfo uploadedCandidate = persistence.addCandidate(candidateInfo);
 
         return new AddRecordResponse() {
             {
@@ -50,10 +51,10 @@ public class RankingImpl implements RankingResource {
 
     @Override
     public GetMapRecordsResponse getMapsmap(String map) {
-        List<CandidateRecordUnmarshalled> result = persistence.getByMap(map);
+        List<CandidateInfo> result = persistence.getByMap(map);
         GetMapRecordsResponse response = new GetMapRecordsResponse();
 
-        for (CandidateRecordUnmarshalled toTransform : result) {
+        for (CandidateInfo toTransform : result) {
             response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
         }
 
@@ -62,7 +63,7 @@ public class RankingImpl implements RankingResource {
 
     @Override
     public GetRecordResponse getIdid(String id) {
-        final CandidateRecordUnmarshalled result = persistence.getById(id);
+        final CandidateRecord result = persistence.getById(id);
         
         return new GetRecordResponse(){{
             setId(id);
@@ -72,19 +73,19 @@ public class RankingImpl implements RankingResource {
 
     @Override
     public GetMapRecordsResponse getUseruser(String user) {
-        List<CandidateRecordUnmarshalled> result = persistence.getByUser(user);
+        List<CandidateInfo> result = persistence.getByUser(user);
         GetMapRecordsResponse response = new GetMapRecordsResponse();
 
-        for (CandidateRecordUnmarshalled toTransform : result) {
+        for (CandidateInfo toTransform : result) {
             response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
         }
 
         return response;
     }
 
-    private static Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateRecordUnmarshalled, GetMapRecordsResponse.RankingEntry>() {
+    private static Function<CandidateInfo, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateInfo, GetMapRecordsResponse.RankingEntry>() {
         @Override
-        public GetMapRecordsResponse.RankingEntry apply(final CandidateRecordUnmarshalled f) {
+        public GetMapRecordsResponse.RankingEntry apply(final CandidateInfo f) {
             return new GetMapRecordsResponse.RankingEntry() {
                 {
                     setPosition(f.getPosition());

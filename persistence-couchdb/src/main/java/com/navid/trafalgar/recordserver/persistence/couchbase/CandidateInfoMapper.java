@@ -1,6 +1,7 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
-import com.navid.trafalgar.recordserver.persistence.CandidateRecordUnmarshalled;
+import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
+import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,24 +13,24 @@ import org.mapstruct.factory.Mappers;
  * @author casa
  */
 @Mapper
-public interface CandidateRecordUnmarshalledMapper {
+public interface CandidateInfoMapper {
 
-    CandidateRecordUnmarshalledMapper INSTANCE = Mappers.getMapper(CandidateRecordUnmarshalledMapper.class);
+    CandidateInfoMapper INSTANCE = Mappers.getMapper(CandidateInfoMapper.class);
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
             @Mapping(target = "attachment", ignore = true),
             @Mapping(target = "revisions", ignore = true),
             @Mapping(target = "new", ignore = true)})
-    CDBCandidateRecord toDto(CandidateRecordUnmarshalled business);
+    CDBCandidateRecord toDto(CandidateInfo business);
     
     @Mappings({
         @Mapping(target = "id", source = "id")
     })
-    CandidateRecordUnmarshalled fromDto(CDBCandidateRecord dto);
+    CandidateInfo fromDto(CDBCandidateRecord dto);
     
     @Mappings({
         @Mapping(target = "id", source = "id")
     })
-    List<CandidateRecordUnmarshalled> fromDto(List<CDBCandidateRecord> dto);
+    List<CandidateInfo> fromDto(List<CDBCandidateRecord> dto);
 }
