@@ -20,11 +20,11 @@ http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.
         <property name="fileEncoding" value="UTF-8" />
     </bean>
     
-    <bean id="test.clientUserLazyLogin" class="com.navid.lazylogin.UserCommands" factory-bean="test.clientFactoryUserLazyLogin" factory-method="create"/>
+    <bean id="test.clientUserLazyLogin" class="com.lazylogin.client.user.v0.UserCommands" factory-bean="test.clientFactoryUserLazyLogin" factory-method="create"/>
     
     <bean id="test.clientFactoryUserLazyLogin" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-        <property name="serviceClass" value="com.navid.lazylogin.UserCommands"/>
-        <property name="address" value="${lazylogin.url}/user"/>
+        <property name="serviceClass" value="com.lazylogin.client.user.v0.UserCommands"/>
+        <property name="address" value="${lazylogin.url}/services/user"/>
     </bean>
     
     <bean id="test.clientRecordServer" class="com.navid.recordserver.v1.RankingResource" factory-bean="test.clientFactoryRecordServer" factory-method="create" />
