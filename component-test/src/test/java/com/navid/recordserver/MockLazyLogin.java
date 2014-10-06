@@ -17,7 +17,7 @@ public class MockLazyLogin {
                 .when(
                         request()
                         .withMethod("POST")
-                        .withPath("/system"),
+                        .withPath("/services/system"),
                         exactly(times)
                 )
                 .respond(
