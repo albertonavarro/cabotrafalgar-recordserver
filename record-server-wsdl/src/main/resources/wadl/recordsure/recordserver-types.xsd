@@ -15,6 +15,7 @@
                         <xs:element name="id" type="xs:string"/>
                         <xs:element name="position" type="xs:int"/>
                         <xs:element name="time" type="xs:float"/>
+                        <xs:element name="username" type="xs:string"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -31,6 +32,7 @@
             <xs:element name="position" type="xs:int"/>
             <xs:element name="status" type="xs:string"/>
             <xs:element name="verified" type="xs:boolean"/>
+            <xs:element name="username" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

@@ -17,7 +17,7 @@ public class CandidateInfo {
 
     private Date timestamp;
 
-    private String userId;
+    private String userName;
 
     private String mapName;
 
@@ -60,17 +60,17 @@ public class CandidateInfo {
     }
 
     /**
-     * @return the userId
+     * @return the userName
      */
-    public String getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
     /**
-     * @param userId the userId to set
+     * @param userName the userId to set
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**

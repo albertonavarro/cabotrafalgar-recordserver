@@ -1,9 +1,6 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
-import java.beans.Transient;
 import java.util.Date;
-import java.util.HashMap;
-import org.ektorp.Attachment;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
 
@@ -13,7 +10,7 @@ public class CDBCandidateRecord extends CouchDbDocument {
     @TypeDiscriminator
     private Date timestamp;
         
-    private String userId;
+    private String userName;
     
     private String mapName;
     
@@ -45,17 +42,17 @@ public class CDBCandidateRecord extends CouchDbDocument {
     }
 
     /**
-     * @return the userId
+     * @return the userName
      */
-    public String getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
     /**
-     * @param userId the userId to set
+     * @param userName the userId to set
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**
