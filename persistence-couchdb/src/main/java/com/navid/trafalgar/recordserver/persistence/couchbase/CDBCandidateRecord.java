@@ -22,7 +22,7 @@ public class CDBCandidateRecord extends CouchDbDocument {
     
     private Boolean gameVerified;
     
-    private String userToken;
+    private String userSession;
     
     private transient Integer position;
     
@@ -89,14 +89,14 @@ public class CDBCandidateRecord extends CouchDbDocument {
      * @return the userToken
      */
     public String getUserToken() {
-        return userToken;
+        return userSession;
     }
 
     /**
      * @param userToken the userToken to set
      */
     public void setUserToken(String userToken) {
-        this.userToken = userToken;
+        this.userSession = userToken;
     }
 
     /**

@@ -37,7 +37,7 @@ public class Deserialization {
         cdu.setGameVerified(FALSE);
         cdu.setLoginVerified(FALSE);
         cdu.setTime(record.getTime());
-        cdu.setUserToken("token");
+        cdu.setUserSession(requestContextContainer.get().getSessionId());
         
         return cdu;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.navid.trafalgar.recordserver.persistence;
 
 import java.util.Date;
@@ -27,7 +22,7 @@ public class CandidateInfo {
 
     private Boolean gameVerified;
 
-    private String userToken;
+    private String userSession;
 
     private Integer position;
 
@@ -102,20 +97,6 @@ public class CandidateInfo {
     }
 
     /**
-     * @return the userToken
-     */
-    public String getUserToken() {
-        return userToken;
-    }
-
-    /**
-     * @param userToken the userToken to set
-     */
-    public void setUserToken(String userToken) {
-        this.userToken = userToken;
-    }
-
-    /**
      * @return the loginVerified
      */
     public Boolean getLoginVerified() {
@@ -155,6 +136,20 @@ public class CandidateInfo {
      */
     public void setPosition(Integer position) {
         this.position = position;
+    }
+
+    /**
+     * @return the userSession
+     */
+    public String getUserSession() {
+        return userSession;
+    }
+
+    /**
+     * @param userSession the userSession to set
+     */
+    public void setUserSession(String userSession) {
+        this.userSession = userSession;
     }
 
 }

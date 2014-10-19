@@ -41,8 +41,6 @@ public class RankingImpl implements RankingResource {
 
         CandidateRecord candidateInfo = service.addCandidate(addrecordrequest.getPayload());
         
-        candidateInfo.setUserName(requestContextContainer.get().getUserName());
-        
         final CandidateInfo uploadedCandidate = persistence.addCandidate(candidateInfo);
 
         return new AddRecordResponse() {
