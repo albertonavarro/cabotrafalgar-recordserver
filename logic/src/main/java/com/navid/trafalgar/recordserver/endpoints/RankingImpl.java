@@ -86,6 +86,8 @@ public class RankingImpl implements RankingResource {
                        toTransform.setUserName(userInfo.getUsername());
                        toTransform.setGameVerified(true);
                        persistence.update(toTransform);
+                   } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
+                       toTransform.setUserName("--yourself--");
                    } else {
                        continue;
                    }
