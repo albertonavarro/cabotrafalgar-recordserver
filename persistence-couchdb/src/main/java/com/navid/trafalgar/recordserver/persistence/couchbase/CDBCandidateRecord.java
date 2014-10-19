@@ -26,6 +26,8 @@ public class CDBCandidateRecord extends CouchDbDocument {
     
     private transient Integer position;
     
+    private String userToken;
+    
 
     /**
      * @return the timestamp
@@ -154,6 +156,20 @@ public class CDBCandidateRecord extends CouchDbDocument {
      */
     public void setUserSession(String userSession) {
         this.userSession = userSession;
+    }
+
+    /**
+     * @return the userToken
+     */
+    public String getUserToken() {
+        return userToken;
+    }
+
+    /**
+     * @param userToken the userToken to set
+     */
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     
