@@ -1,7 +1,6 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
-import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,10 +21,16 @@ public interface CandidateInfoMapper {
             @Mapping(target = "attachment", ignore = true),
             @Mapping(target = "revisions", ignore = true),
             @Mapping(target = "new", ignore = true)})
-    CDBCandidateRecord toDto(CandidateInfo business);
+    CDBCandidateRecord toDtoNoId(CandidateInfo business);
+    
+    @Mappings({
+            @Mapping(target = "attachment", ignore = true),
+            @Mapping(target = "new", ignore = true)})
+    CDBCandidateRecord toDtoWithId(CandidateInfo business);
     
     @Mappings({
         @Mapping(target = "id", source = "id")
+
     })
     CandidateInfo fromDto(CDBCandidateRecord dto);
     

@@ -9,6 +9,8 @@ import java.util.Date;
 public class CandidateInfo {
 
     private String id;
+    
+    private String revision;
 
     private Date timestamp;
 
@@ -152,4 +154,19 @@ public class CandidateInfo {
         this.userSession = userSession;
     }
 
+    /**
+     * @return the revision
+     */
+    public String getRevision() {
+        return revision;
+    }
+
+    /**
+     * @param revision the revision to set
+     */
+    public void setRevision(String revision) {
+        this.revision = revision;
+    }
+
+    
 }

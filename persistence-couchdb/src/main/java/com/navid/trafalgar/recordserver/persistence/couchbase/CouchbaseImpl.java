@@ -25,7 +25,7 @@ public class CouchbaseImpl implements Persistence {
 
     @Override
     public CandidateInfo addCandidate(CandidateRecord candidateRecord) {
-        CDBCandidateRecord cdb = mapperInfo.toDto(candidateRecord);
+        CDBCandidateRecord cdb = mapperInfo.toDtoNoId(candidateRecord);
         repository.add(cdb);
         repository.addAttachment(cdb.getId(), cdb.getRevision(), encode(candidateRecord.getPayload()), "raw");
         return mapper.fromDto(cdb);
@@ -112,6 +112,18 @@ public class CouchbaseImpl implements Persistence {
 
     public void setRepository(CDBCandidateRecordRepository dbRepresentation) {
         this.repository = dbRepresentation;
+    }
+
+    @Override
+    public void remove(CandidateInfo toRemove) {
+        CDBCandidateRecord cdb = mapperInfo.toDtoWithId(toRemove);
+        repository.remove(cdb);
+    }
+
+    @Override
+    public void update(CandidateInfo toUpdate) {
+        CDBCandidateRecord cdb = mapperInfo.toDtoWithId(toUpdate);
+        repository.update(cdb);
     }
 
 }

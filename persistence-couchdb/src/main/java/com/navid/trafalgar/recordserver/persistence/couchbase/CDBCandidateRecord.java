@@ -85,19 +85,6 @@ public class CDBCandidateRecord extends CouchDbDocument {
 
     
 
-    /**
-     * @return the userToken
-     */
-    public String getUserToken() {
-        return userSession;
-    }
-
-    /**
-     * @param userToken the userToken to set
-     */
-    public void setUserToken(String userToken) {
-        this.userSession = userToken;
-    }
 
     /**
      * @return the loginVerified
@@ -153,6 +140,20 @@ public class CDBCandidateRecord extends CouchDbDocument {
      */
     public void setShipModel(String shipModel) {
         this.shipModel = shipModel;
+    }
+
+    /**
+     * @return the userSession
+     */
+    public String getUserSession() {
+        return userSession;
+    }
+
+    /**
+     * @param userSession the userSession to set
+     */
+    public void setUserSession(String userSession) {
+        this.userSession = userSession;
     }
 
     

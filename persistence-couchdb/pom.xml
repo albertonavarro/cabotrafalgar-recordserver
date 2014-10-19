@@ -67,6 +67,9 @@
                     <processors>
                         <processor>org.mapstruct.ap.MappingProcessor</processor>
                     </processors>
+                    <options>
+                        <unmappedTargetPolicy>WARN</unmappedTargetPolicy>
+                    </options>
                 </configuration>
                 <executions>
                     <execution>

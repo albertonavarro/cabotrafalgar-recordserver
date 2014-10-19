@@ -16,4 +16,8 @@ public interface Persistence {
 
     CandidateRecord getById(String id);
 
+    void remove(CandidateInfo toRemove);
+    
+    void update(CandidateInfo toUpdate);
+
 }
