@@ -2,6 +2,7 @@ package com.navid.trafalgar.recordserver.persistence.couchbase;
 
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
+import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,10 +13,14 @@ import java.util.zip.GZIPOutputStream;
 import javax.annotation.Resource;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CouchbaseImpl implements Persistence {
+
+    private static Logger LOG = LoggerFactory.getLogger(CouchbaseImpl.class);
 
     CandidateRecordMapper mapper = CandidateRecordMapper.INSTANCE;
     CandidateInfoMapper mapperInfo = CandidateInfoMapper.INSTANCE;
@@ -46,14 +51,25 @@ public class CouchbaseImpl implements Persistence {
     }
 
     @Override
-    public CandidateRecord getById(String id) {
+    public CandidateRecord getById(String id) throws ItemNotFoundException {
 
-        CDBCandidateRecord result = repository.get(id);
-        CandidateRecord result2 = mapper.fromDto(result);
-        String rawAttachment = repository.getAttachment(id, "raw");
-        result2.setPayload(decode(rawAttachment));
-        return result2;
+        try {
+            CDBCandidateRecord result = repository.get(id);
+            CandidateRecord result2 = mapper.fromDto(result);
+            String rawAttachment;
+            try {
+                rawAttachment = repository.getAttachment(id, "raw");
+            } catch (Exception e) {
+                LOG.error("Inconsistent status for record id {}, attachment not found", id);
+                repository.remove(result);
+                throw new ItemNotFoundException(id);
+            }
+            result2.setPayload(decode(rawAttachment));
+            return result2;
 
+        } catch (Exception e) {
+            throw new ItemNotFoundException(id);
+        }
     }
 
     public static String encode(String raw) {

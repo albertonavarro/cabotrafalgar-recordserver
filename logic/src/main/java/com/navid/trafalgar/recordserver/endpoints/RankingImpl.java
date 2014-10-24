@@ -12,11 +12,13 @@ import com.navid.recordserver.v1.GetRecordResponse;
 import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
+import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
 import java.util.List;
 import java.util.logging.Level;
 import javax.annotation.Resource;
+import javax.ws.rs.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,12 +109,16 @@ public class RankingImpl implements RankingResource {
     public GetRecordResponse getIdid(String id) {
         LOG.info("getIdid requested for user context {}", requestContextContainer.get());
 
-        final CandidateRecord result = persistence.getById(id);
-        
-        return new GetRecordResponse(){{
-            setId(id);
-            setPayload(result.getPayload());
-        }};
+        try{         
+            final CandidateRecord result = persistence.getById(id);
+
+            return new GetRecordResponse(){{
+                setId(id);
+                setPayload(result.getPayload());
+            }};
+        } catch(ItemNotFoundException e) {
+            throw new NotFoundException(id);
+        }
     }
 
     @Override

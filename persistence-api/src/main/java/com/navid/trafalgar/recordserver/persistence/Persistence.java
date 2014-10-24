@@ -14,7 +14,7 @@ public interface Persistence {
 
     List<CandidateInfo> getByUser(String user);
 
-    CandidateRecord getById(String id);
+    CandidateRecord getById(String id) throws ItemNotFoundException;
 
     void remove(CandidateInfo toRemove);
     
