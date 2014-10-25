@@ -5,8 +5,6 @@ package com.navid.trafalgar.recordserver.persistence.couchbase;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.ComplexKey;
@@ -14,12 +12,16 @@ import org.ektorp.CouchDbConnector;
 import org.ektorp.ViewQuery;
 import org.ektorp.support.CouchDbRepositorySupport;
 import org.ektorp.support.View;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component(value = "recordserver.cdbrepository")
 public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCandidateRecord> {
+    
+    private final static Logger LOG = LoggerFactory.getLogger(CDBCandidateRecordRepository.class);
     
     @Autowired
     public CDBCandidateRecordRepository(@Qualifier("recordServerConnection") CouchDbConnector db) {
@@ -78,7 +80,7 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         try {
             return IOUtils.toString(attachment);
         } catch (IOException ex) {
-            Logger.getLogger(CDBCandidateRecordRepository.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.error("Error getting attachment for id {} and name {}, message {}", id, attName, ex);
             throw new RuntimeException(ex);
         }
     }
