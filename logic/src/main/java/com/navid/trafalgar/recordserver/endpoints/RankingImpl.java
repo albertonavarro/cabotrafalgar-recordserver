@@ -75,11 +75,11 @@ public class RankingImpl implements RankingResource {
                 continue;
             }
             
-            if(!toTransform.getLoginVerified() && toTransform.getUserName() != null){
+            /*if(!toTransform.getLoginVerified() && toTransform.getUserName() != null){
                 LOG.info("Enhancing entry {} with verified login", toTransform.getId());
                 toTransform.setLoginVerified(true);
                 persistence.update(toTransform);
-            }
+            }*/
             
             if(!toTransform.getLoginVerified()) {
                 try {
