@@ -52,13 +52,13 @@ public class CouchbaseImpl implements Persistence {
 
     @Override
     public CandidateRecord getById(String id) throws ItemNotFoundException {
-
+        LOG.info("Getting by Id {}", id);
         try {
             CDBCandidateRecord result = repository.get(id);
             CandidateRecord result2 = mapper.fromDto(result);
             String rawAttachment;
             try {
-                rawAttachment = repository.getAttachment(id, "raw");
+                rawAttachment = repository.getAttachment(id, "raw", result.getRevision());
             } catch (Exception e) {
                 LOG.error("Inconsistent status for record id {}, attachment not found", id);
                 repository.remove(result);

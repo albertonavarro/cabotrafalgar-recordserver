@@ -73,13 +73,11 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         
         db.createAttachment(id, rev, a);
     }
-    
-    public String getAttachment(String id, String attName) {
-        
-        AttachmentInputStream attachment = db.getAttachment(id, attName);
-        try {
+
+    String getAttachment(String id, String attName, String revision) {
+        try(AttachmentInputStream attachment = db.getAttachment(id, attName, revision)){
             return IOUtils.toString(attachment);
-        } catch (IOException ex) {
+        }catch (IOException ex) {
             LOG.error("Error getting attachment for id {} and name {}, message {}", id, attName, ex);
             throw new RuntimeException(ex);
         }
