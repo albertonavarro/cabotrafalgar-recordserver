@@ -61,7 +61,7 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         return results;
     }
     
-    @UpdateHandler(name = "set_login_verified", function = "function(doc, req) { doc.loginVerified = true; return [null, true]; }")
+    @UpdateHandler(name = "set_login_verified", function = "function(doc, req) { doc.loginVerified = true; return [null, 'true']; }")
     public void updateLoginVerified(String id) {
         LOG.info("updating id {} to set login verified", id);
         String result = db.callUpdateHandler(stdDesignDocumentId, "set_login_verified", id);
