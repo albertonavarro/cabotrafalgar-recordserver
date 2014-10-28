@@ -138,8 +138,8 @@ public class CouchbaseImpl implements Persistence {
 
     @Override
     public void update(CandidateInfo toUpdate) {
-        CDBCandidateRecord cdb = mapperInfo.toDtoWithId(toUpdate);
-        repository.update(cdb);
+
+        repository.updateLoginVerified(toUpdate.getId());
     }
 
 }

@@ -9,8 +9,10 @@ import org.apache.commons.io.IOUtils;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.ComplexKey;
 import org.ektorp.CouchDbConnector;
+import org.ektorp.UpdateHandlerRequest;
 import org.ektorp.ViewQuery;
 import org.ektorp.support.CouchDbRepositorySupport;
+import org.ektorp.support.UpdateHandler;
 import org.ektorp.support.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +59,13 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         List<CDBCandidateRecord> results = db.queryView(q, CDBCandidateRecord.class);
         
         return results;
+    }
+    
+    @UpdateHandler(name = "set_login_verified", function = "function(doc, req) { doc.loginVerified = true; return [null, true]; }")
+    public void updateLoginVerified(String id) {
+        LOG.info("updating id {} to set login verified", id);
+        String result = db.callUpdateHandler(stdDesignDocumentId, "set_login_verified", id);
+        LOG.info("result of updating id {} is {}", id, result);
     }
     
     private void addPositions(List<CDBCandidateRecord> results) {
