@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
  *
  * @author vero
  */
-public class AddRecordITV2 extends BaseIT {
+public class AddRecordV2IT extends BaseIT {
     
     @Resource(name = "test.clientRecordServerV2")
     protected V2Resource recordServerClient;
