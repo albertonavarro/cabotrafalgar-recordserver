@@ -50,6 +50,19 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         return results;
     }
     
+    @View(name = "find_better_for_ship_and_map", map = "function(doc) { if(doc.time && doc.mapName && doc.shipModel) {emit([doc.shipModel, doc.mapName, doc.time], doc._id)} }")
+    public List<CDBCandidateRecord> findByShipAndMapName(String map, String ship) {
+        ComplexKey start = ComplexKey.of(ship, map);
+        ComplexKey end = ComplexKey.of(ship, map, ComplexKey.emptyObject());
+        
+        ViewQuery q = createQuery("find_better_for_ship_and_map").startKey(start).endKey(end).limit(5).includeDocs(true);
+        List<CDBCandidateRecord> results = db.queryView(q, CDBCandidateRecord.class);
+        
+        addPositions(results);
+        
+        return results;
+    }
+    
     @View(name = "find_by_user", map = "function(doc) { if(doc.userId && doc.mapName) {emit([doc.userId, doc.mapName], doc._id)} }")
     public List<CDBCandidateRecord> findByUser(String userName) {
         ComplexKey start = ComplexKey.of(userName);

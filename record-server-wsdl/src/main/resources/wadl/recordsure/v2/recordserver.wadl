@@ -1,0 +1,43 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="v2.recordserver.navid.com">
+    <grammars>
+        <include href="recordserver-types.xsd"/>
+    </grammars>
+    <resources base="http://localhost:8080/">
+        <resource path="/info"> 
+            <method name="GET">
+                <response>
+                    <representation mediaType="application/json" element="ns:getInfoResponse"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/v2">
+            <resource path="/ranking">
+                <resource path="/ship/{ship}/maps/{map}"> 
+                    <param name="map" style="template" type="xs:string" />
+                    <param name="ship" style="template" type="xs:string" />
+                    <method name="GET">
+                        <response>
+                            <representation mediaType="application/json" element="ns:getMapRecordsResponse"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="/id/{id}"> 
+                    <param name="id" style="template" type="xs:string" />
+                    <method name="GET">
+                        <response>
+                            <representation mediaType="application/json" element="ns:getRecordResponse"/>
+                        </response>
+                    </method>
+                </resource>
+                <method name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="ns:addRecordRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="ns:addRecordResponse"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

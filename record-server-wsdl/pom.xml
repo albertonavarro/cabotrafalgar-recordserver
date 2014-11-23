@@ -29,7 +29,7 @@
                 <version>3.0.0-milestone2</version>
                 <executions>
                     <execution>
-                        <id>generate-sources</id>
+                        <id>generate-sources-v1</id>
                         <phase>generate-sources</phase>
                         <configuration>
                             <sourceRoot>${basedir}/target/generated-sources/src/</sourceRoot>
@@ -37,6 +37,22 @@
                                 <wadlOption>
                                     <wadl>src/main/resources/wadl/recordsure/recordserver.wadl</wadl>
                                     <packagename>com.navid.recordserver.v1</packagename>
+                                </wadlOption>
+                            </wadlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wadl2java</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-sources-v2</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${basedir}/target/generated-sources/src/</sourceRoot>
+                            <wadlOptions>
+                                <wadlOption>
+                                    <wadl>src/main/resources/wadl/recordsure/v2/recordserver.wadl</wadl>
+                                    <packagename>com.navid.recordserver.v2</packagename>
                                 </wadlOption>
                             </wadlOptions>
                         </configuration>
