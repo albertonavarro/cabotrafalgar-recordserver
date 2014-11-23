@@ -28,6 +28,8 @@ public class CDBCandidateRecord extends CouchDbDocument {
     
     private String userToken;
     
+    private String shipName;
+    
 
     /**
      * @return the timestamp
@@ -172,6 +174,18 @@ public class CDBCandidateRecord extends CouchDbDocument {
         this.userToken = userToken;
     }
 
-    
-    
+    /**
+     * @return the shipName
+     */
+    public String getShipName() {
+        return shipName;
+    }
+
+    /**
+     * @param shipName the shipName to set
+     */
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
+    }
+
 }

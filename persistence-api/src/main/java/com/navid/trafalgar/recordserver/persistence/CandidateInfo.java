@@ -27,6 +27,8 @@ public class CandidateInfo {
     private String userSession;
 
     private Integer position;
+    
+    private String shipName;
 
     /**
      * @return the id
@@ -168,5 +170,18 @@ public class CandidateInfo {
         this.revision = revision;
     }
 
+    /**
+     * @return the shipName
+     */
+    public String getShipName() {
+        return shipName;
+    }
+
+    /**
+     * @param shipName the shipName to set
+     */
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
+    }
     
 }
