@@ -48,7 +48,14 @@ public class RankingImpl implements V2Resource {
         
         LOG.info("post requested for user context {}", requestContextContainer.get());
 
-        CandidateRecord candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        CandidateRecord candidateInfo;
+        try {
+            candidateInfo = service.addCandidate(addrecordrequest.getPayload());
+        } catch(Exception e) {
+            LOG.error("Error deserializing payload: ", e);
+            throw e;
+        }
+        
         
         final CandidateInfo uploadedCandidate = persistence.addCandidate(candidateInfo);
 
@@ -66,7 +73,7 @@ public class RankingImpl implements V2Resource {
     public GetMapRecordsResponse getRankingshipshipmapsmap(String map,  String ship) {
         LOG.info("getMapsmap requested for user context {}", requestContextContainer.get());
 
-        List<CandidateInfo> result = persistence.getByMap(map);
+        List<CandidateInfo> result = persistence.getByMapAndShip(map, ship);
         GetMapRecordsResponse response = new GetMapRecordsResponse();
 
         for (CandidateInfo toTransform : result) {

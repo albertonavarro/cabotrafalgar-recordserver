@@ -11,6 +11,8 @@ public interface Persistence {
     CandidateInfo addCandidate(CandidateRecord candidateRecord);
 
     List<CandidateInfo>  getByMap(String map);
+    
+    List<CandidateInfo> getByMapAndShip(String map, String ship);
 
     List<CandidateInfo> getByUser(String user);
 

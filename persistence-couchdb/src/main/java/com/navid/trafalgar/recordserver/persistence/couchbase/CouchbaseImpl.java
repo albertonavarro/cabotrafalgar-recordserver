@@ -42,6 +42,13 @@ public class CouchbaseImpl implements Persistence {
 
         return mapperInfo.fromDto(result);
     }
+    
+    @Override
+    public List<CandidateInfo> getByMapAndShip(String map, String ship) {
+        List<CDBCandidateRecord> result = repository.findByShipAndMapName(map, ship);
+
+        return mapperInfo.fromDto(result);
+    }
 
     @Override
     public List<CandidateInfo> getByUser(String user) {

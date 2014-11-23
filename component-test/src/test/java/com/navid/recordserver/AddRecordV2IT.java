@@ -26,7 +26,7 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("one", "61.56301"));
+        addRecordRequest.setPayload(getPayload("one", "61.56301", "shipModelOne"));
 
         //When
         AddRecordResponse response = rankingService.postRanking(addRecordRequest);
@@ -36,59 +36,50 @@ public class AddRecordV2IT extends BaseIT {
     }
 
     @Test
-    public void getByMap() {
+    public void getByMapSameShip() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("addMoreRecords", "61.56301"));
+        addRecordRequest.setPayload(getPayload("MapSame", "61.56301", "shipModelMapSame"));
 
         rankingService.postRanking(addRecordRequest);
 
         AddRecordRequest addRecordRequest2 = new AddRecordRequest();
-        addRecordRequest2.setPayload(getPayload("addMoreRecords", "62.0"));
+        addRecordRequest2.setPayload(getPayload("MapSame", "62.0", "shipModelMapSame"));
 
         rankingService.postRanking(addRecordRequest2);
 
-        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("addMoreRecords", "ShipModelOneX");
+        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapSame", "shipModelMapSame");
         
         MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
     }
     
-    /*@Test
-    public void getByUser() {
+    @Test
+    public void getByMapDifferentShip() {
         //Given
-        requestContextContainer.get().setRequestId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 2);
+        requestContextContainer.get().setSessionId("anyString");
+        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("getByUser", "61.56301"));
-        rankingService.post(addRecordRequest);
+        addRecordRequest.setPayload(getPayload("MapDifferent", "61.56301", "shipModelMapDifferent1"));
+
+        rankingService.postRanking(addRecordRequest);
 
         AddRecordRequest addRecordRequest2 = new AddRecordRequest();
-        addRecordRequest2.setPayload(getPayload("getByUser", "61.56301"));
-        rankingService.post(addRecordRequest2);
-        
-        MockLazyLogin.setUpSessionId(null, "otherusername", "3", Boolean.FALSE, 3);
+        addRecordRequest2.setPayload(getPayload("MapDifferent", "62.0", "shipModelMapDifferent2"));
 
-        AddRecordRequest addRecordRequest3 = new AddRecordRequest();
-        addRecordRequest3.setPayload(getPayload("getByUser", "61.56301"));
-        rankingService.post(addRecordRequest3);
+        rankingService.postRanking(addRecordRequest2);
 
-        AddRecordRequest addRecordRequest4 = new AddRecordRequest();
-        addRecordRequest4.setPayload(getPayload("getByUser", "61.56301"));
-        rankingService.post(addRecordRequest4);
-    
-        GetMapRecordsResponse searchResult = rankingService.getUseruser("username");
+        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapDifferent", "shipModelMapDifferent1");
         
-        MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
+        MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(1));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
-        MatcherAssert.assertThat(searchResult.getRankingEntry().get(1).getPosition(), equalTo(2));
     }
-    */
+    
     @Test
     public void getById() {
         //Given
@@ -96,17 +87,17 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("getById", "61.56301"));
+        addRecordRequest.setPayload(getPayload("getById", "61.56301", "shipModelId"));
 
         AddRecordResponse response = rankingService.postRanking(addRecordRequest);
         MatcherAssert.assertThat("response is null!", response != null );
 
         GetRecordResponse result = rankingService.getRankingidid(response.getId());
-        MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301")));
+        MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301", "shipModelId")));
     }
     
-    private String getPayload(String map, String finalTime) {
-        return "{\"version\":1,\"header\":{\"map\":\"" + map + "\",\"shipModel\":\"ShipModelOneX\"},\"stepRecordList\":[{\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"timestamp\":0.13044842,\"eventList\":[]},{\"position\":{\"x\":-267.15237,\"y\":0.0,\"z\":-784.9582},\"rotation\":{\"x\":-0.08990571,\"y\":-0.89595354,\"z\":0.21214685,\"w\":-0.3796915},\"timestamp\":"+finalTime+",\"eventList\":[\"MILLESTONE_REACHED\"]}]}";
+    private String getPayload(String map, String finalTime, String shipName) {
+        return "{\"version\":1,\"header\":{\"map\":\"" + map + "\",\"shipModel\":\""+shipName+"\"},\"stepRecordList\":[{\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0,\"w\":1.0},\"timestamp\":0.13044842,\"eventList\":[]},{\"position\":{\"x\":-267.15237,\"y\":0.0,\"z\":-784.9582},\"rotation\":{\"x\":-0.08990571,\"y\":-0.89595354,\"z\":0.21214685,\"w\":-0.3796915},\"timestamp\":"+finalTime+",\"eventList\":[\"MILLESTONE_REACHED\"]}]}";
     }
 
 }
