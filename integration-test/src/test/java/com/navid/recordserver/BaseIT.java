@@ -25,9 +25,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     @Resource(name = "test.clientUserLazyLogin")
     protected UserCommands userCommandsClient;
     
-    @Resource(name = "test.clientRecordServer")
-    protected RankingResource recordServerClient;
-    
     @Resource
     protected RequestContextContainer requestContextContainer;
     

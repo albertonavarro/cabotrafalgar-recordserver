@@ -39,9 +39,6 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     
     private ClientAndServer mockServer;
 
-    @Resource(name = "test.clientRecordServer")
-    protected RankingResource rankingService;
-
     @Resource
     protected RequestContextContainer requestContextContainer;
     

@@ -1,10 +1,10 @@
 package com.navid.recordserver;
 
-import com.navid.recordserver.v1.AddRecordRequest;
-import com.navid.recordserver.v1.AddRecordResponse;
-import com.navid.recordserver.v1.GetMapRecordsResponse;
-import com.navid.recordserver.v1.GetRecordResponse;
-import com.navid.recordserver.v1.RankingResource;
+import com.navid.recordserver.v2.V2Resource;
+import com.navid.recordserver.v2.AddRecordRequest;
+import com.navid.recordserver.v2.AddRecordResponse;
+import com.navid.recordserver.v2.GetMapRecordsResponse;
+import com.navid.recordserver.v2.GetRecordResponse;
 import javax.annotation.Resource;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.hamcrest.MatcherAssert;
@@ -14,10 +14,10 @@ import org.testng.annotations.Test;
  *
  * @author vero
  */
-public class AddRecordIT extends BaseIT {
+public class AddRecordITV2 extends BaseIT {
     
-    @Resource(name = "test.clientRecordServer")
-    protected RankingResource rankingService;
+    @Resource(name = "test.clientRecordServerV2")
+    protected V2Resource rankingService;
     
     @Test
     public void addOneRecord() {
@@ -29,7 +29,7 @@ public class AddRecordIT extends BaseIT {
         addRecordRequest.setPayload(getPayload("one", "61.56301"));
 
         //When
-        AddRecordResponse response = rankingService.post(addRecordRequest);
+        AddRecordResponse response = rankingService.postRanking(addRecordRequest);
 
         //Then
         MatcherAssert.assertThat(response.getPosition(), equalTo(1));
@@ -44,14 +44,14 @@ public class AddRecordIT extends BaseIT {
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("addMoreRecords", "61.56301"));
 
-        rankingService.post(addRecordRequest);
+        rankingService.postRanking(addRecordRequest);
 
         AddRecordRequest addRecordRequest2 = new AddRecordRequest();
         addRecordRequest2.setPayload(getPayload("addMoreRecords", "62.0"));
 
-        rankingService.post(addRecordRequest2);
+        rankingService.postRanking(addRecordRequest2);
 
-        GetMapRecordsResponse searchResult = rankingService.getMapsmap("addMoreRecords");
+        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("addMoreRecords", "ShipModelOneX");
         
         MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
@@ -98,10 +98,10 @@ public class AddRecordIT extends BaseIT {
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("getById", "61.56301"));
 
-        AddRecordResponse response = rankingService.post(addRecordRequest);
+        AddRecordResponse response = rankingService.postRanking(addRecordRequest);
         MatcherAssert.assertThat("response is null!", response != null );
 
-        GetRecordResponse result = rankingService.getIdid(response.getId());
+        GetRecordResponse result = rankingService.getRankingidid(response.getId());
         MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301")));
     }
     
