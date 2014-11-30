@@ -26,7 +26,7 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("one", "61.56301", "shipModelOne"));
+        addRecordRequest.setPayload(getPayload("one", "61.56301", "ShipModelOneY"));
 
         //When
         AddRecordResponse response = rankingService.postRanking(addRecordRequest);
@@ -42,16 +42,16 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("MapSame", "61.56301", "shipModelMapSame"));
+        addRecordRequest.setPayload(getPayload("MapSame", "61.56301", "ShipModelOneY"));
 
         rankingService.postRanking(addRecordRequest);
 
         AddRecordRequest addRecordRequest2 = new AddRecordRequest();
-        addRecordRequest2.setPayload(getPayload("MapSame", "62.0", "shipModelMapSame"));
+        addRecordRequest2.setPayload(getPayload("MapSame", "62.0", "ShipModelOneY"));
 
         rankingService.postRanking(addRecordRequest2);
 
-        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapSame", "shipModelMapSame");
+        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapSame", "ShipModelOneY");
         
         MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(2));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
@@ -65,16 +65,16 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("MapDifferent", "61.56301", "shipModelMapDifferent1"));
+        addRecordRequest.setPayload(getPayload("MapDifferent", "61.56301", "ShipModelOneY"));
 
         rankingService.postRanking(addRecordRequest);
 
         AddRecordRequest addRecordRequest2 = new AddRecordRequest();
-        addRecordRequest2.setPayload(getPayload("MapDifferent", "62.0", "shipModelMapDifferent2"));
+        addRecordRequest2.setPayload(getPayload("MapDifferent", "62.0", "ShipModelOneZ"));
 
         rankingService.postRanking(addRecordRequest2);
 
-        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapDifferent", "shipModelMapDifferent1");
+        GetMapRecordsResponse searchResult = rankingService.getRankingshipshipmapsmap("MapDifferent", "ShipModelOneZ");
         
         MatcherAssert.assertThat(searchResult.getRankingEntry().size(), equalTo(1));
         MatcherAssert.assertThat(searchResult.getRankingEntry().get(0).getPosition(), equalTo(1));
@@ -87,13 +87,13 @@ public class AddRecordV2IT extends BaseIT {
         MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
-        addRecordRequest.setPayload(getPayload("getById", "61.56301", "shipModelId"));
+        addRecordRequest.setPayload(getPayload("getById", "61.56301", "ShipModelOneY"));
 
         AddRecordResponse response = rankingService.postRanking(addRecordRequest);
         MatcherAssert.assertThat("response is null!", response != null );
 
         GetRecordResponse result = rankingService.getRankingidid(response.getId());
-        MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301", "shipModelId")));
+        MatcherAssert.assertThat("result is not right!", result.getPayload().equals(getPayload("getById", "61.56301", "ShipModelOneY")));
     }
     
     private String getPayload(String map, String finalTime, String shipName) {

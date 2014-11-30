@@ -34,8 +34,8 @@ http://cxf.apache.org/jaxrs                 http://cxf.apache.org/schemas/jaxrs.
         <property name="serviceClass" value="com.navid.recordserver.v1.RankingResource"/>
         <property name="providers">
             <list>
-                <bean id="jacksonMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
-                <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+                <bean id="jacksonMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+                <bean id="jacksonProvider" class=" com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
             </list>
         </property>
         <property name="outInterceptors">

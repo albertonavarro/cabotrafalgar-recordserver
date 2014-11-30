@@ -1,14 +1,21 @@
 package com.navid.trafalgar.recordserver.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.navid.lazylogin.context.RequestContext;
 import com.navid.lazylogin.context.RequestContextContainer;
-import com.navid.trafalgar.model.AShipModelTwo;
-import com.navid.trafalgar.persistence.StepRecord;
+import com.navid.trafalgar.definition2.Entry;
+import com.navid.trafalgar.model.Builder2;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import static java.lang.Boolean.FALSE;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import javax.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,30 +24,54 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Deserialization {
-    
+
+    private static final Logger log = LoggerFactory.getLogger(Deserialization.class);
+
     private final Gson gson = new Gson();
-    
+
     @Resource
     private RequestContextContainer requestContextContainer;
     
+    @Resource
+    private Builder2 builder;
 
     public CandidateRecord addCandidate(String candidateRecord) {
+
+            ObjectMapper om = new ObjectMapper();
+
+            RequestContext requestContext = requestContextContainer.get();
+
+            final HeaderCandidateRecord header = gson.fromJson(candidateRecord, HeaderCandidateRecord.class);
+            
+            Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(new Entry(){{
+                setType(header.getHeader().getShipModel());
+                setValues(new HashMap(){{
+                    put("role", "CandidateRecord");
+                }});
+            }});
+            
+            com.navid.trafalgar.model.CandidateRecord record = gson.fromJson(candidateRecord, Iterables.getFirst(classy, null).getClass());
+
+            CandidateRecord cdu = new CandidateRecord();
+            cdu.setMapName(record.getHeader().getMap());
+            cdu.setPayload(candidateRecord);
+            cdu.setTimestamp(new Date());
+            cdu.setUserName(requestContextContainer.get().getUserName());
+            cdu.setGameVerified(FALSE);
+            cdu.setLoginVerified(FALSE);
+            cdu.setTime(record.getTime());
+            cdu.setUserSession(requestContextContainer.get().getSessionId());
+            cdu.setShipName(record.getHeader().getShipModel());
+            return cdu;
         
-        RequestContext requestContext = requestContextContainer.get();
-        
-        com.navid.trafalgar.persistence.CandidateRecord<? extends StepRecord> record = gson.fromJson(candidateRecord, AShipModelTwo.ShipCandidateRecord.class);
-        
-        CandidateRecord cdu = new CandidateRecord();
-        cdu.setMapName(record.getHeader().getMap());
-        cdu.setPayload(candidateRecord);
-        cdu.setTimestamp(new Date());
-        cdu.setUserName(requestContextContainer.get().getUserName());
-        cdu.setGameVerified(FALSE);
-        cdu.setLoginVerified(FALSE);
-        cdu.setTime(record.getTime());
-        cdu.setUserSession(requestContextContainer.get().getSessionId());
-        cdu.setShipName(record.getHeader().getShipModel());
-        return cdu;
+    }
+
+    public static class HeaderCandidateRecord extends com.navid.trafalgar.model.CandidateRecord<HeaderStepRecord> {
+
+    }
+
+    public static class HeaderStepRecord extends com.navid.trafalgar.model.StepRecord {
+
     }
 
 }

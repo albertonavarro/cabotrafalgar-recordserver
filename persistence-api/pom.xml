@@ -11,13 +11,5 @@
     <artifactId>persistence-api</artifactId>         
     <name>RecordServer-persistence-api</name>
     
-    <dependencies>
-        <dependency>
-            <groupId>com.navid.trafalgar</groupId>
-            <artifactId>persistence</artifactId>
-            <version>0.7-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
 
 </project>

@@ -31,13 +31,7 @@
         </dependency>
         <dependency>
             <groupId>com.navid.trafalgar</groupId>
-            <artifactId>common-models</artifactId>
-            <version>0.7-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.navid.trafalgar</groupId>
-            <artifactId>persistence</artifactId>
-            <version>0.7-SNAPSHOT</version>
+            <artifactId>mod-api</artifactId>
         </dependency>
         <!-- spring dependencies -->
         <dependency>
@@ -66,6 +60,18 @@
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.navid.trafalgar</groupId>
+            <artifactId>shipModelY</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.navid.trafalgar</groupId>
+            <artifactId>shipModelZ</artifactId>
+        </dependency>
 
         <!--test-->
         <dependency>
@@ -90,18 +96,7 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
-        </dependency>
+        
         <!-- CXF -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
