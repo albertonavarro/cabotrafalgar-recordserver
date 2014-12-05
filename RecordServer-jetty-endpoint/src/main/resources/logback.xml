@@ -12,7 +12,7 @@
     </rollingPolicy>
 
     <encoder>
-      <pattern>%-4relative [%thread] %-5level %logger{35} [%X{requestId}][%X{correlationId}] - %msg%n</pattern>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{requestId}][%X{correlationId}] - %msg%n</pattern>
     </encoder>
   </appender> 
 
