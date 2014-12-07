@@ -1,6 +1,5 @@
 package com.navid.trafalgar.recordserver.endpoints.v2;
 
-import com.navid.trafalgar.recordserver.endpoints.*;
 import com.google.common.base.Function;
 import com.lazylogin.client.system.v0.GetUserInfoError_Exception;
 import com.lazylogin.client.system.v0.SystemCommands;
@@ -17,7 +16,6 @@ import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.services.Deserialization;
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.Resource;
 import javax.ws.rs.NotFoundException;
 import org.slf4j.Logger;
@@ -71,7 +69,7 @@ public class RankingImpl implements V2Resource {
 
     @Override
     public GetMapRecordsResponse getRankingshipshipmapsmap(String map,  String ship) {
-        LOG.info("getMapsmap requested for user context {}", requestContextContainer.get());
+        LOG.info("getMapsmap requested for map {} and ship {}", map, ship);
 
         List<CandidateInfo> result = persistence.getByMapAndShip(map, ship);
         GetMapRecordsResponse response = new GetMapRecordsResponse();
@@ -115,7 +113,7 @@ public class RankingImpl implements V2Resource {
 
     @Override
     public GetRecordResponse getRankingidid(String id) {
-        LOG.info("getIdid requested for user context {}", requestContextContainer.get());
+        LOG.info("getIdid requested for id {}", id);
 
         try{         
             final CandidateRecord result = persistence.getById(id);
