@@ -3,6 +3,8 @@ package com.navid.trafalgar.springutils;
 
 import java.util.Map.Entry;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -12,6 +14,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  * @author casa
  */
 public class CustomPropertySourcesPlaceholderConfigurer extends PropertyPlaceholderConfigurer implements InitializingBean{
+    
+    private final static Logger LOG = LoggerFactory.getLogger(CustomPropertySourcesPlaceholderConfigurer.class);
 
     @Override
     public void afterPropertiesSet(){
@@ -21,7 +25,7 @@ public class CustomPropertySourcesPlaceholderConfigurer extends PropertyPlacehol
                 logger.info("LoadedProperty: "+singleProperty.getKey()+"="+singleProperty.getValue());
             }
         }catch(Exception ex){
-            ex.printStackTrace();
+            LOG.error("Error loading properties", ex);
         }
     }
 }
