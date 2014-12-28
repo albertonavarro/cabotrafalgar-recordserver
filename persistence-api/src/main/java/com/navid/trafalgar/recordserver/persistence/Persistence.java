@@ -14,7 +14,7 @@ public interface Persistence {
     
     List<CandidateInfo> getByMapAndShip(String map, String ship);
 
-    List<CandidateInfo> getByUser(String user);
+    List<CandidateInfo> getByUser(String user) throws ItemNotFoundException;
 
     CandidateRecord getById(String id) throws ItemNotFoundException;
 

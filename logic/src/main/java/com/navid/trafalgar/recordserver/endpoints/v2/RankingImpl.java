@@ -1,10 +1,6 @@
 package com.navid.trafalgar.recordserver.endpoints.v2;
 
 import com.google.common.base.Function;
-import com.lazylogin.client.system.v0.GetUserInfoError_Exception;
-import com.lazylogin.client.system.v0.SystemCommands;
-import com.lazylogin.client.system.v0.UserInfo;
-import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.recordserver.v2.AddRecordRequest;
 import com.navid.recordserver.v2.AddRecordResponse;
 import com.navid.recordserver.v2.GetMapRecordsResponse;
@@ -12,12 +8,9 @@ import com.navid.recordserver.v2.GetRecordResponse;
 import com.navid.recordserver.v2.V2Resource;
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
-import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
-import com.navid.trafalgar.recordserver.persistence.Persistence;
-import com.navid.trafalgar.recordserver.services.Deserialization;
+import com.navid.trafalgar.recordserver.services.RecordServerServices;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.ws.rs.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,36 +19,18 @@ import org.slf4j.LoggerFactory;
  * @author anf
  */
 public class RankingImpl implements V2Resource {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(RankingImpl.class);
 
     @Resource
-    private Deserialization service;
+    private RecordServerServices recordServerServices;
 
-    @Resource
-    private Persistence persistence;
-
-    @Resource
-    private RequestContextContainer requestContextContainer;
-    
-    @Resource(name = "client")
-    private SystemCommands systemCommands;
-    
     @Override
     public AddRecordResponse postRanking(final AddRecordRequest addrecordrequest) {
-        
-        LOG.info("post requested for user context {}", requestContextContainer.get());
 
-        CandidateRecord candidateInfo;
-        try {
-            candidateInfo = service.addCandidate(addrecordrequest.getPayload());
-        } catch(Exception e) {
-            LOG.error("Error deserializing payload: ", e);
-            throw e;
-        }
-        
-        
-        final CandidateInfo uploadedCandidate = persistence.addCandidate(candidateInfo);
+        LOG.debug("postRanking invoked");
+
+        final CandidateInfo uploadedCandidate = recordServerServices.addEntry(addrecordrequest.getPayload());
 
         return new AddRecordResponse() {
             {
@@ -68,43 +43,14 @@ public class RankingImpl implements V2Resource {
     }
 
     @Override
-    public GetMapRecordsResponse getRankingshipshipmapsmap(String map,  String ship) {
-        LOG.info("getMapsmap requested for map {} and ship {}", map, ship);
+    public GetMapRecordsResponse getRankingshipshipmapsmap(String map, String ship) {
+        LOG.debug("getRankingshipshipmapsmap invoked");
 
-        List<CandidateInfo> result = persistence.getByMapAndShip(map, ship);
+        List<CandidateInfo> result = recordServerServices.getEntriesByShipAndMap(map, ship);
+
         GetMapRecordsResponse response = new GetMapRecordsResponse();
 
         for (CandidateInfo toTransform : result) {
-            if(toTransform.getUserSession() ==null ){
-                LOG.info("Removing entry {} due to lack of userSession", toTransform.getId());
-                persistence.remove(toTransform);
-                continue;
-            }
-            
-            if(!toTransform.getLoginVerified() && toTransform.getUserName() != null){
-                LOG.info("Enhancing entry {} with verified login", toTransform.getId());
-                toTransform.setLoginVerified(true);
-                persistence.update(toTransform);
-            }
-            
-            if(!toTransform.getLoginVerified()) {
-                try {
-                   UserInfo userInfo = systemCommands.getUserInfo(toTransform.getUserSession());
-                   if(userInfo.isVerified()){
-                       toTransform.setUserName(userInfo.getUsername());
-                       toTransform.setGameVerified(true);
-                       persistence.update(toTransform);
-                   } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
-                       toTransform.setUserName("--yourself--");
-                   } else {
-                       continue;
-                   }
-                } catch (GetUserInfoError_Exception ex) {
-                    LOG.error("Error retrieving user info from record {} and user {}", toTransform.getId(), toTransform.getUserSession());
-                    continue;
-                }
-            }
-            
             response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
         }
 
@@ -113,21 +59,19 @@ public class RankingImpl implements V2Resource {
 
     @Override
     public GetRecordResponse getRankingidid(String id) {
-        LOG.info("getIdid requested for id {}", id);
+        LOG.debug("getRankingidid invoked");
 
-        try{         
-            final CandidateRecord result = persistence.getById(id);
-
-            return new GetRecordResponse(){{
+        final CandidateRecord result = recordServerServices.getEntryById(id);
+        return new GetRecordResponse() {
+            {
                 setId(id);
                 setPayload(result.getPayload());
-            }};
-        } catch(ItemNotFoundException e) {
-            throw new NotFoundException(id);
-        }
+            }
+        };
     }
 
-    private static Function<CandidateInfo, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION = new Function<CandidateInfo, GetMapRecordsResponse.RankingEntry>() {
+    private static final Function<CandidateInfo, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION 
+            = new Function<CandidateInfo, GetMapRecordsResponse.RankingEntry>() {
         @Override
         public GetMapRecordsResponse.RankingEntry apply(final CandidateInfo f) {
             return new GetMapRecordsResponse.RankingEntry() {
@@ -141,20 +85,4 @@ public class RankingImpl implements V2Resource {
         }
     };
 
-    /**
-     * @param requestContextContainer the requestContextContainer to set
-     */
-    public void setRequestContextContainer(RequestContextContainer requestContextContainer) {
-        this.requestContextContainer = requestContextContainer;
-    }
-
-    /**
-     * @param SystemCommands the SystemCommands to set
-     */
-    public void setSystemCommands(SystemCommands SystemCommands) {
-        this.systemCommands = SystemCommands;
-    }
-
-    
-    
 }
