@@ -164,10 +164,10 @@ public final class RecordServerServices {
     }
 
     /**
-     * @param SystemCommands the SystemCommands to set
+     * @param systemCommands the SystemCommands to set
      */
-    public void setSystemCommands(SystemCommands SystemCommands) {
-        this.systemCommands = SystemCommands;
+    public void setSystemCommands(SystemCommands systemCommands) {
+        this.systemCommands = systemCommands;
     }
 
 }
