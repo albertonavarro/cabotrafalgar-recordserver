@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public final class RecordServerServices {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(RecordServerServices.class);
 
     @Resource
@@ -29,57 +29,56 @@ public final class RecordServerServices {
 
     @Resource
     private RequestContextContainer requestContextContainer;
-    
+
     @Resource(name = "client")
     private SystemCommands systemCommands;
-    
+
     public CandidateInfo addEntry(final String payload) {
-        
+
         LOG.info("post requested for user context {}", requestContextContainer.get());
 
         CandidateRecord candidateInfo;
         try {
             candidateInfo = service.addCandidate(payload);
-        } catch(Exception e) {
+        } catch (Exception e) {
             LOG.error("Error deserializing payload: ", e);
             throw e;
         }
-        
-        
+
         return persistence.addCandidate(candidateInfo);
     }
 
-    public List<CandidateInfo> getEntriesByShipAndMap(String map,  String ship) {
+    public List<CandidateInfo> getEntriesByShipAndMap(String map, String ship) {
         LOG.info("getEntryByShipAndMap requested for map {} and ship {}", map, ship);
 
         List<CandidateInfo> preResult = persistence.getByMapAndShip(map, ship);
         List<CandidateInfo> result = newArrayList();
 
         for (CandidateInfo toTransform : preResult) {
-            if(toTransform.getUserSession() ==null ){
+            if (toTransform.getUserSession() == null) {
                 LOG.info("Removing entry {} due to lack of userSession", toTransform.getId());
                 persistence.remove(toTransform);
                 continue;
             }
-            
-            if(!toTransform.getLoginVerified() && toTransform.getUserName() != null){
+
+            if (!toTransform.getLoginVerified() && toTransform.getUserName() != null) {
                 LOG.info("Enhancing entry {} with verified login", toTransform.getId());
                 toTransform.setLoginVerified(true);
                 persistence.update(toTransform);
             }
-            
-            if(!toTransform.getLoginVerified()) {
+
+            if (!toTransform.getLoginVerified()) {
                 try {
-                   UserInfo userInfo = systemCommands.getUserInfo(toTransform.getUserSession());
-                   if(userInfo.isVerified()){
-                       toTransform.setUserName(userInfo.getUsername());
-                       toTransform.setGameVerified(true);
-                       persistence.update(toTransform);
-                   } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
-                       toTransform.setUserName("--yourself--");
-                   } else {
-                       continue;
-                   }
+                    UserInfo userInfo = systemCommands.getUserInfo(toTransform.getUserSession());
+                    if (userInfo.isVerified()) {
+                        toTransform.setUserName(userInfo.getUsername());
+                        toTransform.setGameVerified(true);
+                        persistence.update(toTransform);
+                    } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
+                        toTransform.setUserName("--yourself--");
+                    } else {
+                        continue;
+                    }
                 } catch (GetUserInfoError_Exception ex) {
                     LOG.error("Error retrieving user info from record {} and user {}", toTransform.getId(), toTransform.getUserSession());
                     continue;
@@ -90,18 +89,18 @@ public final class RecordServerServices {
 
         return result;
     }
-    
+
     public CandidateRecord getEntryById(String id) {
         LOG.info("getIdid requested for id {}", id);
 
-        try{         
+        try {
             return persistence.getById(id);
 
-        } catch(ItemNotFoundException e) {
+        } catch (ItemNotFoundException e) {
             throw new NotFoundException(id);
         }
     }
-    
+
     @Deprecated
     public List<CandidateInfo> getEntriesByMap(String map) {
         LOG.info("getEntryByShip requested for map {}", map);
@@ -110,30 +109,30 @@ public final class RecordServerServices {
         List<CandidateInfo> result = newArrayList();
 
         for (CandidateInfo toTransform : preResult) {
-            if(toTransform.getUserSession() ==null ){
+            if (toTransform.getUserSession() == null) {
                 LOG.info("Removing entry {} due to lack of userSession", toTransform.getId());
                 persistence.remove(toTransform);
                 continue;
             }
-            
-            if(!toTransform.getLoginVerified() && toTransform.getUserName() != null){
+
+            if (!toTransform.getLoginVerified() && toTransform.getUserName() != null) {
                 LOG.info("Enhancing entry {} with verified login", toTransform.getId());
                 toTransform.setLoginVerified(true);
                 persistence.update(toTransform);
             }
-            
-            if(!toTransform.getLoginVerified()) {
+
+            if (!toTransform.getLoginVerified()) {
                 try {
-                   UserInfo userInfo = systemCommands.getUserInfo(toTransform.getUserSession());
-                   if(userInfo.isVerified()){
-                       toTransform.setUserName(userInfo.getUsername());
-                       toTransform.setGameVerified(true);
-                       persistence.update(toTransform);
-                   } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
-                       toTransform.setUserName("--yourself--");
-                   } else {
-                       continue;
-                   }
+                    UserInfo userInfo = systemCommands.getUserInfo(toTransform.getUserSession());
+                    if (userInfo.isVerified()) {
+                        toTransform.setUserName(userInfo.getUsername());
+                        toTransform.setGameVerified(true);
+                        persistence.update(toTransform);
+                    } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
+                        toTransform.setUserName("--yourself--");
+                    } else {
+                        continue;
+                    }
                 } catch (GetUserInfoError_Exception ex) {
                     LOG.error("Error retrieving user info from record {} and user {}", toTransform.getId(), toTransform.getUserSession());
                     continue;
@@ -149,10 +148,10 @@ public final class RecordServerServices {
     public List<CandidateInfo> getEntriesByUser(String user) {
         LOG.info("getEntryByUser requested for user {}", user);
 
-        try{         
+        try {
             return persistence.getByUser(user);
 
-        } catch(ItemNotFoundException e) {
+        } catch (ItemNotFoundException e) {
             throw new NotFoundException(user);
         }
     }
