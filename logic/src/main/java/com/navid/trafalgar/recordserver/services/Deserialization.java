@@ -43,12 +43,13 @@ public class Deserialization {
 
             final HeaderCandidateRecord header = gson.fromJson(candidateRecord, HeaderCandidateRecord.class);
             
-            Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(new Entry(){{
-                setType(header.getHeader().getShipModel());
-                setValues(new HashMap(){{
+            Entry entry = new Entry();
+            entry.setType(header.getHeader().getShipModel());
+            entry.setValues(new HashMap(){{
                     put("role", "CandidateRecord");
                 }});
-            }});
+                
+            Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(entry);
             
             com.navid.trafalgar.model.CandidateRecord record = gson.fromJson(candidateRecord, Iterables.getFirst(classy, null).getClass());
 
