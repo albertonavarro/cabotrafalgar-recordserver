@@ -30,9 +30,10 @@
     
     <bean class="com.navid.lazylogin.context.RequestContextContainer" />
     
+    <import resource="classpath:conf/config-jmx.xml" />
     <import resource="classpath:conf/config-web-services.xml" />
     <import resource="classpath:conf/config-lazylogin-client.xml" />
     <import resource="classpath:conf/config-couchdb-persistence.xml" />
     <import resource="classpath:conf/config-builders.xml" />
-
+    
 </beans>

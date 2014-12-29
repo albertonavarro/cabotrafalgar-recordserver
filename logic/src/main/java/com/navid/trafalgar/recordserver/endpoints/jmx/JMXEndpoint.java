@@ -6,7 +6,7 @@ import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
-@ManagedResource
+@ManagedResource(objectName = "mbeans:name=myJmxDemoBean")
 public class JMXEndpoint {
     
     @ManagedOperation

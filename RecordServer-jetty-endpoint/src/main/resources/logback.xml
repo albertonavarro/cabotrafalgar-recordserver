@@ -13,11 +13,11 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{requestId}][%X{correlationId}] - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{correlationId}][%X{sessionId}] - %msg%n</pattern>
         </encoder>
     </appender> 
 
-    <logger name="com.navid" level="DEBUG"/>
+    <logger name="com.navid" level="INFO"/>
     
     <root level="INFO">
         <appender-ref ref="FILE" />
