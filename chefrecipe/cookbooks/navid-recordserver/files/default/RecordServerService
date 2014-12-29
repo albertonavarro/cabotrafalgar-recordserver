@@ -26,6 +26,7 @@ start() {
        echo -n "Already running !" && warning
        echo
     else
+       cd /root
        nohup ${exe} >>${logfile} 2>>${errfile} &
        RETVAL=$?
        PID=$!
