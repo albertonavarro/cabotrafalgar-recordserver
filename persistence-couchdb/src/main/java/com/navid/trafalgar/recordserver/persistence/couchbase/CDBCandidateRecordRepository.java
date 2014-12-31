@@ -2,15 +2,17 @@
  */
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
+import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.ComplexKey;
 import org.ektorp.CouchDbConnector;
-import org.ektorp.UpdateHandlerRequest;
 import org.ektorp.ViewQuery;
+import org.ektorp.ViewResult.Row;
 import org.ektorp.support.CouchDbRepositorySupport;
 import org.ektorp.support.UpdateHandler;
 import org.ektorp.support.View;
@@ -72,6 +74,18 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         List<CDBCandidateRecord> results = db.queryView(q, CDBCandidateRecord.class);
         
         return results;
+    }
+    
+    @View(name="find_unique_users", map = "function(doc) {emit(doc.userName, doc);}", reduce = "function (key, values, rereduce) {return sum(values);}")
+    public List<UsersReport> getUsersReport() {
+        List<UsersReport> report = new ArrayList<>();
+        ViewQuery q = createQuery("find_unique_users");
+        for (Row row : db.queryView(q)){
+            UsersReport usersReport = new UsersReport();
+            usersReport.setGames(row.getValueAsInt());
+            usersReport.setUserName(row.getKey());
+        }
+        return report;
     }
     
     @UpdateHandler(name = "set_login_verified", function = "function(doc, req) { doc.loginVerified = true; return [null, 'true']; }")

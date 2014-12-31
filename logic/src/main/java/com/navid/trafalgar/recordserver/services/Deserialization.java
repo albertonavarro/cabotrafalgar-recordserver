@@ -25,13 +25,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class Deserialization {
 
-    private static final Logger log = LoggerFactory.getLogger(Deserialization.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Deserialization.class);
 
     private final Gson gson = new Gson();
 
     @Resource
     private RequestContextContainer requestContextContainer;
-    
+
     @Resource
     private Builder2 builder;
 
@@ -42,15 +42,15 @@ public class Deserialization {
             RequestContext requestContext = requestContextContainer.get();
 
             final HeaderCandidateRecord header = gson.fromJson(candidateRecord, HeaderCandidateRecord.class);
-            
+
             Entry entry = new Entry();
             entry.setType(header.getHeader().getShipModel());
             entry.setValues(new HashMap(){{
                     put("role", "CandidateRecord");
                 }});
-                
+
             Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(entry);
-            
+
             com.navid.trafalgar.model.CandidateRecord record = gson.fromJson(candidateRecord, Iterables.getFirst(classy, null).getClass());
 
             CandidateRecord cdu = new CandidateRecord();
@@ -64,7 +64,6 @@ public class Deserialization {
             cdu.setUserSession(requestContextContainer.get().getSessionId());
             cdu.setShipName(record.getHeader().getShipModel());
             return cdu;
-        
     }
 
     public static class HeaderCandidateRecord extends com.navid.trafalgar.model.CandidateRecord<HeaderStepRecord> {

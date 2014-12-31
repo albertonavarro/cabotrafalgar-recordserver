@@ -9,6 +9,7 @@ import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
+import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ws.rs.NotFoundException;
@@ -22,7 +23,7 @@ public final class RecordServerServices {
     private static final Logger LOG = LoggerFactory.getLogger(RecordServerServices.class);
 
     @Resource
-    private Deserialization service;
+    private Deserialization deserializator;
 
     @Resource
     private Persistence persistence;
@@ -39,7 +40,7 @@ public final class RecordServerServices {
 
         CandidateRecord candidateInfo;
         try {
-            candidateInfo = service.addCandidate(payload);
+            candidateInfo = deserializator.addCandidate(payload);
         } catch (Exception e) {
             LOG.error("Error deserializing payload: ", e);
             throw e;
@@ -154,6 +155,12 @@ public final class RecordServerServices {
         } catch (ItemNotFoundException e) {
             throw new NotFoundException(user);
         }
+    }
+    
+    public List<UsersReport> getUsersReport() {
+        LOG.info("getUsersReport invoked");
+        
+        return persistence.getUsersReport();
     }
 
     /**

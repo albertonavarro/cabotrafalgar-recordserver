@@ -21,5 +21,7 @@ public interface Persistence {
     void remove(CandidateInfo toRemove);
     
     void update(CandidateInfo toUpdate);
+    
+    List<UsersReport> getUsersReport();
 
 }

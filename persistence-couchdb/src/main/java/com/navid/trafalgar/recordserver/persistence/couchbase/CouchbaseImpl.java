@@ -4,6 +4,7 @@ import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
+import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class CouchbaseImpl implements Persistence {
 
     private static Logger LOG = LoggerFactory.getLogger(CouchbaseImpl.class);
 
-    CandidateRecordMapper mapper = CandidateRecordMapper.INSTANCE;
+    CandidateRecordMapper mapperRecord = CandidateRecordMapper.INSTANCE;
     CandidateInfoMapper mapperInfo = CandidateInfoMapper.INSTANCE;
 
     @Resource
@@ -33,7 +34,7 @@ public class CouchbaseImpl implements Persistence {
         CDBCandidateRecord cdb = mapperInfo.toDtoNoId(candidateRecord);
         repository.add(cdb);
         repository.addAttachment(cdb.getId(), cdb.getRevision(), encode(candidateRecord.getPayload()), "raw");
-        return mapper.fromDto(cdb);
+        return mapperRecord.fromDto(cdb);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class CouchbaseImpl implements Persistence {
         LOG.info("Getting by Id {}", id);
         try {
             CDBCandidateRecord result = repository.get(id);
-            CandidateRecord result2 = mapper.fromDto(result);
+            CandidateRecord result2 = mapperRecord.fromDto(result);
             String rawAttachment;
             try {
                 rawAttachment = repository.getAttachment(id, "raw", result.getRevision());
@@ -147,6 +148,11 @@ public class CouchbaseImpl implements Persistence {
     public void update(CandidateInfo toUpdate) {
 
         repository.updateLoginVerified(toUpdate.getId());
+    }
+
+    @Override
+    public List<UsersReport> getUsersReport() {
+        return repository.getUsersReport();
     }
 
 }

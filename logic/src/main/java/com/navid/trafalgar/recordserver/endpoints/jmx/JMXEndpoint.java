@@ -1,13 +1,23 @@
 package com.navid.trafalgar.recordserver.endpoints.jmx;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import static com.google.common.collect.Lists.newArrayList;
+import com.navid.trafalgar.recordserver.persistence.UsersReport;
+import com.navid.trafalgar.recordserver.services.RecordServerServices;
 import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
+import org.springframework.stereotype.Component;
 
-@ManagedResource(objectName = "mbeans:name=myJmxDemoBean")
+@Component
+@ManagedResource(objectName = "recordServer:name=adminPanel")
 public class JMXEndpoint {
+    
+    @Resource
+    private RecordServerServices recordServerServices;
     
     @ManagedOperation
     public final void deleteEntries(String user, String map, String ship) {
@@ -20,7 +30,17 @@ public class JMXEndpoint {
 
     @ManagedAttribute
     public final int getNumberOfUsers(){
-        return 1;
+        return recordServerServices.getUsersReport().size();
+    }
+    
+    @ManagedAttribute
+    public final List<String> getUsersReport(){
+        return Lists.transform(recordServerServices.getUsersReport(), new Function<UsersReport, String>(){
+            @Override
+            public String apply(UsersReport f) {
+                return f.getUserName() + ": " + f.getGames();
+            }
+        });
     }
 
 }
