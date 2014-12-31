@@ -80,7 +80,9 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
     public List<UsersReport> getUsersReport() {
         List<UsersReport> report = new ArrayList<>();
         ViewQuery q = createQuery("find_unique_users");
+        LOG.debug("query: {}", q);
         for (Row row : db.queryView(q)){
+            LOG.debug("Row: {}", row);
             UsersReport usersReport = new UsersReport();
             usersReport.setGames(row.getValueAsInt());
             usersReport.setUserName(row.getKey());

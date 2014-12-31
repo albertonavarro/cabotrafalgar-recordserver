@@ -7,6 +7,8 @@ import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import com.navid.trafalgar.recordserver.services.RecordServerServices;
 import java.util.List;
 import javax.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ManagedResource(objectName = "recordServer:name=adminPanel")
 public class JMXEndpoint {
+    
+    private static final Logger LOG = LoggerFactory.getLogger(JMXEndpoint.class);
     
     @Resource
     private RecordServerServices recordServerServices;
