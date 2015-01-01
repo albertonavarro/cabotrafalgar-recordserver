@@ -34,6 +34,7 @@ public class JMXEndpoint {
 
     @ManagedAttribute
     public final int getNumberOfUsers(){
+        LOG.info("Invoking getNumberOfUsers, recordServerServices : {}",recordServerServices);
         return recordServerServices.getUsersReport().size();
     }
     
