@@ -12,6 +12,7 @@ import org.ektorp.AttachmentInputStream;
 import org.ektorp.ComplexKey;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.ViewQuery;
+import org.ektorp.ViewResult;
 import org.ektorp.ViewResult.Row;
 import org.ektorp.support.CouchDbRepositorySupport;
 import org.ektorp.support.UpdateHandler;
@@ -80,9 +81,11 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
     public List<UsersReport> getUsersReport() {
         LOG.debug("Invoking getUsersReport");
         List<UsersReport> report = new ArrayList<>();
-        ViewQuery q = createQuery("find_unique_users");
-        LOG.debug("Query: {}", q);
-        for (Row row : db.queryView(q).getRows()){
+        ViewQuery query = createQuery("find_unique_users");
+        LOG.debug("Query: {}", query);
+        ViewResult viewResult = db.queryView(query);
+        LOG.debug("Query result: {}", viewResult);
+        for (Row row : viewResult.getRows()){
             LOG.debug("Row: {}", row);
             UsersReport usersReport = new UsersReport();
             usersReport.setGames(row.getValueAsInt());
