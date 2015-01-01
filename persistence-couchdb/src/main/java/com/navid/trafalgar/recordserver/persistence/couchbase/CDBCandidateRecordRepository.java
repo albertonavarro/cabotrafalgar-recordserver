@@ -78,10 +78,11 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
     
     @View(name="find_unique_users", map = "function(doc) {emit(doc.userName, 1);}", reduce = "function (key, values, rereduce) {return sum(values);}")
     public List<UsersReport> getUsersReport() {
+        LOG.debug("Invoking getUsersReport");
         List<UsersReport> report = new ArrayList<>();
         ViewQuery q = createQuery("find_unique_users");
-        LOG.debug("query: {}", q);
-        for (Row row : db.queryView(q)){
+        LOG.debug("Query: {}", q);
+        for (Row row : db.queryView(q).getRows()){
             LOG.debug("Row: {}", row);
             UsersReport usersReport = new UsersReport();
             usersReport.setGames(row.getValueAsInt());

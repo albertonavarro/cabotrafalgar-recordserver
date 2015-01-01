@@ -17,7 +17,7 @@
         </encoder>
     </appender> 
 
-    <logger name="com.navid" level="INFO"/>
+    <logger name="com.navid" level="DEBUG"/>
     
     <root level="INFO">
         <appender-ref ref="FILE" />
