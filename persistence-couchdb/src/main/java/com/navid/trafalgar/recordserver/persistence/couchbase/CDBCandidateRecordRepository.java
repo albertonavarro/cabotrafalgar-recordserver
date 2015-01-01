@@ -76,7 +76,7 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         return results;
     }
     
-    @View(name="find_unique_users", map = "function(doc) {emit(doc.userName, doc);}", reduce = "function (key, values, rereduce) {return sum(values);}")
+    @View(name="find_unique_users", map = "function(doc) {emit(doc.userName, 1);}", reduce = "function (key, values, rereduce) {return sum(values);}")
     public List<UsersReport> getUsersReport() {
         List<UsersReport> report = new ArrayList<>();
         ViewQuery q = createQuery("find_unique_users");
