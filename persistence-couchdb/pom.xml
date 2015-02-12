@@ -15,19 +15,6 @@
         <org.mapstruct.version>1.0.0.Beta2</org.mapstruct.version>
     </properties>
     
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    
     <dependencies>
         <dependency>
             <groupId>org.ektorp</groupId>

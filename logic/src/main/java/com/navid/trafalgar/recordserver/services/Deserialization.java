@@ -6,8 +6,8 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.navid.lazylogin.context.RequestContext;
 import com.navid.lazylogin.context.RequestContextContainer;
-import com.navid.trafalgar.definition2.Entry;
-import com.navid.trafalgar.model.Builder2;
+import com.navid.trafalgar.maploader.v3.EntryDefinition;
+import com.navid.trafalgar.model.ModelBuilder;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import static java.lang.Boolean.FALSE;
 import java.util.Collection;
@@ -33,7 +33,7 @@ public class Deserialization {
     private RequestContextContainer requestContextContainer;
 
     @Resource
-    private Builder2 builder;
+    private ModelBuilder builder;
 
     public CandidateRecord addCandidate(String candidateRecord) {
 
@@ -43,7 +43,7 @@ public class Deserialization {
 
             final HeaderCandidateRecord header = gson.fromJson(candidateRecord, HeaderCandidateRecord.class);
 
-            Entry entry = new Entry();
+            EntryDefinition entry = new EntryDefinition();
             entry.setType(header.getHeader().getShipModel());
             entry.setValues(new HashMap(){{
                     put("role", "CandidateRecord");

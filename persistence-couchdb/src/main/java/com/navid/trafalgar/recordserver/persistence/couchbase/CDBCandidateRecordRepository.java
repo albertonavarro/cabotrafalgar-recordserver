@@ -11,6 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.ektorp.AttachmentInputStream;
 import org.ektorp.ComplexKey;
 import org.ektorp.CouchDbConnector;
+import org.ektorp.Options;
 import org.ektorp.ViewQuery;
 import org.ektorp.ViewResult;
 import org.ektorp.ViewResult.Row;
@@ -79,9 +80,10 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
     
     @View(name="find_unique_users", map = "function(doc) {emit(doc.userName, 1);}", reduce = "function (key, values, rereduce) {return sum(values);}")
     public List<UsersReport> getUsersReport() {
+        
         LOG.debug("Invoking getUsersReport");
         List<UsersReport> report = new ArrayList<>();
-        ViewQuery query = createQuery("find_unique_users");
+        ViewQuery query = createQuery("find_unique_users").group(true).limit(5);
         LOG.debug("Query: {}", query);
         ViewResult viewResult = db.queryView(query);
         LOG.debug("Query result: {}", viewResult);
