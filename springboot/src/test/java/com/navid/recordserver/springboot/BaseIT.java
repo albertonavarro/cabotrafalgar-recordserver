@@ -44,7 +44,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     @Resource
     protected RequestContextContainer requestContextContainer;
 
-    @Value("${recordserver.port}")
+    @Value("${server.port}")
     private int recordServerPort;
     
     @Value("${mockserver.port}")

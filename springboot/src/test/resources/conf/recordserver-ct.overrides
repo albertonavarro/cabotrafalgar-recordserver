@@ -1,2 +1,2 @@
 recordserver.url=http://localhost:${server.port}
-lazylogin.url=http://localhost:1080
+lazylogin.url=http://localhost:${mockserver.port}

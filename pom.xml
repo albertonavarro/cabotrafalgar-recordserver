@@ -487,13 +487,6 @@
                 <module>springboot</module>
             </modules>
         </profile>
-
-        <profile>
-            <id>component-test</id>
-            <modules>
-                <module>component-test</module>
-            </modules>
-        </profile>
         
         <profile>
             <id>integration-test</id>

@@ -1,2 +1,1 @@
-mockserver.port=1080
 recordserver.url=http://localhost:${server.port}
