@@ -1,16 +1,17 @@
-package com.navid.trafalgar.recordserver.endpoints.v2;
+package com.navid.recordserver.springboot.cxf;
 
 import com.google.common.base.Function;
-import com.navid.recordserver.v2.AddRecordRequest;
-import com.navid.recordserver.v2.AddRecordResponse;
-import com.navid.recordserver.v2.GetMapRecordsResponse;
-import com.navid.recordserver.v2.GetRecordResponse;
-import com.navid.recordserver.v2.V2Resource;
+import com.navid.recordserver.v1.AddRecordRequest;
+import com.navid.recordserver.v1.AddRecordResponse;
+import com.navid.recordserver.v1.GetMapRecordsResponse;
+import com.navid.recordserver.v1.GetRecordResponse;
+import com.navid.recordserver.v1.RankingResource;
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.services.RecordServerServices;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.jws.WebService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,16 +19,16 @@ import org.slf4j.LoggerFactory;
  *
  * @author anf
  */
-public class RankingImpl implements V2Resource {
-
+public class RankingImpl implements RankingResource {
+    
     private static final Logger LOG = LoggerFactory.getLogger(RankingImpl.class);
 
     @Resource
     private RecordServerServices recordServerServices;
 
+    
     @Override
-    public AddRecordResponse postRanking(final AddRecordRequest addrecordrequest) {
-
+    public AddRecordResponse post(final AddRecordRequest addrecordrequest) {
         LOG.debug("postRanking invoked");
 
         final CandidateInfo uploadedCandidate = recordServerServices.addEntry(addrecordrequest.getPayload());
@@ -43,10 +44,10 @@ public class RankingImpl implements V2Resource {
     }
 
     @Override
-    public GetMapRecordsResponse getRankingshipshipmapsmap(String map, String ship) {
+    public GetMapRecordsResponse getMapsmap(String map) {
         LOG.debug("getRankingshipshipmapsmap invoked");
 
-        List<CandidateInfo> result = recordServerServices.getEntriesByShipAndMap(map, ship);
+        List<CandidateInfo> result = recordServerServices.getEntriesByMap(map);
 
         GetMapRecordsResponse response = new GetMapRecordsResponse();
 
@@ -58,7 +59,7 @@ public class RankingImpl implements V2Resource {
     }
 
     @Override
-    public GetRecordResponse getRankingidid(String id) {
+    public GetRecordResponse getIdid(String id) {
         LOG.debug("getRankingidid invoked");
 
         final CandidateRecord result = recordServerServices.getEntryById(id);
@@ -68,6 +69,20 @@ public class RankingImpl implements V2Resource {
                 setPayload(result.getPayload());
             }
         };
+    }
+
+    @Override
+    public GetMapRecordsResponse getUseruser(String user) {
+        LOG.info("getUseruser invoked");
+
+        List<CandidateInfo> result = recordServerServices.getEntriesByUser(user);
+        GetMapRecordsResponse response = new GetMapRecordsResponse();
+
+        for (CandidateInfo toTransform : result) {
+            response.getRankingEntry().add(TRANSFORM_FUNCTION.apply(toTransform));
+        }
+
+        return response;
     }
 
     private static final Function<CandidateInfo, GetMapRecordsResponse.RankingEntry> TRANSFORM_FUNCTION 
@@ -84,5 +99,5 @@ public class RankingImpl implements V2Resource {
             };
         }
     };
-
+    
 }

@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
 
-@Component
 public class ShipDiscoveryService {
     
     @PostConstruct

@@ -9,6 +9,12 @@
     <packaging>pom</packaging>
     <name>RecordServer-Parent</name>
     
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.1.RELEASE</version>
+    </parent>
+    
     <description>Store your best games.</description>
     
     <properties>
@@ -17,16 +23,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>1.9.13</jackson.version>
         <jackson2.version>2.4.4</jackson2.version>
-        <cfx.version>3.0.0-milestone2</cfx.version>
+        <cfx.version>3.0.0</cfx.version>
         <junit.version>4.11</junit.version>
-        <spring.version>3.2.0.RELEASE</spring.version>
         <jdto.version>1.4</jdto.version>
         <slf4j-log4j12.version>1.6.2</slf4j-log4j12.version>
         <org.slf4j.version>1.7.7</org.slf4j.version>
         <javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
         <spring-data-jpa.version>1.2.0.RELEASE</spring-data-jpa.version>
         <commons-lang.version>2.4</commons-lang.version>
-        <amq.version>5.1.0</amq.version>
+        <amq.version>5.10.0</amq.version>
         <testng.version>6.8.8</testng.version>        
         <lazylogin.version>1.3.219</lazylogin.version>
         <reflections.version>0.9.9-RC2</reflections.version>
@@ -84,11 +89,6 @@
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
                 <version>1.5.7</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>activemq-all</artifactId>
-                <version>${amq.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>
@@ -153,6 +153,12 @@
             <dependency>
                 <groupId>org.apache.xbean</groupId>
                 <artifactId>xbean-spring</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
                 <version>3.16</version>
             </dependency>
             <dependency>
@@ -418,6 +424,51 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.1.201405082137</version>
+                <executions>
+                    <!-- The Executions required by unit tests are omitted. -->
+                    <!--
+                        Prepares the property pointing to the JaCoCo runtime agent which
+                        is passed as VM argument when Maven the Failsafe plugin is executed.
+                    -->
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                            <!--
+                                Sets the name of the property containing the settings
+                                for JaCoCo runtime agent.
+                            -->
+                            <propertyName>failsafeArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!--
+                        Ensures that the code coverage report for integration tests after
+                        integration tests have been run.
+                    -->
+                    <execution>
+                        <id>post-integration-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
         
@@ -433,7 +484,7 @@
                 <module>persistence-api</module>
                 <module>record-server-wsdl</module>
                 <module>persistence-couchdb</module>
-                <module>RecordServer-jetty-endpoint</module>
+                <module>springboot</module>
             </modules>
         </profile>
 
@@ -459,5 +510,4 @@
         </profile>
         
     </profiles>
-    
 </project>

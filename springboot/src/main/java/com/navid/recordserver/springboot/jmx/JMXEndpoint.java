@@ -1,4 +1,4 @@
-package com.navid.trafalgar.recordserver.endpoints.jmx;
+package com.navid.recordserver.springboot.jmx;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;

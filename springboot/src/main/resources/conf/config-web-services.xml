@@ -12,9 +12,9 @@
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
 	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
     
-    <bean id="recordsure.rankingendpoint" class="com.navid.trafalgar.recordserver.endpoints.RankingImpl"/>
-    <bean id="recordsure.rankingendpoint.v2" class="com.navid.trafalgar.recordserver.endpoints.v2.RankingImpl"/>
-    <bean id="recordsure.infoendpoint.v2" class="com.navid.trafalgar.recordserver.endpoints.v2.InfoImpl"/>
+    <bean id="recordsure.rankingendpoint" class="com.navid.recordserver.springboot.cxf.RankingImpl"/>
+    <bean id="recordsure.rankingendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.RankingImpl"/>
+    <bean id="recordsure.infoendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.InfoImpl"/>
     
     <jaxrs:server id="services" address="/rest">
         <jaxrs:serviceBeans>

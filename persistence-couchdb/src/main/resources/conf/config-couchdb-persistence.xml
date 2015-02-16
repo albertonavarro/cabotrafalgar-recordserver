@@ -8,8 +8,8 @@
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         
     <util:properties id="couchdbProperties"  >
-        <prop key="host">$conf{couchdb_host}</prop>
-        <prop key="testConnectionAtStartup">$conf{couchdb_testConnectionAtStartup}</prop>
+        <prop key="host">${couchdb_host}</prop>
+        <prop key="testConnectionAtStartup">${couchdb_testConnectionAtStartup}</prop>
     </util:properties>
     
     <bean id="recordServerConnection" class="org.ektorp.impl.StdCouchDbConnector">
