@@ -23,7 +23,7 @@ public class AddRecordV2IT extends BaseIT {
     public void addOneRecord() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 1);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 1);
 
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("one", "61.56301", "ShipModelOneY"));
@@ -39,7 +39,7 @@ public class AddRecordV2IT extends BaseIT {
     public void getByMapSameShip() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 3);
 
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("MapSame", "61.56301", "ShipModelOneY"));
@@ -62,7 +62,7 @@ public class AddRecordV2IT extends BaseIT {
     public void getByMapDifferentShip() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 3);
 
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("MapDifferent", "61.56301", "ShipModelOneY"));
@@ -84,7 +84,7 @@ public class AddRecordV2IT extends BaseIT {
     public void getById() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 3);
 
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("getById", "61.56301", "ShipModelOneY"));

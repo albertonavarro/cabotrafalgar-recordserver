@@ -11,9 +11,9 @@ import static org.mockserver.model.HttpResponse.response;
  */
 public class MockLazyLogin {
 
-    public static void setUpSessionId(String uuid, String username, String userId, Boolean verified, int times) {
+    public static void setUpSessionId(int port, String uuid, String username, String userId, Boolean verified, int times) {
 
-        new MockServerClient("localhost", 1080)
+        new MockServerClient("localhost", port)
                 .when(
                         request()
                         .withMethod("POST")

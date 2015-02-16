@@ -23,7 +23,7 @@ public class AddRecordIT extends BaseIT {
     public void addOneRecord() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 1);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 1);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("one", "61.56301"));
@@ -39,7 +39,7 @@ public class AddRecordIT extends BaseIT {
     public void getByMap() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("addMoreRecords", "61.56301"));
@@ -93,7 +93,7 @@ public class AddRecordIT extends BaseIT {
     public void getById() {
         //Given
         requestContextContainer.get().setSessionId("anyString");
-        MockLazyLogin.setUpSessionId(null, "username", "2", Boolean.FALSE, 3);
+        MockLazyLogin.setUpSessionId(getMockServerPort(), null, "username", "2", Boolean.FALSE, 3);
         
         AddRecordRequest addRecordRequest = new AddRecordRequest();
         addRecordRequest.setPayload(getPayload("getById", "61.56301"));

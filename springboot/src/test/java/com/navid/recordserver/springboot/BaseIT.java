@@ -91,4 +91,8 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         mockServer.stop();
     }
 
+    public int getMockServerPort() {
+        return mockServerPort;
+    }
+
 }
