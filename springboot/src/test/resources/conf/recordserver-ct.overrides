@@ -1,3 +1,2 @@
-recordserver.port=6789
-recordserver.url=http://localhost:${recordserver.port}
+recordserver.url=http://localhost:${server.port}
 lazylogin.url=http://localhost:1080

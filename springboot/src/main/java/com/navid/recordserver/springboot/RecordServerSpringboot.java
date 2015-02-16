@@ -9,13 +9,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Controller;
 
 @Configuration
 @ComponentScan
 @ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-web-services.xml"})
 @EnableAutoConfiguration
-@PropertySource(value = {"classpath:/application.properties", "classpath:/conf/recordserver${env}.overrides", "file:${user.home}/navidconfig/recordserver${env}.overrides"}, ignoreResourceNotFound = true)
+@PropertySource(value = {"classpath:/application.properties",
+    "classpath:/conf/recordserver${env}.overrides",
+    "file:${user.home}/navidconfig/recordserver${env}.overrides"}, ignoreResourceNotFound = true)
 public class RecordServerSpringboot {
 
     public static void main(String[] args) throws Exception {

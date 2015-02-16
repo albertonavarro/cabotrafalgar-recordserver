@@ -1,3 +1,2 @@
 mockserver.port=1080
-recordserver.port=8080
-recordserver.url=http://localhost:${recordserver.port}
+recordserver.url=http://localhost:${server.port}
