@@ -8,7 +8,7 @@
 #
 
 remote_file "/root/jetty-deployable.jar" do
-   source "http://repo.cabotrafalgar.mooo.com/libs-release-local/com/navid/record-server/jetty-endpoint/${project.version}/jetty-endpoint-${project.version}.jar"
+   source "http://repo.cabotrafalgar.mooo.com/libs-release-local/com/navid/record-server/springboot/${project.version}/springboot-${project.version}.war"
 end
 
 directory "/root/navidconfig" do
