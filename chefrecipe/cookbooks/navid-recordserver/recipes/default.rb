@@ -11,14 +11,14 @@ remote_file "/root/jetty-deployable.jar" do
    source "http://repo.cabotrafalgar.mooo.com/libs-release-local/com/navid/record-server/springboot/${project.version}/springboot-${project.version}.war"
 end
 
-directory "/root/navidconfig" do
+directory "/root/config" do
   owner "root"
   group "root"
   mode 00644
   action :create
 end
 
-template "/root/navidconfig/recordserver.overrides" do
+template "/root/config/application.properties" do
   mode 0755
   owner "root"
   group "root"
