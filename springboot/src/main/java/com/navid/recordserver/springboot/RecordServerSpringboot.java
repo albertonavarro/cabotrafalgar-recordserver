@@ -26,7 +26,7 @@ public class RecordServerSpringboot {
     @Bean
     public ServletRegistrationBean cxfServlet() {
         CXFServlet cxfServlet = new org.apache.cxf.transport.servlet.CXFServlet();
-        ServletRegistrationBean servletDef = new ServletRegistrationBean(cxfServlet, "/*");
+        ServletRegistrationBean servletDef = new ServletRegistrationBean(cxfServlet, "/rest/*");
         servletDef.setLoadOnStartup(1);
         return servletDef;
     }

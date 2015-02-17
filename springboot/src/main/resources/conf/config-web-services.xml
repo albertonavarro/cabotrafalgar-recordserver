@@ -16,7 +16,7 @@
     <bean id="recordsure.rankingendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.RankingImpl"/>
     <bean id="recordsure.infoendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.InfoImpl"/>
     
-    <jaxrs:server id="services" address="/rest">
+    <jaxrs:server id="services" address="/">
         <jaxrs:serviceBeans>
             <ref bean="recordsure.rankingendpoint"/>
             <ref bean="recordsure.rankingendpoint.v2"/>
