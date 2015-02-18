@@ -328,20 +328,6 @@
     </repositories>
     
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/webapp</directory>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/content</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
