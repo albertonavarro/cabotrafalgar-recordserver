@@ -31,6 +31,7 @@ public class AOPManager {
 
     @Around("anyWebService() || anyController() || anyRepository() || anyService()")
     public Object logServiceAccess(ProceedingJoinPoint joinPoint) throws Throwable {
+        LOG.debug("{} {}", "STARTING", joinPoint.getSignature());
         StopWatch monitor = new StopWatch();
         monitor.start("monitor");
         boolean error = false;
