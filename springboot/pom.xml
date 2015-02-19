@@ -108,6 +108,10 @@
         </dependency>
         <dependency>
             <groupId>com.navid.record-server</groupId>
+            <artifactId>aop-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.navid.record-server</groupId>
             <artifactId>persistence-couchdb</artifactId>
         </dependency>
         <!-- LOG -->

@@ -81,6 +81,11 @@
                 <version>${lazylogin.version}</version>
             </dependency> 
             <dependency>
+                <groupId>com.navid.record-server</groupId>
+                <artifactId>aop-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
                 <version>${reflections.version}</version>
