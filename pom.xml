@@ -480,6 +480,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
+                <module>aop-utils</module>
                 <module>logic</module>
                 <module>persistence-api</module>
                 <module>record-server-wsdl</module>

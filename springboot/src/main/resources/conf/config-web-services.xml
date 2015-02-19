@@ -45,4 +45,6 @@
     <bean id="CounterRepository" class="org.apache.cxf.management.counters.CounterRepository">
         <property name="bus" ref="cxf" />
     </bean>
+    
+    <bean id="AOPManager" class="com.navid.aop.performance.AOPManager"/>
 </beans>
