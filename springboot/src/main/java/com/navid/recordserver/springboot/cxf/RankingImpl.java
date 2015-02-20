@@ -24,7 +24,7 @@ public class RankingImpl implements RankingResource {
     private static final Logger LOG = LoggerFactory.getLogger(RankingImpl.class);
 
     @Resource
-    privRecordServerServicesImplices recordServerServices;
+    private RecordServerServiceImpl recordServerServices;
 
     
     @Override
