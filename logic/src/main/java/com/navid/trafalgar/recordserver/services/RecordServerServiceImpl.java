@@ -18,12 +18,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class RecordServerServices {
+public final class RecordServerServiceImpl implements RecordServerService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RecordServerServices.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RecordServerServiceImpl.class);
 
     @Resource
-    private Deserialization deserializator;
+    private DeserializationServiceImpl deserializator;
 
     @Resource
     private Persistence persistence;
@@ -34,6 +34,7 @@ public final class RecordServerServices {
     @Resource(name = "client")
     private SystemCommands systemCommands;
 
+    @Override
     public CandidateInfo addEntry(final String payload) {
 
         LOG.info("post requested for user context {}", requestContextContainer.get());
@@ -49,6 +50,7 @@ public final class RecordServerServices {
         return persistence.addCandidate(candidateInfo);
     }
 
+    @Override
     public List<CandidateInfo> getEntriesByShipAndMap(String map, String ship) {
         LOG.info("getEntryByShipAndMap requested for map {} and ship {}", map, ship);
 
@@ -91,6 +93,7 @@ public final class RecordServerServices {
         return result;
     }
 
+    @Override
     public CandidateRecord getEntryById(String id) {
         LOG.info("getIdid requested for id {}", id);
 
@@ -103,6 +106,7 @@ public final class RecordServerServices {
     }
 
     @Deprecated
+    @Override
     public List<CandidateInfo> getEntriesByMap(String map) {
         LOG.info("getEntryByShip requested for map {}", map);
 
@@ -146,6 +150,7 @@ public final class RecordServerServices {
     }
 
     @Deprecated
+    @Override
     public List<CandidateInfo> getEntriesByUser(String user) {
         LOG.info("getEntryByUser requested for user {}", user);
 
@@ -157,6 +162,7 @@ public final class RecordServerServices {
         }
     }
     
+    @Override
     public List<UsersReport> getUsersReport() {
         LOG.info("getUsersReport invoked");
         

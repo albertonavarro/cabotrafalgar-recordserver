@@ -23,9 +23,9 @@ import org.springframework.stereotype.Service;
  * @author anf
  */
 @Service
-public class Deserialization {
+public class DeserializationServiceImpl implements DeserializationService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Deserialization.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DeserializationServiceImpl.class);
 
     private final Gson gson = new Gson();
 
@@ -35,6 +35,7 @@ public class Deserialization {
     @Resource
     private ModelBuilder builder;
 
+    @Override
     public CandidateRecord addCandidate(String candidateRecord) {
 
             ObjectMapper om = new ObjectMapper();

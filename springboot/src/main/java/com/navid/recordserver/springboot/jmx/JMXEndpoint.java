@@ -4,7 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import static com.google.common.collect.Lists.newArrayList;
 import com.navid.trafalgar.recordserver.persistence.UsersReport;
-import com.navid.trafalgar.recordserver.services.RecordServerServices;
+import com.navid.trafalgar.recordserver.services.RecordServerServiceImpl;
 import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class JMXEndpoint {
     private static final Logger LOG = LoggerFactory.getLogger(JMXEndpoint.class);
     
     @Resource
-    private RecordServerServices recordServerServices;
+    private RecordServerServiceImpl recordServerServices;
     
     @ManagedOperation
     public final void deleteEntries(String user, String map, String ship) {
