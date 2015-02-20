@@ -8,10 +8,9 @@ import com.navid.recordserver.v2.GetRecordResponse;
 import com.navid.recordserver.v2.V2Resource;
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
-import com.navid.trafalgar.recordserver.services.RecordServerServiceImpl;
+import com.navid.trafalgar.recordserver.services.RecordServerService;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.jws.WebService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,7 @@ public class RankingImpl implements V2Resource {
     private static final Logger LOG = LoggerFactory.getLogger(RankingImpl.class);
 
     @Resource
-    private RecordServerServiceImpl recordServerServices;
+    private RecordServerService recordServerServices;
 
     @Override
     public AddRecordResponse postRanking(final AddRecordRequest addrecordrequest) {
