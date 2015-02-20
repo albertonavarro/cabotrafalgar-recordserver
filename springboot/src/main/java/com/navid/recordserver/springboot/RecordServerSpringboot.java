@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan
-@ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-web-services.xml"})
+@ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-web-services.xml", "classpath:conf/config-couchdb-persistence.xml"})
 @EnableAutoConfiguration
 @PropertySource(value = {"classpath:/application.properties",
     "classpath:/conf/recordserver${env}.overrides",

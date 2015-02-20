@@ -112,7 +112,12 @@
         </dependency>
         <dependency>
             <groupId>com.navid.record-server</groupId>
+            <artifactId>persistence-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.navid.record-server</groupId>
             <artifactId>persistence-couchdb</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <!-- LOG -->
         <dependency>
