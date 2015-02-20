@@ -1,21 +1,12 @@
 package com.navid.recordserver.springboot;
 
-import com.navid.recordserver.springboot.RecordServerSpringboot;
 import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.trafalgar.recordserver.persistence.Persistence;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CDBCandidateRecordRepository;
 import com.navid.trafalgar.recordserver.persistence.couchbase.CouchbaseImpl;
-import javax.annotation.Resource;
-
-import com.navid.trafalgar.util.ReflexionUtils;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import org.aspectj.util.Reflection;
 import org.ektorp.impl.StdCouchDbConnector;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.mockserver.integration.ClientAndServer;
-
-import static java.util.Collections.singleton;
-import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.Advised;
@@ -26,13 +17,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import java.sql.Ref;
+import javax.annotation.Resource;
+
+import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 
 /**
  *
