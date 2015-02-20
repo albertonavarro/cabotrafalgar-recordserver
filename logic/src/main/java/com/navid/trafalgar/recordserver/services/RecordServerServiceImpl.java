@@ -23,7 +23,7 @@ public final class RecordServerServiceImpl implements RecordServerService {
     private static final Logger LOG = LoggerFactory.getLogger(RecordServerServiceImpl.class);
 
     @Resource
-    private DeserializationServiceImpl deserializator;
+    private DeserializationService deserializator;
 
     @Resource
     private Persistence persistence;
