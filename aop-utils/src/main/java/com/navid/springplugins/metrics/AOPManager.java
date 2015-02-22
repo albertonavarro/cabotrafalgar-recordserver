@@ -18,7 +18,10 @@ import javax.annotation.PostConstruct;
 @Aspect
 public class AOPManager {
 
+    private static final String metricsLogId = "com.navid.springplugins.metrics.aspect";
+
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AOPManager.class);
+    private static final org.slf4j.Logger LOG_METRICS = LoggerFactory.getLogger(metricsLogId);
 
     @Value("${navid.plugins.metrics.enabled:false}")
     boolean enabled;
@@ -30,8 +33,7 @@ public class AOPManager {
     public void setUp() {
         LOG.info("Starting AOPManager");
         if(enabled) {
-            createLoggerFor("com.navid.springplugins.metrics");
-            System.out.println("JMSPerformanceAppender created");
+            LOG.info("JMSPerformanceAppender created: {}", createLoggerFor());
         }
     }
 
@@ -53,7 +55,7 @@ public class AOPManager {
 
     @Around("anyWebService() || anyController() || anyRepository() || anyService()")
     public Object logServiceAccess(ProceedingJoinPoint joinPoint) throws Throwable {
-        LOG.info("{} {}", "STARTING", joinPoint.getSignature());
+        LOG_METRICS.info("{} {}", "STARTING", joinPoint.getSignature());
         StopWatch monitor = new StopWatch();
         monitor.start("monitor");
         boolean error = false;
@@ -67,11 +69,11 @@ public class AOPManager {
             error = true;
             throw e;
         } finally {
-            LOG.info("{} {} {}", error ? "ERROR" : "SUCCESS", monitor.getTotalTimeSeconds(), joinPoint.getSignature());
+            LOG_METRICS.info("{} {} {}", error ? "ERROR" : "SUCCESS", monitor.getTotalTimeSeconds(), joinPoint.getSignature());
         }
     }
 
-    private Logger createLoggerFor(String string) {
+    private Logger createLoggerFor() {
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         PatternLayoutEncoder ple = new PatternLayoutEncoder();
         ple.setPattern("%msg%n");
@@ -87,7 +89,7 @@ public class AOPManager {
         jmsPerformanceAppender.setName("autologger");
         jmsPerformanceAppender.start();
 
-        Logger logger = lc.getLogger(string);
+        Logger logger = lc.getLogger(metricsLogId);
         logger.addAppender(jmsPerformanceAppender);
         logger.setLevel(Level.INFO);
         logger.setAdditive(false);
