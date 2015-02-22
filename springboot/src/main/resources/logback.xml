@@ -49,6 +49,7 @@
     </appender>
 
     <logger name="com.navid.springplugins.metrics" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_METRICS" />
         <appender-ref ref="STDOUT_METRICS" />
     </logger>
 
