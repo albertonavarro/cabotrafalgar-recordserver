@@ -18,6 +18,12 @@ directory "/root/config" do
   action :create
 end
 
+template "/root/logback.xml" do
+  mode 0755
+  owner "root"
+  group "root"
+end
+
 template "/root/config/application.properties" do
   mode 0755
   owner "root"

@@ -8,7 +8,8 @@
 
 pname="recordserver"
 jmxoptions="-Dcom.sun.management.jmxremote.port=2001 -Dcom.sun.management.jmxremote.rmi.port=2000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
-exe="java $jmxoptions -jar /root/jetty-deployable.jar"
+securityoptions="-Djavax.net.ssl.keyStore=/opt/certs/recordserver.ks -Djavax.net.ssl.keyStorePassword=changeit -Djavax.net.ssl.trustStore=/opt/certs/allcerts.ts -Djavax.net.ssl.trustStorePassword=changeit"
+exe="java $jmxoptions $securityoptions -jar /root/jetty-deployable.jar"
 pidfile="/var/run/${pname}.pid"
 lockfile="/var/lock/subsys/${pname}"
 logfile="/var/log/recordserver.log"

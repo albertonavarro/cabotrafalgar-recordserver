@@ -137,6 +137,12 @@
             <groupId>org.slf4j</groupId>                
             <artifactId>jul-to-slf4j</artifactId>    
         </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>5.7.0</version>
+            <scope>runtime</scope>
+        </dependency>
         <!--JACKSON RUNTIME-->
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
@@ -198,7 +204,7 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/webapp</directory>
