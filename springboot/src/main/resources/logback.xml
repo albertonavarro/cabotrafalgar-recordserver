@@ -48,9 +48,8 @@
         </encoder>
     </appender>
 
-    <logger name="com.navid.aop.performance" level="DEBUG" additivity="false">
+    <logger name="com.navid.springplugins.metrics" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT_METRICS" />
-        <appender-ref ref="FILE_METRICS" />
     </logger>
 
     <logger name="com.navid" level="DEBUG"/>

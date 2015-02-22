@@ -8,7 +8,7 @@ import java.util.Map;
 public class JMSPerformanceAppender extends JMSQueueAppender {
 
     /**
-     * This method called by {@link AppenderBase#doAppend} method to do most
+     * This method called by {@link ch.qos.logback.core.AppenderBase#doAppend} method to do most
      * of the real appending work.
      */
     public void append(ILoggingEvent event) {
@@ -18,11 +18,13 @@ public class JMSPerformanceAppender extends JMSQueueAppender {
 
         try {
             MapMessage msg = getQueueSession().createMapMessage();
-            //ObjectMessage msg = queueSession.createObjectMessage();
             msg.setLong("timestamp", event.getTimeStamp());
             msg.setString("status", event.getArgumentArray()[0].toString());
             msg.setString("duration", event.getArgumentArray()[1].toString());
-            msg.setString("signature", event.getArgumentArray()[2].toString());
+            if(event.getArgumentArray().length==3) {
+                msg.setString("signature", event.getArgumentArray()[2].toString());
+            }
+
             for(Map.Entry<String,String> mdc : event.getMDCPropertyMap().entrySet()) {
                 msg.setString(mdc.getKey(), mdc.getValue());
             }
