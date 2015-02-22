@@ -31,6 +31,7 @@ public class AOPManager {
         LOG.info("Starting AOPManager");
         if(enabled) {
             createLoggerFor("com.navid.springplugins.metrics");
+            System.out.println("JMSPerformanceAppender created");
         }
     }
 

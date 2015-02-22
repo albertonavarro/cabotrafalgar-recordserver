@@ -13,10 +13,12 @@ public class JMSPerformanceAppender extends JMSQueueAppender {
      */
     public void append(ILoggingEvent event) {
         if (!isStarted()) {
+            System.out.print("Not sending metric, JMSPerformanceAppender disabled");
             return;
         }
 
         try {
+            System.out.print("Sending message throw JMSPerformanceAppender");
             MapMessage msg = getQueueSession().createMapMessage();
             msg.setLong("timestamp", event.getTimeStamp());
             msg.setString("status", event.getArgumentArray()[0].toString());
@@ -30,13 +32,14 @@ public class JMSPerformanceAppender extends JMSQueueAppender {
             }
             queueSender.send(msg);
             successiveFailureCount = 0;
+            System.out.println("successfully");
         } catch (Exception e) {
             successiveFailureCount++;
             if (successiveFailureCount > SUCCESSIVE_FAILURE_LIMIT) {
                 stop();
             }
             addError("Could not send message in JMSQueueAppender [" + name + "].", e);
-
+            System.out.println("with error " + e.toString());
         }
     }
 
