@@ -22,12 +22,12 @@ template "/root/config/application.properties" do
   mode 0755
   owner "root"
   group "root"
-end
+endchef
 
 # setup the service (based on the script above),
 # start it, and make it start at boot
 template '/etc/init.d/recordserver' do
-    source 'RecordServerService'
+    source 'RecordServerService.erb'
     mode 0755
     owner "root"
     group "root"
