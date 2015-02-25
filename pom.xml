@@ -79,7 +79,12 @@
                 <groupId>com.navid.lazylogin</groupId>
                 <artifactId>common-context</artifactId>
                 <version>${lazylogin.version}</version>
-            </dependency> 
+            </dependency>
+            <dependency>
+                <groupId>com.navid.spring</groupId>
+                <artifactId>addon-jms-performance</artifactId>
+                <version>1.0</version>
+            </dependency>
             <dependency>
                 <groupId>com.navid.record-server</groupId>
                 <artifactId>aop-utils</artifactId>
@@ -355,7 +360,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-                <module>aop-utils</module>
                 <module>logic</module>
                 <module>persistence-api</module>
                 <module>record-server-wsdl</module>
