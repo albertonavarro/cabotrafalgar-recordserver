@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"com.navid.recordserver.springboot", "com.navid.spring.addons"})
 @ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-web-services.xml", "classpath:conf/config-couchdb-persistence.xml"})
 @EnableAutoConfiguration
 @PropertySource(value = {"classpath:/application.properties",
