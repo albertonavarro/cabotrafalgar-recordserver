@@ -15,6 +15,7 @@
     <bean id="recordsure.rankingendpoint" class="com.navid.recordserver.springboot.cxf.RankingImpl"/>
     <bean id="recordsure.rankingendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.RankingImpl"/>
     <bean id="recordsure.infoendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.InfoImpl"/>
+    <bean id="authenticationFilter" class="com.navid.lazylogin.context.interceptors.AuthorisationFilter" />
     
     <jaxrs:server id="services" address="/">
         <jaxrs:serviceBeans>
@@ -24,7 +25,7 @@
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean id="jacksonProvider" class=" com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
-            <bean class="com.navid.lazylogin.context.interceptors.AuthorisationFilter"/>
+            <ref bean="authenticationFilter"/>
         </jaxrs:providers>
         <jaxrs:inInterceptors>
             <bean class="com.navid.lazylogin.context.interceptors.RequestContextCreatorInterceptor"/>
