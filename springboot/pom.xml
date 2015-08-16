@@ -118,6 +118,7 @@
         <dependency>
             <groupId>com.navid.spring</groupId>
             <artifactId>addon-jms-performance</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <!-- LOG -->
         <dependency>

@@ -1,0 +1,12 @@
+rootProject.name = 'parent'
+include ':logic'
+include ':persistence-api'
+include ':contract'
+include ':persistence-couchdb'
+include ':springboot'
+
+project(':logic').projectDir = "$rootDir/logic" as File
+project(':persistence-api').projectDir = "$rootDir/persistence-api" as File
+project(':contract').projectDir = "$rootDir/record-server-wsdl" as File
+project(':persistence-couchdb').projectDir = "$rootDir/persistence-couchdb" as File
+project(':springboot').projectDir = "$rootDir/springboot" as File
