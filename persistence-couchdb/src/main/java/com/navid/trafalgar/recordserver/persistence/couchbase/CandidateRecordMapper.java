@@ -18,18 +18,15 @@ public interface CandidateRecordMapper {
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "attachment", ignore = true),
-            @Mapping(target = "revisions", ignore = true),
-            @Mapping(target = "new", ignore = true)})
+            @Mapping(target = "attachments", ignore = true),
+            @Mapping(target = "revision", ignore = true)})
     CDBCandidateRecord toDto(CandidateRecord business);
     
     @Mappings({
-        @Mapping(target = "id", source = "id")
     })
     CandidateRecord fromDto(CDBCandidateRecord dto);
     
     @Mappings({
-        @Mapping(target = "id", source = "id")
     })
     List<CandidateRecord> fromDto(List<CDBCandidateRecord> dto);
 }

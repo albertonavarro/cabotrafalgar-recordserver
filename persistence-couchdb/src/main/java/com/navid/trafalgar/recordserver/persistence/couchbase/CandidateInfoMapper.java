@@ -18,24 +18,19 @@ public interface CandidateInfoMapper {
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "attachment", ignore = true),
-            @Mapping(target = "revisions", ignore = true),
-            @Mapping(target = "new", ignore = true)})
+            @Mapping(target = "attachments", ignore = true),
+            @Mapping(target = "revision", ignore = true)})
     CDBCandidateRecord toDtoNoId(CandidateInfo business);
     
     @Mappings({
-            @Mapping(target = "attachment", ignore = true),
-            @Mapping(target = "new", ignore = true)})
+            @Mapping(target = "attachments", ignore = true)})
     CDBCandidateRecord toDtoWithId(CandidateInfo business);
     
     @Mappings({
-        @Mapping(target = "id", source = "id")
-
     })
     CandidateInfo fromDto(CDBCandidateRecord dto);
     
     @Mappings({
-        @Mapping(target = "id", source = "id")
     })
     List<CandidateInfo> fromDto(List<CDBCandidateRecord> dto);
 }

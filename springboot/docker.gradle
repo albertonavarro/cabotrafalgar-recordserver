@@ -1,0 +1,8 @@
+apply plugin: 'docker'
+
+group = "albertonavarro"
+applicationName = "recordserver"
+
+distDocker {
+    push = true
+}

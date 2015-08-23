@@ -1,29 +1,25 @@
-allprojects  {
-  apply plugin: 'maven'
+allprojects {
+    apply plugin: 'maven'
 
-  group = 'com.navid.record-server'
-version = '1.3-SNAPSHOT'
+    group = 'com.navid.record-server'
+    version = '1.3-SNAPSHOT'
 }
 
 subprojects {
-  apply plugin: 'java'
-  sourceCompatibility = 1.7
-  targetCompatibility = 1.7
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-  task packageSources(type: Jar) {
-classifier = 'sources'
-from sourceSets.main.allSource
+    task packageSources(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
 
-}
-artifacts.archives packageSources
-  repositories {
-    mavenLocal()
-    
-    maven { url "http://repo.cabotrafalgar.mooo.com/repo" }
-    maven { url "http://repo.maven.apache.org/maven2" }
-  }
+    artifacts.archives packageSources
 
-  
-  
-  
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "http://repo.maven.apache.org/maven2" }
+    }
 }

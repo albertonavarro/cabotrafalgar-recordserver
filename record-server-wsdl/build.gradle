@@ -1,5 +1,6 @@
-
 description = 'RecordServer-contract'
-dependencies {
-    compile group: 'org.jvnet.ws.wadl', name: 'wadl-core', version:'1.1.6'
+
+build << {
+
+    println 'WARNING: Until I knew how to build the contract using gradle, I keep working maven option'
 }

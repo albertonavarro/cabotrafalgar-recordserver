@@ -20,6 +20,8 @@ import org.ektorp.support.UpdateHandler;
 import org.ektorp.support.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.BasicMarker;
+import org.slf4j.helpers.BasicMarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -122,7 +124,7 @@ public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCa
         try(AttachmentInputStream attachment = db.getAttachment(id, attName, revision)){
             return IOUtils.toString(attachment);
         }catch (IOException ex) {
-            LOG.error("Error getting attachment for id {} and name {}, message {}", id, attName, ex);
+            LOG.error("Error getting attachment", ex.getMessage());
             throw new RuntimeException(ex);
         }
     }
