@@ -12,6 +12,10 @@ buildscript {
     }
 }
 
+bootRun {
+    systemProperties System.properties
+}
+
 bootRepackage {
     mainClass = 'com.navid.recordserver.springboot.RecordServerSpringboot'
 }

@@ -5,4 +5,5 @@ applicationName = "recordserver"
 
 distDocker {
     push = true
+
 }
