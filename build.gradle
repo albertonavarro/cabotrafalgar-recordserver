@@ -22,5 +22,7 @@ subprojects {
         jcenter()
         maven { url "http://repo.maven.apache.org/maven2" }
         maven { url "http://dl.bintray.com/albertonavarro/maven" }
+        maven { url "http://dl.bintray.com/jmonkeyengine/com.jme3" }
+
     }
 }
