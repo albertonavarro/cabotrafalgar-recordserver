@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 2.0.1
+  version: 2.0.2
   title: Recordserver
   description: TODO
 host: recordserver.trafalgar.ws:8080
@@ -48,7 +48,7 @@ paths:
   /ranking:
     post:
       description: TODO
-      operationId: getRanking
+      operationId: postRanking
       produces:
       - application/json
       parameters:
@@ -65,18 +65,20 @@ paths:
             $ref: '#/definitions/NewMapEntryResponse'
 definitions:
   RankingEntry:
-    type: object
-    properties:
-      id:
-        type: string
-      position:
-        type: integer
-        format: int32
-      time:
-        type: number
-        format: float
-      username:
-        type: string
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+        position:
+          type: integer
+          format: int32
+        time:
+          type: number
+          format: float
+        username:
+          type: string
   NewMapEntryRequest:
     type: object
     properties:

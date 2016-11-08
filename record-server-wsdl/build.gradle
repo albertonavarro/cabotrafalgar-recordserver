@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-version = '1.4'
+version = '2.0.2'
 
 bintray {
     user = repositoryUser
@@ -34,7 +34,7 @@ publish.dependsOn bintrayUpload
 publishing {
     publications {
         swagger(MavenPublication) {
-            file("src/main/swagger/swagger-record-server.yml")
+            artifact file("src/main/swagger/swagger-record-server.yml")
 
             artifactId "contract"
             groupId project.group
