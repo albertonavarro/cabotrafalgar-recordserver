@@ -1,7 +1,3 @@
-apply plugin: 'application'
-apply from: 'docker.gradle'
-apply plugin: 'spring-boot'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -11,6 +7,15 @@ buildscript {
         classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
+
+plugins {
+    id 'org.detoeuf.swagger-codegen' version '1.6.2'
+}
+
+apply plugin: 'application'
+apply from: 'docker.gradle'
+apply plugin: 'spring-boot'
+apply from: 'swagger.gradle'
 
 bootRun {
     systemProperties System.properties
@@ -36,6 +41,9 @@ dependencies {
     compile project(':persistence-api')
     compile 'javax.servlet:javax.servlet-api:3.0.1'
 
+    //SWAGGER API CONTRACT
+    swaggerAPI (group:"com.navid.record-server", name:"contract", version:"${supported_api_version}", ext:"yml")
+
     testCompile 'org.springframework:spring-test'
     testCompile 'org.mock-server:mockserver-netty:3.0'
     testCompile 'org.testng:testng:6.8.8'
@@ -51,8 +59,8 @@ dependencies {
     runtime 'com.fasterxml.jackson.core:jackson-core:2.4.6'
     runtime 'com.fasterxml.jackson.core:jackson-annotations:2.4.6'
 
-    runtime 'com.navid.trafalgar:shipModelY:0.9-SNAPSHOT'
-    runtime 'com.navid.trafalgar:shipModelZ:0.9-SNAPSHOT'
+    //runtime 'com.navid.trafalgar:shipModelY:0.9-SNAPSHOT'
+    //runtime 'com.navid.trafalgar:shipModelZ:0.9-SNAPSHOT'
 
 }
 //test.useTestNG()

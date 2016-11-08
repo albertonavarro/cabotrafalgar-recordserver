@@ -12,40 +12,9 @@
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
 	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
     
-    <bean id="recordsure.rankingendpoint" class="com.navid.recordserver.springboot.cxf.RankingImpl"/>
-    <bean id="recordsure.rankingendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.RankingImpl"/>
-    <bean id="recordsure.infoendpoint.v2" class="com.navid.recordserver.springboot.cxf.v2.InfoImpl"/>
+
     <bean id="authenticationFilter" class="com.navid.lazylogin.context.interceptors.AuthorisationFilter">
         <aop:scoped-proxy proxy-target-class="true"/>
     </bean>
-    
-    <jaxrs:server id="services" address="/">
-        <jaxrs:serviceBeans>
-            <ref bean="recordsure.rankingendpoint"/>
-            <ref bean="recordsure.rankingendpoint.v2"/>
-            <ref bean="recordsure.infoendpoint.v2" />
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <bean id="jacksonProvider" class=" com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
-            <ref bean="authenticationFilter"/>
-        </jaxrs:providers>
-        <jaxrs:inInterceptors>
-            <bean class="com.navid.lazylogin.context.interceptors.RequestContextCreatorInterceptor"/>
-        </jaxrs:inInterceptors>
-        <jaxrs:outInterceptors>
-            <bean class="com.navid.lazylogin.context.interceptors.RequestContextRemoverInterceptor"/>
-        </jaxrs:outInterceptors>
-    </jaxrs:server> 
-    
-    <bean id="org.apache.cxf.management.InstrumentationManager"
-          class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">
-        <property name="enabled" value="true" />
-        <property name="bus" ref="cxf" />
-        <property name="usePlatformMBeanServer" value="true" />
-        <property name="persistentBusId" value="recordServerBus" />
-    </bean>
-    
-    <bean id="CounterRepository" class="org.apache.cxf.management.counters.CounterRepository">
-        <property name="bus" ref="cxf" />
-    </bean>
+
 </beans>
