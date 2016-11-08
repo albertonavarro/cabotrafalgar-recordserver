@@ -1,6 +1,39 @@
-<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="v1.recordserver.navid.com">
+<application xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns="v1.recordserver.navid.com">
     <grammars>
-        <include href="recordserver-types.xsd"/>
+        <xs:complexType name="getRecordResponse">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:string"/>
+                    <xs:element name="payload" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getMapRecordsResponse">
+                <xs:sequence>
+                    <xs:element name="rankingEntry" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="id" type="xs:string"/>
+                                <xs:element name="position" type="xs:int"/>
+                                <xs:element name="time" type="xs:float"/>
+                                <xs:element name="username" type="xs:string"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addRecordRequest">
+                <xs:sequence>
+                    <xs:element name="payload" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addRecordResponse">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:string"/>
+                    <xs:element name="position" type="xs:int"/>
+                    <xs:element name="status" type="xs:string"/>
+                    <xs:element name="verified" type="xs:boolean"/>
+                    <xs:element name="username" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
     </grammars>
     <resources base="http://localhost:8080/">
         <resource path="/ranking">

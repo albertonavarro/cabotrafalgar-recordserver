@@ -1,6 +1,45 @@
 description = 'RecordServer-contract'
 
-build << {
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
+}
 
-    println 'WARNING: Until I knew how to build the contract using gradle, I keep working maven option'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+version = '1.4'
+
+bintray {
+    user = repositoryUser
+    key = repositoryPass
+    publications = ['swagger']
+
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = "cabotrafalgar-recordserver"
+        desc = project.description
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/albertonavarro/recordserver'
+        labels = ["api"]
+    }
+}
+
+publish.dependsOn bintrayUpload
+
+publishing {
+    publications {
+        swagger(MavenPublication) {
+            file("src/main/swagger/swagger-record-server.yml")
+
+            artifactId "contract"
+            groupId project.group
+            version project.version
+        }
+    }
+
 }
