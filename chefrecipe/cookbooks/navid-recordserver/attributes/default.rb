@@ -1,8 +1,0 @@
-default[:recordserver][:couchdb][:host] = "TO BE SET"
-default[:recordserver][:lazylogin][:url] = "TO BE SET"
-default[:navid][:plugin][:metrics][:mqurl] = "NONE"
-default[:navid][:plugin][:metrics][:enabled] = "false"
-default[:recordserver][:keystore][:location] = "TO BE SET"
-default[:recordserver][:keystore][:password] = "TO BE SET"
-default[:recordserver][:truststore][:location] = "TO BE SET"
-default[:recordserver][:truststore][:password] = "TO BE SET"
