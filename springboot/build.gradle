@@ -67,9 +67,29 @@ dependencies {
     swaggerApi (group:"com.navid.record-server", name: 'contract', version:"${supported_api_version}", ext:"yml")
 }
 
+def ci_branch = "UNSET"
+def ci_commit = "UNSET"
+def ci_system = "LOCAL"
+def ci_commit_short = "UNSET"
+def ci_build_number = 0
+if (System.getenv("TRAVIS")) {
+    ci_branch = System.getenv("TRAVIS_BRANCH")
+    ci_commit = System.getenv("TRAVIS_COMMIT")
+    ci_system = "travis"
+    ci_commit_short = System.getenv("TRAVIS_COMMIT")
+    ci_build_number = System.getenv("TRAVIS_BUILD_NUMBER")
+}
+
+version = "${ci_system}_${ci_build_number}"
+
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        include "**/application.properties"
-        expand project.properties
+    filesMatching('**/application.properties') {
+        expand( COMMIT: ci_commit,
+                BRANCH: ci_branch,
+                COMMIT_SHORT: ci_commit_short,
+                PIPELINE_COUNTER: ci_build_number,
+                VERSION: project.version,
+                SUPPORTED_API: project.supported_api_version
+        )
     }
 }

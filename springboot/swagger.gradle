@@ -15,9 +15,9 @@ swagger {
     language = 'spring'
 
     additionalProperties = [
-            'invokerPackage' : 'com.navid.recordserverapi.server',
-            'modelPackage' : 'com.navid.recordserverapi.server.model',
-            'apiPackage' : 'com.navid.recordserverapi.server.api',
+            'invokerPackage' : 'com.navid.codegen.recordserver',
+            'modelPackage' : 'com.navid.codegen.recordserver.model',
+            'apiPackage' : 'com.navid.codegen.recordserver.api',
             'dateLibrary' : 'java8'
     ]
 }
@@ -45,9 +45,9 @@ ext {
 
 dependencies {
     swaggerCompile 'io.swagger:swagger-annotations:1.5.9'
-    swaggerCompile ('org.springframework.boot:spring-boot-starter-web') {
-        exclude module: 'spring-boot-starter-tomcat'
-    }
+    swaggerCompile ('org.springframework.boot:spring-boot-starter-web')
     swaggerCompile "io.springfox:springfox-swagger2:${springfoxVersion}"
     swaggerCompile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
 }
+
+tasks.assemble.dependsOn swaggerClasses
