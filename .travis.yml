@@ -13,3 +13,4 @@ script:
     - ./gradlew deploy_tools:waitUntilDeployed -P deploy_endpoint="$PROD_SERVER"/info -P deploy_expected_version=travis_"$TRAVIS_BUILD_NUMBER"
 services:
   - docker
+
