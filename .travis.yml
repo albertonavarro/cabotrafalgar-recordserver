@@ -8,10 +8,8 @@ script:
     - docker tag albertonavarro/recordserver:travis_"$TRAVIS_BUILD_NUMBER" albertonavarro/recordserver:readytotest
     - docker push albertonavarro/recordserver:readytotest
     - ./gradlew deploy_tools:waitUntilDeployed -P deploy_endpoint="$TEST_SERVER"/info -P deploy_expected_version=travis_"$TRAVIS_BUILD_NUMBER"
-    - ./gradlew integration-test:test -Dlazylogin.url=$TEST_SERVER -Dtest.imap.username=$TEST_EMAIL_ACCOUNT -Dtest.imap.password=$TEST_EMAIL_PASSWORD -Dtest.imap.host=imap.gmail.com -PintegrationTests
     - docker tag albertonavarro/recordserver:travis_"$TRAVIS_BUILD_NUMBER" albertonavarro/recordserver:readyforprod
     - docker push albertonavarro/recordserver:readyforprod
     - ./gradlew deploy_tools:waitUntilDeployed -P deploy_endpoint="$PROD_SERVER"/info -P deploy_expected_version=travis_"$TRAVIS_BUILD_NUMBER"
-    - ./gradlew integration-test:test -Dlazylogin.url=$PROD_SERVER -Dtest.imap.username=$PROD_EMAIL_ACCOUNT -Dtest.imap.password=$PROD_EMAIL_PASSWORD -Dtest.imap.host=imap.gmail.com -PintegrationTests
 services:
   - docker
