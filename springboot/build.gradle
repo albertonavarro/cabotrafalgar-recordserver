@@ -61,8 +61,8 @@ dependencies {
     runtime 'com.fasterxml.jackson.core:jackson-core:2.4.6'
     runtime 'com.fasterxml.jackson.core:jackson-annotations:2.4.6'
 
-    runtime 'com.navid.trafalgar:shipModelY:0.9-SNAPSHOT'
-    runtime 'com.navid.trafalgar:shipModelZ:0.9-SNAPSHOT'
+    runtime 'com.navid.trafalgar:shipModelY:1.0'
+    runtime 'com.navid.trafalgar:shipModelZ:1.0'
 
     swaggerApi (group:"com.navid.record-server", name: 'contract', version:"${supported_api_version}", ext:"yml")
 }
