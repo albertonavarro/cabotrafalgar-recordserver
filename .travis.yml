@@ -8,11 +8,11 @@ script:
     - docker tag albertonavarro/recordserver:travis_"$TRAVIS_BUILD_NUMBER" albertonavarro/recordserver:readytotest
     - docker push albertonavarro/recordserver:readytotest
     - ./gradlew deploy_tools:waitUntilDeployed -P deploy_endpoint="$TEST_SERVER"/info -P deploy_expected_version=travis_"$TRAVIS_BUILD_NUMBER"
-    - ./gradlew integration-test -DrecordserverUrl=http://recordserver.trafalgar.ws:8081
+    - ./gradlew integration-test:test -DrecordserverUrl=http://recordserver.trafalgar.ws:8081
     - docker tag albertonavarro/recordserver:travis_"$TRAVIS_BUILD_NUMBER" albertonavarro/recordserver:readyforprod
     - docker push albertonavarro/recordserver:readyforprod
     - ./gradlew deploy_tools:waitUntilDeployed -P deploy_endpoint="$PROD_SERVER"/info -P deploy_expected_version=travis_"$TRAVIS_BUILD_NUMBER"
-    - ./gradlew integration-test -DrecordserverUrl=http://recordserver.trafalgar.ws:8080
+    - ./gradlew integration-test:test -DrecordserverUrl=http://recordserver.trafalgar.ws:8080
 services:
   - docker
 
