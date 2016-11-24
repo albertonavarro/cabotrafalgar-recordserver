@@ -4,6 +4,13 @@ import com.navid.lazylogin.context.RequestContextContainer;
 import com.lazylogin.client.user.v0.CreateTokenRequest;
 import com.lazylogin.client.user.v0.UserCommands;
 import javax.annotation.Resource;
+import javax.wsdl.extensions.ElementExtensible;
+
+import org.apache.cxf.binding.soap.SoapBindingConfiguration;
+import org.apache.cxf.frontend.ClientProxyFactoryBean;
+import org.apache.cxf.jaxb.JAXBDataBinding;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,14 +30,22 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     
     @Resource(name = "test.clientUserLazyLogin")
     protected UserCommands userCommandsClient;
-    
+
     @Resource
     protected RequestContextContainer requestContextContainer;
+
+    private final String url = System.getProperty("recordserverUrl");
     
     protected String token;
     
     @BeforeClass
-    public void initToken() {        
+    public void initToken() {
+        ClientProxyFactoryBean x;
+        ReflectionServiceFactoryBean y;
+        SoapBindingConfiguration z;
+        JAXBDataBinding t;
+        ElementExtensible u;
+        JaxWsProxyFactoryBean v;
         CreateTokenRequest request = new CreateTokenRequest() {{
             setEmail("somemail@somedomain.com");
         }};
@@ -38,7 +53,7 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         token = userCommandsClient.createToken(request).getSessionid().getSessionid();
         
         LOGGER.info("Got user token: " + token);
-        
+
         requestContextContainer.get().setSessionId(token);
         
     }
@@ -47,7 +62,9 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     public void tearDown() {
         requestContextContainer.delete();
     }
-    
-    
+
+    public String getUrl() {
+        return url;
+    }
     
 }

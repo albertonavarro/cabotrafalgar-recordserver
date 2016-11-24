@@ -1,2 +1,2 @@
-lazylogin.url=TO_BE_DEFINED
-recordserver.url=TO_BE_DEFINED
+lazylogin.url=http://lazylogin.trafalgar.ws:8080
+recordserver.url=http://recordserver.trafalgar.ws:8080
