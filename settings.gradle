@@ -4,7 +4,9 @@ include ':persistence-api'
 include ':contract'
 include ':persistence-couchdb'
 include ':springboot'
-include 'integration-test'
+if (System.getProperty("remote")) {
+    include 'integration-test'
+}
 
 project(':logic').projectDir = "$rootDir/logic" as File
 project(':persistence-api').projectDir = "$rootDir/persistence-api" as File
