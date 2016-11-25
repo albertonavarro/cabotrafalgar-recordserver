@@ -4,7 +4,9 @@
         <destination>192.168.1.150:5000</destination>
 
         <!-- encoder is required -->
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <customFields>{"appname":"recordserver"}</customFields>
+        </encoder>
     </appender>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
