@@ -3,8 +3,11 @@ apply from: 'mapstruct.gradle'
 description = 'RecordServer-persistence-couchdb'
 dependencies {
     compile group: 'org.ektorp', name: 'org.ektorp', version:'1.4.2'
-    compile (group: 'org.ektorp', name: 'org.ektorp.spring', version:'1.4.2')
+    compile (group: 'org.ektorp', name: 'org.ektorp.spring', version:'1.4.2') {
+        exclude group: 'org.springframework'
+    }
     compile project(':persistence-api')
     testCompile group: 'org.testng', name: 'testng', version:'6.8.8'
+    compile 'org.springframework:spring-context:4.2.0.RELEASE'
 }
 test.useTestNG()

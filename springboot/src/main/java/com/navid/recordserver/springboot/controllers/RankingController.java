@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -33,7 +34,9 @@ public class RankingController implements IdApi, ShipApi, RankingApi {
 
     @Override
     public ResponseEntity<MapEntry> getById(
-            @ApiParam(value = "TODO",required=true ) @PathVariable("id") String id) {
+            @PathVariable("id") String id,
+            @RequestHeader(value="sessionId") String sessionId,
+            @RequestHeader(value="correlationId", required=false) String correlationId) {
         logger.debug("getRankingidid invoked");
 
         final CandidateRecord result = recordServerServices.getEntryById(id);
@@ -43,7 +46,9 @@ public class RankingController implements IdApi, ShipApi, RankingApi {
 
     @Override
     public ResponseEntity<NewMapEntryResponse> postRanking(
-            @ApiParam(value = "New ranking request." ,required=true ) @RequestBody NewMapEntryRequest body) {
+            @RequestBody NewMapEntryRequest body,
+            @RequestHeader(value="sessionId") String sessionId,
+            @RequestHeader(value="correlationId", required=false) String correlationId) {
 
         logger.debug("postRanking invoked");
 
@@ -54,8 +59,10 @@ public class RankingController implements IdApi, ShipApi, RankingApi {
 
     @Override
     public ResponseEntity<RankingEntry> getByShipAndMap(
-            @ApiParam(value = "TODO",required=true ) @PathVariable("map") String map,
-            @ApiParam(value = "TODO",required=true ) @PathVariable("ship") String ship) {
+            @PathVariable("map") String map,
+            @PathVariable("ship") String ship,
+            @RequestHeader(value="sessionId") String sessionId,
+            @RequestHeader(value="correlationId", required=false) String correlationId) {
 
         logger.debug("getByShipAndMap invoked");
 
@@ -76,4 +83,6 @@ public class RankingController implements IdApi, ShipApi, RankingApi {
             .time(f.getTime())
             .id(f.getId())
             .username(f.getUserName());
+
+
 }

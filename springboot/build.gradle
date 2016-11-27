@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
         classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
@@ -61,9 +61,10 @@ dependencies {
     runtime 'com.fasterxml.jackson.core:jackson-core:2.4.6'
     runtime 'com.fasterxml.jackson.core:jackson-annotations:2.4.6'
 
-    runtime 'com.navid.trafalgar:shipModelY:1.0'
+    runtime 'com.navid.trafalgar:shipModelY:1.1'
     runtime 'com.navid.trafalgar:shipModelZ:1.0'
     compile 'ch.qos.logback:logback-classic:1.1.6'
+    compile 'ch.qos.logback:logback-core:1.1.6'
     runtime 'net.logstash.logback:logstash-logback-encoder:4.8'
     swaggerApi (group:"com.navid.record-server", name: 'contract', version:"${supported_api_version}", ext:"yml")
 }

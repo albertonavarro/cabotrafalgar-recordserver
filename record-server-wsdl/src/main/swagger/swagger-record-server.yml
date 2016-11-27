@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 2.0.3
+  version: 2.0.4
   title: Recordserver
   description: TODO
 host: recordserver.trafalgar.ws:8080
@@ -25,6 +25,16 @@ paths:
         required: true
         type: string
         description: TODO
+      - name: sessionId
+        in: header
+        required: true
+        type: string
+        description: Lazylogin sessionId
+      - name: correlationId
+        in: header
+        required: false
+        type: string
+        description: Request unique id.
       responses:
         200:
           description: TODO
@@ -40,6 +50,16 @@ paths:
         required: true
         type: string
         description: TODO
+      - name: sessionId
+        in: header
+        required: true
+        type: string
+        description: Lazylogin sessionId
+      - name: correlationId
+        in: header
+        required: false
+        type: string
+        description: Request unique id.
       responses:
         200:
           description: TODO
@@ -58,6 +78,16 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/NewMapEntryRequest"
+      - name: sessionId
+        in: header
+        required: true
+        type: string
+        description: Lazylogin sessionId
+      - name: correlationId
+        in: header
+        required: false
+        type: string
+        description: Request unique id.
       responses:
         200:
           description: TODO

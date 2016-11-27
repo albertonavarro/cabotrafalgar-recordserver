@@ -40,7 +40,7 @@ sourceSets {
 }
 
 ext {
-    springfoxVersion = '2.5.0'
+    springfoxVersion = '2.6.1'
 }
 
 dependencies {

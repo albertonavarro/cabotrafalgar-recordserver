@@ -1,5 +1,7 @@
 package com.navid.recordserver;
 
+import com.navid.codegen.recordserver.ApiClient;
+import com.navid.codegen.recordserver.api.DefaultApi;
 import com.navid.lazylogin.context.RequestContextContainer;
 import com.lazylogin.client.user.v0.CreateTokenRequest;
 import com.lazylogin.client.user.v0.UserCommands;
@@ -37,15 +39,13 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
     private final String url = System.getProperty("recordserverUrl");
     
     protected String token;
-    
+
+    protected String prefix;
+
+    DefaultApi defaultApi;
+
     @BeforeClass
     public void initToken() {
-        ClientProxyFactoryBean x;
-        ReflectionServiceFactoryBean y;
-        SoapBindingConfiguration z;
-        JAXBDataBinding t;
-        ElementExtensible u;
-        JaxWsProxyFactoryBean v;
         CreateTokenRequest request = new CreateTokenRequest() {{
             setEmail("somemail@somedomain.com");
         }};
@@ -55,7 +55,8 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
         LOGGER.info("Got user token: " + token);
 
         requestContextContainer.get().setSessionId(token);
-        
+
+        prefix = Long.toString(System.nanoTime()) + "-";
     }
     
     @AfterClass

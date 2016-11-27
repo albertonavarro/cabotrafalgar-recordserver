@@ -13,6 +13,8 @@ import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ws.rs.NotFoundException;
+import javax.xml.ws.soap.SOAPFaultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -82,7 +84,7 @@ public final class RecordServerServiceImpl implements RecordServerService {
                     } else {
                         continue;
                     }
-                } catch (GetUserInfoError_Exception ex) {
+                } catch (GetUserInfoError_Exception | SOAPFaultException ex) {
                     LOG.error("Error retrieving user info from record {} and user {}", toTransform.getId(), toTransform.getUserSession());
                     continue;
                 }

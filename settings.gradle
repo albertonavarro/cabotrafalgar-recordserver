@@ -1,12 +1,11 @@
-rootProject.name = 'parent'
+rootProject.name = 'recordserver'
 include ':logic'
 include ':persistence-api'
 include ':contract'
 include ':persistence-couchdb'
 include ':springboot'
-if (System.getProperty("remote")) {
-    include 'integration-test'
-}
+include 'integration-test'
+
 
 project(':logic').projectDir = "$rootDir/logic" as File
 project(':persistence-api').projectDir = "$rootDir/persistence-api" as File
