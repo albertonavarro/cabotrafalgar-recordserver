@@ -5,5 +5,7 @@ applicationName = "recordserver"
 
 distDocker {
     push = true
-
+    baseImage "openjdk:8-jre"
+    addFile("src/main/docker/newrelic.jar", "/opt/newrelic/")
+    addFile("src/main/docker/newrelic.yml", "/opt/newrelic/")
 }
