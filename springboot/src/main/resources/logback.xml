@@ -15,10 +15,25 @@
         </encoder>
     </appender>
 
+    <appender name="STACKIFY" class="com.stackify.log.logback.StackifyLogAppender">
+        <apiKey>8Xv2Cl4Fg1Xi8Iq7Nz9Ov1Je4Iu9Jj1Ky9Ak8Mh</apiKey>
+        <application>lazylogin</application>
+        <environment>${ENVIRONMENT}</environment>
+    </appender>
+
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>logsene-receiver-syslog.sematext.com</syslogHost>
+        <port>514</port>
+        <facility>AUDIT</facility>
+        <suffixPattern>${LOGSENE_API}:%thread - %message</suffixPattern>
+    </appender>
+
     <logger name="com.navid" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="stash" />
+        <appender-ref ref="STACKIFY" />
+        <appender-ref ref="SYSLOG" />
     </root>
 </configuration>
