@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @SpringBootApplication
 @Configuration
-@ComponentScan(basePackages = {"com.navid.recordserver.springboot", "com.navid.spring.addons"})
+@ComponentScan(basePackages = {"com.navid.recordserver.springboot"})
 @ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-couchdb-persistence.xml"})
 @EnableAutoConfiguration
 @PropertySource(value = {"classpath:/application.properties",

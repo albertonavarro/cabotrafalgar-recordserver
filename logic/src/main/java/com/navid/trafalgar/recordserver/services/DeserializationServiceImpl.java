@@ -58,11 +58,11 @@ public class DeserializationServiceImpl implements DeserializationService {
             cdu.setMapName(record.getHeader().getMap());
             cdu.setPayload(candidateRecord);
             cdu.setTimestamp(new Date());
-            cdu.setUserName(requestContextContainer.get().getUserName());
+            cdu.setUserName(requestContext.getUserName());
             cdu.setGameVerified(FALSE);
             cdu.setLoginVerified(FALSE);
             cdu.setTime(record.getTime());
-            cdu.setUserSession(requestContextContainer.get().getSessionId());
+            cdu.setUserSession(requestContext.getSessionId());
             cdu.setShipName(record.getHeader().getShipModel());
             return cdu;
     }
