@@ -2,21 +2,22 @@ package com.navid.trafalgar.recordserver.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.navid.lazylogin.context.RequestContext;
 import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.trafalgar.maploader.v3.EntryDefinition;
 import com.navid.trafalgar.model.ModelBuilder;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
-import static java.lang.Boolean.FALSE;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+
+import static java.lang.Boolean.FALSE;
 
 /**
  *
@@ -63,6 +64,7 @@ public class DeserializationServiceImpl implements DeserializationService {
             cdu.setLoginVerified(FALSE);
             cdu.setTime(record.getTime());
             cdu.setUserSession(requestContext.getSessionId());
+            cdu.setTokenHash(requestContext.getTokenHash());
             cdu.setShipName(record.getHeader().getShipModel());
             return cdu;
     }

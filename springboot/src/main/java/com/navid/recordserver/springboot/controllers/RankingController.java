@@ -8,7 +8,6 @@ import com.navid.codegen.recordserver.model.*;
 import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import com.navid.trafalgar.recordserver.services.RecordServerService;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

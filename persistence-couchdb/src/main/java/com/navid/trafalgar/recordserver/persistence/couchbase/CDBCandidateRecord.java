@@ -1,8 +1,9 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
-import java.util.Date;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
+
+import java.util.Date;
 
 
 public class CDBCandidateRecord extends CouchDbDocument {

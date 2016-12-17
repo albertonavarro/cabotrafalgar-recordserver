@@ -2,17 +2,19 @@ package com.navid.recordserver.springboot.jmx;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import static com.google.common.collect.Lists.newArrayList;
 import com.navid.trafalgar.recordserver.persistence.UsersReport;
 import com.navid.trafalgar.recordserver.services.RecordServerService;
-import java.util.List;
-import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Component
 @ManagedResource(objectName = "recordServer:name=adminPanel")

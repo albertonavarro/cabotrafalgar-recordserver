@@ -1,10 +1,10 @@
 package com.navid.trafalgar.recordserver.services;
 
 import com.navid.trafalgar.model.AShipModel;
-import java.util.Set;
-import javax.annotation.PostConstruct;
 import org.reflections.Reflections;
-import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.Set;
 
 public class ShipDiscoveryService {
     

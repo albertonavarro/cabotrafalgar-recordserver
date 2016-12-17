@@ -1,22 +1,19 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
-import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
-import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
-import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
-import com.navid.trafalgar.recordserver.persistence.Persistence;
-import com.navid.trafalgar.recordserver.persistence.UsersReport;
+import com.navid.trafalgar.recordserver.persistence.*;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-import javax.annotation.Resource;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class CouchbaseImpl implements Persistence {

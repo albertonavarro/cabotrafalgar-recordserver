@@ -3,28 +3,22 @@
 package com.navid.trafalgar.recordserver.persistence.couchbase;
 
 import com.navid.trafalgar.recordserver.persistence.UsersReport;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.io.IOUtils;
-import org.ektorp.AttachmentInputStream;
-import org.ektorp.ComplexKey;
-import org.ektorp.CouchDbConnector;
-import org.ektorp.Options;
-import org.ektorp.ViewQuery;
-import org.ektorp.ViewResult;
+import org.ektorp.*;
 import org.ektorp.ViewResult.Row;
 import org.ektorp.support.CouchDbRepositorySupport;
 import org.ektorp.support.UpdateHandler;
 import org.ektorp.support.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.helpers.BasicMarker;
-import org.slf4j.helpers.BasicMarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component(value = "recordserver.cdbrepository")
 public class CDBCandidateRecordRepository extends CouchDbRepositorySupport<CDBCandidateRecord> {

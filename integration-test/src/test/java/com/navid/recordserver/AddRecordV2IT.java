@@ -1,8 +1,5 @@
 package com.navid.recordserver;
 
-import javax.annotation.Resource;
-import static org.hamcrest.CoreMatchers.equalTo;
-
 import com.navid.codegen.recordserver.ApiClient;
 import com.navid.codegen.recordserver.ApiException;
 import com.navid.codegen.recordserver.api.DefaultApi;
@@ -13,6 +10,8 @@ import com.navid.codegen.recordserver.model.RankingEntry;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
  *

@@ -1,13 +1,13 @@
 
 package com.navid.trafalgar.springutils;
 
-import java.util.Map.Entry;
-import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+
+import java.util.Map.Entry;
+import java.util.Properties;
 
 /**
  *

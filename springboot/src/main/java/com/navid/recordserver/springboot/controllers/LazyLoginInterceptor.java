@@ -43,6 +43,7 @@ public class LazyLoginInterceptor implements HandlerInterceptor {
                 UserInfo userInfo = systemCommands.getUserInfo(lazyloginToken);
                 context.setUserId(userInfo.getUserid());
                 context.setUserName(userInfo.getUsername());
+                context.setTokenHash(userInfo.getTokenHash());
             } catch (Exception e) {
                 logger.error("Error invoking lazylogin with sessionId {}: {}", lazyloginToken, e.getMessage());
             }

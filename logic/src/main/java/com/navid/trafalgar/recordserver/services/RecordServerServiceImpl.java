@@ -1,23 +1,20 @@
 package com.navid.trafalgar.recordserver.services;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.lazylogin.client.system.v0.GetUserInfoError_Exception;
 import com.lazylogin.client.system.v0.SystemCommands;
 import com.lazylogin.client.system.v0.UserInfo;
 import com.navid.lazylogin.context.RequestContextContainer;
-import com.navid.trafalgar.recordserver.persistence.CandidateInfo;
-import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
-import com.navid.trafalgar.recordserver.persistence.ItemNotFoundException;
-import com.navid.trafalgar.recordserver.persistence.Persistence;
-import com.navid.trafalgar.recordserver.persistence.UsersReport;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.ws.rs.NotFoundException;
-import javax.xml.ws.soap.SOAPFaultException;
-
+import com.navid.trafalgar.recordserver.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import javax.ws.rs.NotFoundException;
+import javax.xml.ws.soap.SOAPFaultException;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Service
 public final class RecordServerServiceImpl implements RecordServerService {
@@ -79,8 +76,8 @@ public final class RecordServerServiceImpl implements RecordServerService {
                         toTransform.setUserName(userInfo.getUsername());
                         toTransform.setGameVerified(true);
                         persistence.update(toTransform);
-                    } else if (toTransform.getUserSession().equals(requestContextContainer.get().getSessionId())) {
-                        toTransform.setUserName("--yourself--");
+                    } else if (requestContextContainer.get().getTokenHash().equals(toTransform.getTokenHash())) {
+                        toTransform.setUserName("You, only for your eyes.");
                     } else {
                         continue;
                     }

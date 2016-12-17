@@ -26,6 +26,8 @@ public class CandidateInfo {
 
     private String userSession;
 
+    private String tokenHash;
+
     private Integer position;
     
     private String shipName;
@@ -183,5 +185,12 @@ public class CandidateInfo {
     public void setShipName(String shipName) {
         this.shipName = shipName;
     }
-    
+
+    public String getTokenHash() {
+        return tokenHash;
+    }
+
+    public void setTokenHash(String tokenHash) {
+        this.tokenHash = tokenHash;
+    }
 }
