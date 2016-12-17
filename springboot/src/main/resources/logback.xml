@@ -30,6 +30,8 @@
 
     <logger name="com.navid" level="DEBUG"/>
 
+    <logger name="com.navid.lazylogin.context" level="WARN" />
+
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="stash" />
