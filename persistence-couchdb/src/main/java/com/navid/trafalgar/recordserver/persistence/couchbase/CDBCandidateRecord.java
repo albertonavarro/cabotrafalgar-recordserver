@@ -30,6 +30,8 @@ public class CDBCandidateRecord extends CouchDbDocument {
     private String userToken;
     
     private String shipName;
+
+    private String tokenHash;
     
 
     /**
@@ -189,4 +191,11 @@ public class CDBCandidateRecord extends CouchDbDocument {
         this.shipName = shipName;
     }
 
+    public String getTokenHash() {
+        return tokenHash;
+    }
+
+    public void setTokenHash(String tokenHash) {
+        this.tokenHash = tokenHash;
+    }
 }
