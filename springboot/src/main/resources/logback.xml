@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>192.168.1.150:5000</destination>
-
-        <!-- encoder is required -->
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
-            <customFields>{"appname":"recordserver"}</customFields>
-        </encoder>
-    </appender>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
         </encoder>
-    </appender>
-
-    <appender name="STACKIFY" class="com.stackify.log.logback.StackifyLogAppender">
-        <apiKey>8Xv2Cl4Fg1Xi8Iq7Nz9Ov1Je4Iu9Jj1Ky9Ak8Mh</apiKey>
-        <application>lazylogin</application>
-        <environment>${ENVIRONMENT}</environment>
-    </appender>
-
-    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
-        <syslogHost>logsene-receiver-syslog.sematext.com</syslogHost>
-        <port>514</port>
-        <facility>AUDIT</facility>
-        <suffixPattern>${LOGSENE_API}:%thread - %message</suffixPattern>
     </appender>
 
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
@@ -45,9 +24,6 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="stash" />
-        <appender-ref ref="STACKIFY" />
-        <appender-ref ref="SYSLOG" />
         <appender-ref ref="LogzioLogbackAppender"/>
     </root>
 </configuration>
