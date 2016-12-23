@@ -63,8 +63,8 @@ dependencies {
 
     runtime 'com.navid.trafalgar:shipModelY:1.1'
     runtime 'com.navid.trafalgar:shipModelZ:1.0'
-    compile 'ch.qos.logback:logback-classic:1.1.6'
-    compile 'ch.qos.logback:logback-core:1.1.6'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'ch.qos.logback:logback-core:1.1.7'
     swaggerApi (group:"com.navid.record-server", name: 'contract', version:"${supported_api_version}", ext:"yml")
     compile 'io.logz.logback:logzio-logback-appender:1.0.11'
 
