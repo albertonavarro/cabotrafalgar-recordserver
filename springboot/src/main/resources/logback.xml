@@ -36,7 +36,7 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
-        <additionalFields>appName=lazylogin; environment=$ENVIRONMENT</additionalFields>
+        <additionalFields>appName=recordserver; environment=$ENVIRONMENT</additionalFields>
     </appender>
 
     <logger name="com.navid" level="DEBUG"/>
