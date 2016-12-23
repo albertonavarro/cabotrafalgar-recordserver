@@ -28,6 +28,17 @@
         <suffixPattern>${LOGSENE_API}:%thread - %message</suffixPattern>
     </appender>
 
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <appender name="LogzioLogbackAppender" class="io.logz.logback.LogzioLogbackAppender">
+        <token>tJKAVFqvufYsSZDYSTxCjrWhKgOOpoRF</token>
+        <logzioUrl>https://listener.logz.io:8071</logzioUrl>
+        <logzioType>java</logzioType>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <additionalFields>appName=lazylogin; environment=$ENVIRONMENT</additionalFields>
+    </appender>
+
     <logger name="com.navid" level="DEBUG"/>
 
     <logger name="com.navid.lazylogin.context" level="WARN" />
@@ -37,5 +48,6 @@
         <appender-ref ref="stash" />
         <appender-ref ref="STACKIFY" />
         <appender-ref ref="SYSLOG" />
+        <appender-ref ref="LogzioLogbackAppender"/>
     </root>
 </configuration>
