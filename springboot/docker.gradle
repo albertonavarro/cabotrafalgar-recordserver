@@ -8,4 +8,7 @@ distDocker {
     baseImage "openjdk:8-jre"
     addFile("src/main/docker/newrelic.jar", "/opt/newrelic/")
     addFile("src/main/docker/newrelic.yml", "/opt/newrelic/")
+
+    addFile("src/main/appdynamics_zip/AppServerAgent-4.2.9.2.zip", "/opt/appdynamics/")
+    runCommand("unzip /opt/appdynamics/AppServerAgent-4.2.9.2.zip -d /opt/appdynamics")
 }
