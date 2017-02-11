@@ -7,6 +7,7 @@ import com.navid.lazylogin.context.RequestContext;
 import com.navid.lazylogin.context.RequestContextContainer;
 import com.navid.trafalgar.maploader.v3.EntryDefinition;
 import com.navid.trafalgar.model.ModelBuilder;
+import com.navid.trafalgar.model.Role;
 import com.navid.trafalgar.recordserver.persistence.CandidateRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +52,7 @@ public class DeserializationServiceImpl implements DeserializationService {
                     put("role", "CandidateRecord");
                 }});
 
-            Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(entry);
+            Collection<? extends com.navid.trafalgar.model.CandidateRecord> classy = builder.build(entry, Role.candidateRecord);
 
             com.navid.trafalgar.model.CandidateRecord record = gson.fromJson(candidateRecord, Iterables.getFirst(classy, null).getClass());
 
