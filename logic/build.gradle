@@ -8,7 +8,7 @@ dependencies {
         exclude group: 'org.springframework'
     }
     compile 'org.reflections:reflections:0.9.9-RC1'
-    compile ('com.navid.trafalgar:mod-api:1.2'){
+    compile ('com.navid.trafalgar:mod-api:1.3'){
         exclude group: 'org.springframework'
     }
 
