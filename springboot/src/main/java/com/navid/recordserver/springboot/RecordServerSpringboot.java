@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan(basePackages = {"com.navid.recordserver.springboot"})
 @ImportResource({"classpath:conf/config-main.xml", "classpath:conf/config-jmx.xml", "classpath:conf/config-couchdb-persistence.xml"})
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = JmsAutoConfiguration.class)
 @PropertySource(value = {"classpath:/application.properties",
     "classpath:/conf/recordserver${env}.overrides",
     "file:${user.home}/navidconfig/recordserver${env}.overrides"}, ignoreResourceNotFound = true)
